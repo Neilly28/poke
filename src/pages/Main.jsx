@@ -1,6 +1,6 @@
 import React from "react";
-import Card from "./Card";
-import Pokeinfo from "./Pokeinfo";
+import Card from "../Card";
+import Pokeinfo from "../Pokeinfo";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
