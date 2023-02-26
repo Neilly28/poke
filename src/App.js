@@ -2,11 +2,11 @@ import "./App.css";
 import axios from "axios";
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Main from "./pages/Main";
+import Home from "./pages/Home";
 import Collection from "./pages/Collection";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
-import Navbar from "./Navbar";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Main />} />
+          <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/collection" element={<Collection />} />
           <Route path="*" element={<NotFound />} />
