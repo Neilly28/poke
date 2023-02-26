@@ -9,7 +9,9 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("https://pokeapi.co/api/v2/pokemon/");
+        const res = await axios.get(
+          "https://pokeapi.co/api/v2/pokemon?limit=151"
+        );
         const arr = res.data.results;
         const url = arr.map((item) => {
           return item.url;
@@ -23,7 +25,6 @@ const Home = () => {
           })
         );
 
-        console.log(data);
         setCharacters(data);
       } catch (error) {
         console.log(error);
@@ -34,7 +35,7 @@ const Home = () => {
   }, []);
 
   const filteredCharacters = characters.filter((char) =>
-    char.name.includes(searchTerm)
+    char.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -42,7 +43,7 @@ const Home = () => {
       <div className="search">
         <input
           type="text"
-          placeholder="find your favorite pokemon"
+          placeholder="Find your favorite Pokemon"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
