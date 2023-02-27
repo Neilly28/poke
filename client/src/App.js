@@ -8,6 +8,7 @@ import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import Users from "./pages/Users";
 import Custom from "./pages/Custom";
+import Cards from "./pages/Cards";
 import Navbar from "./components/Navbar";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/collection" element={<Collection />} />
           <Route path="/users" element={<Users />}></Route>
           <Route path="/custom" element={<Custom />}></Route>
+          <Route path="/cards" element={<Cards />}></Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

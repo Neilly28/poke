@@ -1,77 +1,85 @@
-/* Gradient background */
-:root {
-  --primary-color: #3f51b5;
-  --secondary-color: #2196f3;
-  --gradient: linear-gradient(
-    to bottom right,
-    var(--primary-color),
-    var(--secondary-color)
-  );
-}
-
-/* Overall styling */
+/* Styles for the heading */
 .heading {
-  font-size: 4rem;
+  font-size: 36px;
+  font-weight: bold;
+  margin: 30px 0 20px;
   text-align: center;
-  color: white;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  margin-top: 2rem;
 }
 
+/* Styles for the pokemon list */
 .pokeList {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 3rem;
+  gap: 30px;
 }
 
+/* Styles for the pokemon cards */
 .pokeCard {
-  background-color: white;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  border-radius: 1rem;
-  padding: 2rem;
-  margin: 1rem;
-  text-align: center;
-  width: 300px;
-  transition: all 0.3s ease-in-out;
+  width: 320px;
+  height: 460px;
+  padding: 25px;
+  background: linear-gradient(to bottom right, #f2f2f2, #fff);
+  border-radius: 25px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+  position: relative;
 }
 
-.pokeCard:hover {
-  transform: scale(1.05);
-  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+/* Styles for the pokemon image */
+.pokeCard img {
+  display: block;
+  width: 180px;
+  height: 180px;
+  margin: 0 auto;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.4));
 }
 
+/* Styles for the pokemon name */
 .pokeName {
-  font-size: 2rem;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: capitalize;
+  margin: 20px 0;
+  text-shadow: 1px 1px 0 #fff, -1px -1px 0 #fff, 1px -1px 0 #fff,
+    -1px 1px 0 #fff;
 }
 
-/* Ability list */
+/* Styles for the ability list */
 .abilityList {
   display: flex;
   justify-content: center;
-  margin-bottom: 2rem;
-}
-
-.ability {
-  font-size: 1.5rem;
-  margin: 0 0.5rem;
-  padding: 0.5rem 1rem;
-  background-color: var(--primary-color);
-  color: white;
-  border-radius: 0.5rem;
-}
-
-/* Stat list */
-.statList {
-  display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  margin-top: 2rem;
+  margin: 20px 0;
 }
 
+/* Styles for the ability */
+.ability {
+  font-size: 18px;
+  font-weight: bold;
+  color: #666;
+  margin: 5px;
+  padding: 5px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Styles for the stat list */
+.statList {
+  position: absolute;
+  bottom: 25px;
+  left: 25px;
+  right: 25px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 15px;
+  border-radius: 20px;
+}
+
+/* Styles for the stat */
 .stat {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin: 5px;
 }

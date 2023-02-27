@@ -1,0 +1,30 @@
+.pokeGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+.cardWrapper {
+  position: relative;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  height: 200px;
+}
+
+.card {
+  transition: transform 0.5s;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.card:hover {
+  transform: translateZ(50px);
+}
+
+.img {
+  width: 50%;
+}

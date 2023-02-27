@@ -20,6 +20,9 @@ const Navbar = () => {
       <Link to="custom" className={styles.link}>
         Custom Pokemon
       </Link>
+      <Link to="cards" className={styles.link}>
+        Cards
+      </Link>
     </nav>
   );
 };
