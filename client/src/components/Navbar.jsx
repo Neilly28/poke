@@ -17,6 +17,9 @@ const Navbar = () => {
       <Link to="users" className={styles.link}>
         All Users
       </Link>
+      <Link to="custom" className={styles.link}>
+        Custom Pokemon
+      </Link>
     </nav>
   );
 };

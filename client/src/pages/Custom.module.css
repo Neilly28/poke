@@ -1,0 +1,77 @@
+/* Gradient background */
+:root {
+  --primary-color: #3f51b5;
+  --secondary-color: #2196f3;
+  --gradient: linear-gradient(
+    to bottom right,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+}
+
+/* Overall styling */
+.heading {
+  font-size: 4rem;
+  text-align: center;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-top: 2rem;
+}
+
+.pokeList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.pokeCard {
+  background-color: white;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+  padding: 2rem;
+  margin: 1rem;
+  text-align: center;
+  width: 300px;
+  transition: all 0.3s ease-in-out;
+}
+
+.pokeCard:hover {
+  transform: scale(1.05);
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.pokeName {
+  font-size: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* Ability list */
+.abilityList {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.ability {
+  font-size: 1.5rem;
+  margin: 0 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 0.5rem;
+}
+
+/* Stat list */
+.statList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.stat {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}

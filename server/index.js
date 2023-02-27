@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const UserModel = require("./models/User");
+const PokemonModel = require("./models/Pokemon");
 
 // allow to connect with react
 const cors = require("cors");
@@ -51,6 +52,114 @@ app.post("/createUser", async (req, res) => {
   const newUser = new UserModel(user);
   await newUser.save();
   res.json(user);
+});
+
+app.get("/getPokemon", (req, res) => {
+  PokemonModel.find({}, (err, result) => {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+// UserModel.create({
+//   name: "Jam",
+//   age: 28,
+//   username: "tuyami",
+// })
+//   .then(() => {
+//     console.log("new product created!");
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
+
+// const monsters = [
+//   {
+//     name: "Ultrasaur",
+//     abilities: ["Kill", "Eat"],
+//     stats: {
+//       hp: 999,
+//       attack: 9000,
+//       defense: 500,
+//       speed: 100,
+//     },
+//   },
+//   {
+//     name: "Chimera",
+//     abilities: ["Fire Breath", "Poison Tail"],
+//     stats: {
+//       hp: 1500,
+//       attack: 1200,
+//       defense: 800,
+//       speed: 300,
+//     },
+//   },
+//   {
+//     name: "Leviathan",
+//     abilities: ["Tidal Wave", "Whirlpool"],
+//     stats: {
+//       hp: 2000,
+//       attack: 1000,
+//       defense: 1200,
+//       speed: 500,
+//     },
+//   },
+//   {
+//     name: "Behemoth",
+//     abilities: ["Rampage", "Stomp"],
+//     stats: {
+//       hp: 3000,
+//       attack: 2000,
+//       defense: 1500,
+//       speed: 200,
+//     },
+//   },
+//   {
+//     name: "Phoenix",
+//     abilities: ["Flame Burst", "Phoenix Down"],
+//     stats: {
+//       hp: 1500,
+//       attack: 800,
+//       defense: 600,
+//       speed: 800,
+//     },
+//   },
+// ];
+
+// PokemonModel.insertMany(monsters)
+//   .then(() => {
+//     console.log("NEW POKEMONSS CREATED!!");
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
+
+// PokemonModel.create({
+//   name: "Ultrasaur",
+//   abilities: ["Kill", "Eat"],
+//   stats: {
+//     hp: 999,
+//     attack: 9000,
+//     defense: 500,
+//     speed: 100,
+//   },
+// })
+//   .then(() => {
+//     console.log("NEW POKEMON CREATED!");
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
+
+app.post("/createPokemon", async (req, res) => {
+  const poke = req.body;
+  console.log(poke);
+  const newPoke = new PokemonModel(poke);
+  await newPoke.save();
+  res.json(poke);
 });
 
 app.listen(8080, () => {
