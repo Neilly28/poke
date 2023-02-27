@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const UserModel = require("./models/User");
 const PokemonModel = require("./models/Pokemon");
 
+require("dotenv").config(); //Keep this at top of your file
+
 // allow to connect with react
 const cors = require("cors");
 
@@ -13,9 +15,10 @@ app.use(cors());
 // 68jPGAYuAFl2tvjT
 // "mongodb+srv://neilpilarca:68jPGAYuAFl2tvjT@cluster0.47fqr7u.mongodb.net/test"
 mongoose
-  .connect(
-    "mongodb+srv://neilpilarca:68jPGAYuAFl2tvjT@cluster0.47fqr7u.mongodb.net/mern-tutorial-db"
-  )
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => {
     console.log("mongo connection open to MERN!");
   })
