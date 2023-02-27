@@ -2,43 +2,17 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./Home.module.css";
 import { Link } from "react-router-dom";
+import useFetch from "../components/useFetch";
 
 const Home = () => {
-  const [characters, setCharacters] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get(
-          "https://pokeapi.co/api/v2/pokemon?limit=151"
-        );
-        const arr = res.data.results;
-        const url = arr.map((item) => {
-          return item.url;
-        });
-
-        // Fetch data for each URL
-        const data = await Promise.all(
-          url.map(async (itemUrl) => {
-            const itemRes = await axios.get(itemUrl);
-            return itemRes.data;
-          })
-        );
-
-        setCharacters(data);
-        console.log("DATA HERE!", data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  const filteredCharacters = characters.filter((char) =>
-    char.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const {
+    characters,
+    searchTerm,
+    setSearchTerm,
+    isPending,
+    error,
+    filteredCharacters,
+  } = useFetch("https://pokeapi.co/api/v2/pokemon?limit=151");
 
   return (
     <div className="hero">
