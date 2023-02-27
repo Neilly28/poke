@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./Home.module.css";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [characters, setCharacters] = useState([]);
@@ -27,6 +27,7 @@ const Home = () => {
         );
 
         setCharacters(data);
+        console.log("DATA HERE!", data);
       } catch (error) {
         console.log(error);
       }
@@ -53,9 +54,12 @@ const Home = () => {
         <div className={styles["card-container"]}>
           {filteredCharacters.map((char) => {
             return (
-              <div className={styles.card}>
-                <h1>{char.name}</h1>
-                <img src={char.sprites.front_default} alt="" />
+              <div className={styles.card} key={char.id}>
+                <Link to={`/poke/${char.id}`}>
+                  <h1>{char.id}</h1>
+                  <h1>{char.name}</h1>
+                  <img src={char.sprites.front_default} alt="" />
+                </Link>
               </div>
             );
           })}

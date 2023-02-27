@@ -10,6 +10,7 @@ import Users from "./pages/Users";
 import Custom from "./pages/Custom";
 import Cards from "./pages/Cards";
 import Navbar from "./components/Navbar";
+import PokeDetails from "./pages/PokeDetails";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/poke/:id" element={<PokeDetails />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/collection" element={<Collection />} />
           <Route path="/users" element={<Users />}></Route>
