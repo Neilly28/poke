@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const UserModel = require("./models/User");
 const PokemonModel = require("./models/Pokemon");
+const userRoutes = require("./routes/user");
 
 require("dotenv").config(); //Keep this at top of your file
 
@@ -68,12 +69,11 @@ app.get("/getPokemon", (req, res) => {
 });
 
 // UserModel.create({
-//   name: "Jam",
-//   age: 28,
-//   username: "tuyami",
+//   email: "jam@gmail.com",
+//   password: "jam1234",
 // })
 //   .then(() => {
-//     console.log("new product created!");
+//     console.log("new user and password created!");
 //   })
 //   .catch((err) => {
 //     console.log(err);
@@ -164,6 +164,9 @@ app.post("/createPokemon", async (req, res) => {
   await newPoke.save();
   res.json(poke);
 });
+
+// routes
+app.use("/api/user", userRoutes);
 
 app.listen(8080, () => {
   console.log("server listening from port 8080");
