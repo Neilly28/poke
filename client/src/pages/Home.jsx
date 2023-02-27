@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./Home.module.css";
+// import { Link } from "react-router-dom";
 
 const Home = () => {
   const [characters, setCharacters] = useState([]);
@@ -39,7 +40,7 @@ const Home = () => {
   );
 
   return (
-    <>
+    <div className="hero">
       <div className="search">
         <input
           type="text"
@@ -48,17 +49,20 @@ const Home = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
-      <div className={styles["card-container"]}>
-        {filteredCharacters.map((char) => {
-          return (
-            <div className={styles.card}>
-              <h1>{char.name}</h1>
-              <img src={char.sprites.front_default} alt="" />
-            </div>
-          );
-        })}
+      <div className="poke-container">
+        <div className={styles["card-container"]}>
+          {filteredCharacters.map((char) => {
+            return (
+              <div className={styles.card}>
+                <h1>{char.name}</h1>
+                <img src={char.sprites.front_default} alt="" />
+              </div>
+            );
+          })}
+        </div>
+        <div className="poke-info">hello!</div>
       </div>
-    </>
+    </div>
   );
 };
 

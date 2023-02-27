@@ -1,3 +1,14 @@
+.hero {
+  display: flex;
+}
+
+.search {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .card-container {
   display: flex;
   flex-wrap: wrap;
@@ -12,6 +23,11 @@
   margin: 16px;
   width: 300px;
   display: inline-block;
+  cursor: pointer;
+}
+
+.card:hover {
+  border: 1px solid #f7f7f7;
 }
 
 .card h1 {

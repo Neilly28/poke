@@ -14,6 +14,9 @@ const Navbar = () => {
       <Link to="collection" className={styles.link}>
         My Collection
       </Link>
+      <Link to="users" className={styles.link}>
+        All Users
+      </Link>
     </nav>
   );
 };

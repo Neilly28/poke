@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Collection from "./pages/Collection";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
+import Users from "./pages/Users";
 import Navbar from "./components/Navbar";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/collection" element={<Collection />} />
+          <Route path="/users" element={<Users />}></Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
