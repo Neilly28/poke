@@ -15,8 +15,8 @@ const Home = () => {
   } = useFetch("https://pokeapi.co/api/v2/pokemon?limit=151");
 
   return (
-    <div className="hero">
-      <div className="search">
+    <div className={styles.hero}>
+      <div className={styles.search}>
         <input
           type="text"
           placeholder="Find your favorite Pokemon"
@@ -24,7 +24,7 @@ const Home = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
-      <div className="poke-container">
+      <div className={styles["poke-container"]}>
         <div className={styles["card-container"]}>
           {filteredCharacters.map((char) => {
             return (
@@ -38,7 +38,6 @@ const Home = () => {
             );
           })}
         </div>
-        <div className="poke-info">hello!</div>
       </div>
     </div>
   );
