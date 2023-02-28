@@ -24,7 +24,7 @@ const Home = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
-      <div className={styles["poke-container"]}>
+      <div className="text-[#FF9494]">
         <div className={styles["card-container"]}>
           {filteredCharacters.map((char) => {
             return (
