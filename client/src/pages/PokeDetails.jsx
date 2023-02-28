@@ -1,30 +1,57 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
 import axios from "axios";
+import styles from "./PokeDetails.module.css";
 
 const PokeDetails = () => {
-  const [pokeDetails, setPokeDetails] = useState("");
   const { id } = useParams();
-  console.log(id);
+  const [pokeDetails, setPokeDetails] = useState(null);
+  const [isPending, setIsPending] = useState(true);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
-    axios.get("https://pokeapi.co/api/v2/pokemon/" + id).then((res) => {
-      console.log("RES DATA HERE!");
-      console.log(res.data);
-      setPokeDetails(res.data);
-      console.log("POKEDEATILS");
-      console.log(pokeDetails);
-    });
-  }, []);
+    const fetchDetails = async () => {
+      try {
+        const response = await axios.get(
+          `https://pokeapi.co/api/v2/pokemon/${id}`
+        );
+        setPokeDetails(response.data);
+        setIsPending(false);
+        setError(null);
+      } catch (err) {
+        setIsPending(false);
+        setError(err.message);
+        console.log(err);
+      }
+    };
+    fetchDetails();
+  }, [id]);
 
   return (
-    <div>
-      <h1> {pokeDetails.name} </h1>
-      {/* <img src={pokeDetails.sprites.front_default} alt="" /> */}
-      {/* <img src={pokeDetails.sprites.front_default} alt="" /> */}
-      {/* {pokeDetails.abilities.map((poke) => {
-        return <h2> {poke} </h2>;
-      })} */}
+    <div className={styles.card}>
+      {error && <div>{error}</div>}
+      {isPending && <div>Loading...</div>}
+      {pokeDetails && (
+        <>
+          <div className={styles.title}>{pokeDetails.name}</div>
+          <img
+            className={styles.image}
+            src={pokeDetails.sprites.front_default}
+            alt=""
+          />
+
+          <div className={styles.stats}>
+            {pokeDetails.stats.map((poke) => {
+              return (
+                <div className={styles.stat} key={poke.stat.name}>
+                  <div className={styles.statName}>{poke.stat.name}</div>
+                  <div className={styles.statValue}>{poke.base_stat}</div>
+                </div>
+              );
+            })}
+          </div>
+        </>
+      )}
     </div>
   );
 };
