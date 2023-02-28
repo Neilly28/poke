@@ -11,6 +11,8 @@ import Custom from "./pages/Custom";
 import Cards from "./pages/Cards";
 import Navbar from "./components/Navbar";
 import PokeDetails from "./pages/PokeDetails";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/poke/:id" element={<PokeDetails />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/collection" element={<Collection />} />

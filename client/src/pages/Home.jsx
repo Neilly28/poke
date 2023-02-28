@@ -24,20 +24,20 @@ const Home = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
-      <div className="text-[#F9F7F7]">
+      <div className="text-[#EEEEEE]">
         <div className="grid grid-cols-5 grid-rows-5 max-w-5xl">
           {filteredCharacters.map((char) => {
             return (
               <Link to={`/poke/${char.id}`}>
                 <div
-                  className="flex flex-col justify-center items-center p-8 rounded-md m-4 bg-[#222831]"
+                  className="flex flex-col justify-center items-center p-8 rounded-md m-4 bg-[#252A34]"
                   key={char.id}
                 >
                   {/* <h2 className="mb-10 text-lg">#{char.id}</h2> */}
                   <img
                     src={char.sprites.other.dream_world.front_default}
                     alt=""
-                    className="w-1/2"
+                    className="w-3/4"
                   />
                   <h2 className="text-2xl capitalize">{char.name}</h2>
                 </div>
