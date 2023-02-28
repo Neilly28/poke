@@ -24,17 +24,24 @@ const Home = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
-      <div className="text-[#FF9494]">
-        <div className={styles["card-container"]}>
+      <div className="text-[#F9F7F7]">
+        <div className="grid grid-cols-5 grid-rows-5">
           {filteredCharacters.map((char) => {
             return (
-              <div className={styles.card} key={char.id}>
-                <Link to={`/poke/${char.id}`}>
-                  <h1>{char.id}</h1>
-                  <h1>{char.name}</h1>
-                  <img src={char.sprites.front_default} alt="" />
-                </Link>
-              </div>
+              <Link to={`/poke/${char.id}`}>
+                <div
+                  className="flex flex-col justify-center items-center p-8 rounded-md m-4 bg-[#112D4E]"
+                  key={char.id}
+                >
+                  <h2 className="mb-10 text-lg">#{char.id}</h2>
+                  <img
+                    src={char.sprites.other.dream_world.front_default}
+                    alt=""
+                    className="mb-10"
+                  />
+                  <h2 className="text-2xl capitalize">{char.name}</h2>
+                </div>
+              </Link>
             );
           })}
         </div>

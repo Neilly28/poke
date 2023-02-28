@@ -35,7 +35,7 @@ const Cards = () => {
   return (
     <div>
       <h1>hello from cards!</h1>
-      <div className={styles.pokeGrid}>
+      <div className="grid grid-cols-5 grid-rows-5 gap-9">
         {url.map((poke) => {
           return (
             <div className={styles.cardWrapper}>
