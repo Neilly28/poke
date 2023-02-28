@@ -25,19 +25,19 @@ const Home = () => {
         />
       </div>
       <div className="text-[#F9F7F7]">
-        <div className="grid grid-cols-5 grid-rows-5">
+        <div className="grid grid-cols-5 grid-rows-5 max-w-5xl">
           {filteredCharacters.map((char) => {
             return (
               <Link to={`/poke/${char.id}`}>
                 <div
-                  className="flex flex-col justify-center items-center p-8 rounded-md m-4 bg-[#112D4E]"
+                  className="flex flex-col justify-center items-center p-8 rounded-md m-4 bg-[#222831]"
                   key={char.id}
                 >
-                  <h2 className="mb-10 text-lg">#{char.id}</h2>
+                  {/* <h2 className="mb-10 text-lg">#{char.id}</h2> */}
                   <img
                     src={char.sprites.other.dream_world.front_default}
                     alt=""
-                    className="mb-10"
+                    className="w-1/2"
                   />
                   <h2 className="text-2xl capitalize">{char.name}</h2>
                 </div>
