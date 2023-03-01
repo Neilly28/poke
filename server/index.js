@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const UserModel = require("./models/User");
 const PokemonModel = require("./models/Pokemon");
 const userRoutes = require("./routes/user");
+const pokemonRoutes = require("./routes/pokemon");
 
 require("dotenv").config(); //Keep this at top of your file
 
@@ -58,15 +59,15 @@ app.post("/createUser", async (req, res) => {
   res.json(user);
 });
 
-app.get("/getPokemon", (req, res) => {
-  PokemonModel.find({}, (err, result) => {
-    if (err) {
-      res.json(err);
-    } else {
-      res.json(result);
-    }
-  });
-});
+// app.get("/getPokemon", (req, res) => {
+//   PokemonModel.find({}, (err, result) => {
+//     if (err) {
+//       res.json(err);
+//     } else {
+//       res.json(result);
+//     }
+//   });
+// });
 
 // UserModel.create({
 //   email: "jam@gmail.com",
@@ -157,16 +158,18 @@ app.get("/getPokemon", (req, res) => {
 //     console.log(err);
 //   });
 
-app.post("/createPokemon", async (req, res) => {
-  const poke = req.body;
-  console.log(poke);
-  const newPoke = new PokemonModel(poke);
-  await newPoke.save();
-  res.json(poke);
-});
+// app.post("/createPokemon", async (req, res) => {
+//   const poke = req.body;
+//   console.log(poke);
+//   const newPoke = new PokemonModel(poke);
+//   await newPoke.save();
+//   res.json(poke);
+// });
 
 // routes
 app.use("/api/user", userRoutes);
+
+app.use("/api/pokemon", pokemonRoutes);
 
 app.listen(8080, () => {
   console.log("server listening from port 8080");

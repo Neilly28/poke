@@ -4,8 +4,10 @@ import Pokeinfo from "../components/Pokeinfo";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Search from "../components/Search";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const Collection = () => {
+  const { user } = useAuthContext();
   const [pokeData, setPokeData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon/");
@@ -15,7 +17,11 @@ const Collection = () => {
 
   const pokeFun = async () => {
     setLoading(true);
-    const res = await axios.get(url);
+    const res = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
     // get individual pokemon pass it as argument
     getPokemon(res.data.results);
     setNextUrl(res.data.next);

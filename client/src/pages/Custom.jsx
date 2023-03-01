@@ -2,19 +2,29 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./Custom.module.css";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const Custom = () => {
+  const { user } = useAuthContext();
   const [listOfPokemon, setListOfPokemon] = useState([]);
   //   const [name, setName] = useState("");
   //   const [age, setAge] = useState(0);
   //   const [username, setUsername] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:8080/getPokemon").then((res) => {
-      console.log(res);
-      setListOfPokemon(res.data);
-    });
-  }, []);
+    if (user) {
+      axios
+        .get("http://localhost:8080/api/pokemon", {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          setListOfPokemon(res.data);
+        });
+    }
+  }, [user]);
 
   //   const createUser = () => {
   //     axios
