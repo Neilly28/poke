@@ -22,6 +22,8 @@ const Navbar = () => {
       <Link to="collection">My Collection</Link>
       <Link to="users">All Users</Link>
       <Link to="custom">Custom Pokemon</Link>
+      <Link to="random">Random Pokemon</Link>
+
       {/* <Link to="cards">Cards</Link> */}
       {!user && (
         <div className="logsign">

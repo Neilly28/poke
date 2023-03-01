@@ -20,6 +20,7 @@ import Navbar from "./components/Navbar";
 import PokeDetails from "./pages/PokeDetails";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+import Random from "./pages/Random";
 
 function App() {
   const { user } = useAuthContext();
@@ -46,6 +47,8 @@ function App() {
           <Route path="/users" element={<Users />}></Route>
           <Route path="/custom" element={<Custom />}></Route>
           <Route path="/cards" element={<Cards />}></Route>
+          <Route path="/random" element={<Random />}></Route>
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
