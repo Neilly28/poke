@@ -17,16 +17,18 @@ const Collection = () => {
 
   const pokeFun = async () => {
     setLoading(true);
-    const res = await axios.get(url, {
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-      },
-    });
-    // get individual pokemon pass it as argument
-    getPokemon(res.data.results);
-    setNextUrl(res.data.next);
-    setPrevUrl(res.data.previous);
-    setLoading(false);
+    if (user) {
+      const res = await axios.get(url, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+      // get individual pokemon pass it as argument
+      getPokemon(res.data.results);
+      setNextUrl(res.data.next);
+      setPrevUrl(res.data.previous);
+      setLoading(false);
+    }
   };
 
   //   res.data.results is now results argument
