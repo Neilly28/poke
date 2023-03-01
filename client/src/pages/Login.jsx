@@ -32,7 +32,7 @@ const Login = () => {
           <input
             type="email"
             placeholder="Email"
-            class="p-2 mt-8 bg-transparent border-b-2 border-black focus:border-black outline-none placeholder-black"
+            className="p-2 mt-8 bg-transparent border-b-2 border-black focus:border-black outline-none placeholder-black"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
           />
@@ -40,7 +40,7 @@ const Login = () => {
           <input
             type="password"
             placeholder="Password"
-            class="p-2 mt-8 bg-transparent border-b-2 border-black focus:border-black outline-none placeholder-black"
+            className="p-2 mt-8 bg-transparent border-b-2 border-black focus:border-black outline-none placeholder-black"
             onChange={(e) => setPassword(e.target.value)}
             value={password}
           />
