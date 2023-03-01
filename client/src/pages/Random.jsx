@@ -39,7 +39,7 @@ const Random = () => {
           type="text"
           placeholder="Describe your Pokemon..."
           onChange={(e) => {
-            setPrompt(e.target.value);
+            setPrompt(`${e.target.value} Pokemon`);
           }}
         />
         <button onClick={generateImage}>Generate</button>
