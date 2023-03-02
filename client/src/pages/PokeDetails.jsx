@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { resolvePath, useParams } from "react-router-dom";
 import axios from "axios";
 import styles from "./PokeDetails.module.css";
+// import Typewriter from "typewriter-effect";
+import TypeWriterEffect from "react-typewriter-effect";
 
 const PokeDetails = () => {
   const { id } = useParams();
@@ -47,7 +49,7 @@ const PokeDetails = () => {
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <div className="grid grid-cols-3 mt-20 mx-auto justify-center max-w-5xl">
+      <div className="grid grid-cols-3 mt-20 mx-auto justify-center max-w-5xl mb-20">
         {error && <div>{error}</div>}
         {isPending && <div>Loading...</div>}
         {pokeDetails && (
@@ -97,10 +99,21 @@ const PokeDetails = () => {
           </>
         )}
       </div>
-      <h1 className="max-w-3xl text-center text-base normal-case tracking-wider lowercase mt-20">
-        {" "}
-        {text}{" "}
-      </h1>
+
+      <TypeWriterEffect
+        // textStyle={{ fontFamily: "Red Hat Display" }}
+        startDelay={100}
+        cursorColor="black"
+        text={text}
+        typeSpeed={30}
+        textStyle={{
+          fontFamily: "Poppins",
+          // color: "#3F3D56",
+          fontWeight: 500,
+          fontSize: "1em",
+        }}
+        // scrollArea={myAppRef}
+      />
     </div>
   );
 };
