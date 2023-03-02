@@ -1,7 +1,9 @@
 import React from "react";
 import { useState } from "react";
+import { usePokemonsContext } from "../hooks/usePokemonsContext";
 
 const PokemonForm = () => {
+  const { dispatch } = usePokemonsContext();
   const [name, setName] = useState("");
   const [abilities, setAbilities] = useState("");
   const [hp, setHp] = useState("");
@@ -35,6 +37,7 @@ const PokemonForm = () => {
       setSpeed("");
       setError(null);
       console.log("New Pokemon Added", json);
+      dispatch({ type: "CREATE_POKEMON", payload: json });
     }
   };
 
