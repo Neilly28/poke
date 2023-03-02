@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-// import styles from "./Home.module.css";
 import { Link } from "react-router-dom";
 import useFetch from "../components/useFetch";
 import Masonry from "react-responsive-masonry";
@@ -39,8 +38,8 @@ const Home = () => {
                   <h2 className="font-bold text-xs mb-5">#{char.id}</h2>
                   <img
                     // src={char.sprites.other.dream_world.front_default}
-                    // src={char.sprites.front_default}
-                    src={char.sprites.other.home.front_default}
+                    src={char.sprites.front_default}
+                    // src={char.sprites.other.home.front_default}
                     alt={char.name}
                   />
                   <h2 className="font-bold text-lg capitalize">{char.name}</h2>
