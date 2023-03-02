@@ -14,9 +14,9 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="text-[#444] font-bold text-sm bg-[#f7da34] text-2xl p-4 mt-10 flex justify-evenly items-center h-24 mx-auto sticky">
-      <Link to="/" className="text3xl">
-        Home
+    <nav className="font-bold text-sm bg-[#f7da34] text-2xl p-4 mt-10 flex justify-evenly items-center h-24 mx-auto sticky">
+      <Link to="/">
+        <span className="font-bold text-4xl">Pokéhack</span>
       </Link>
       {/* <Link to="profile">My Profile</Link> */}
       <Link to="collection">My Collection</Link>

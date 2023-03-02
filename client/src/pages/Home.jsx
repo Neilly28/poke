@@ -3,6 +3,7 @@ import axios from "axios";
 // import styles from "./Home.module.css";
 import { Link } from "react-router-dom";
 import useFetch from "../components/useFetch";
+import Masonry from "react-responsive-masonry";
 
 const Home = () => {
   const {
@@ -25,22 +26,31 @@ const Home = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
+
       <div>
-        <div className="grid grid-cols-5 max-w-7xl gap-20 justify-center items-center">
+        <div className="grid grid-cols-3 max-w-8xl gap-20 justify-center items-center">
           {filteredCharacters.map((char) => {
             return (
               <Link to={`/poke/${char.id}`}>
                 <div
-                  className="flex flex-col justify-center items-center overflow-hidden"
+                  className="flex flex-col justify-center items-center overflow-hidden p-8 opacity-90"
                   key={char.id}
                 >
-                  {/* <h2 className="font-bold text-xs mb-5">#{char.id}</h2> */}
+                  <h2 className="font-bold text-xs mb-5">#{char.id}</h2>
                   <img
-                    src={char.sprites.other.dream_world.front_default}
-                    alt=""
-                    className="h-28 w-full object-cover"
+                    // src={char.sprites.other.dream_world.front_default}
+                    // src={char.sprites.front_default}
+                    src={char.sprites.other.home.front_default}
+                    alt={char.name}
                   />
                   <h2 className="font-bold text-lg capitalize">{char.name}</h2>
+                  {char.abilities.map((poke) => {
+                    return (
+                      <div>
+                        <h3> {poke[0]} </h3>
+                      </div>
+                    );
+                  })}
                 </div>
               </Link>
             );
