@@ -1,4 +1,5 @@
 const express = require("express");
+const router = express.Router();
 
 const {
   createPokemon,
@@ -9,8 +10,6 @@ const {
 } = require("../controllers/pokemon");
 
 const requireAuth = require("../middleware/requireAuth");
-
-const router = express.Router();
 
 // require authentication before accessing any route
 router.use(requireAuth);

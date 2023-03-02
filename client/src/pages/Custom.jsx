@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./Custom.module.css";
 import { useAuthContext } from "../hooks/useAuthContext";
+import PokeForm from "../components/PokeForm";
 
 const Custom = () => {
   const { user } = useAuthContext();
@@ -41,6 +42,7 @@ const Custom = () => {
 
   return (
     <>
+      <PokeForm />
       <h1 className={styles.heading}>CUSTOM POKEMON!</h1>
       <div className={styles.pokeList}>
         {listOfPokemon.map((poke) => {
