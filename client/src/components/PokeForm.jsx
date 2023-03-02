@@ -1,7 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useAuthContext } from "../hooks/useAuthContext";
+import { usePokemonContext } from "../hooks/usePokeContext";
 
 function PokeForm() {
+  const { dispatch } = usePokemonContext();
+  const { user } = useAuthContext();
   const [name, setName] = useState("");
   const [abilities, setAbilities] = useState([]);
   const [stats, setStats] = useState({
@@ -10,6 +14,7 @@ function PokeForm() {
     defense: 0,
     speed: 0,
   });
+  const [error, setError] = useState(null);
   const [newPokemon, setNewPokemon] = useState(null);
 
   //   useEffect(() => {
@@ -23,8 +28,13 @@ function PokeForm() {
   //     }
   //   }, [newPokemon]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!user) {
+      return;
+    }
+
     const newStats = {
       hp: Math.floor(Math.random() * 100),
       attack: Math.floor(Math.random() * 100),
@@ -38,6 +48,31 @@ function PokeForm() {
       stats: newStats,
     };
     setNewPokemon(newPokemonObj);
+
+    const headers = {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST,PATCH,OPTIONS",
+      "Access-Control-Allow-Origin": "http://localhost:8080/api/pokemon",
+      Authorization: `Bearer ${user.token}`,
+    };
+
+    const pokemon = { name, abilities, stats };
+
+    const response = await fetch("http://localhost:8080/api/pokemon", {
+      method: "POST",
+      body: JSON.stringify(pokemon),
+      headers: headers,
+    });
+
+    const json = await response.json();
+
+    if (!response.ok) {
+      setError(json.error);
+    }
+    if (response.ok) {
+      dispatch({ type: "CREATE_POKEMON", payload: json });
+    }
   };
 
   return (
@@ -69,6 +104,7 @@ function PokeForm() {
           <li>Speed: {stats.speed}</li>
         </ul> */}
         <button>Create Pokemon</button>
+        {error && <div className="error">{error}</div>}
       </form>
       {newPokemon && (
         <div>

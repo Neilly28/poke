@@ -1,16 +1,54 @@
 const Pokemon = require("../models/Pokemon");
+const express = require("express");
+const app = express();
+const cors = require("cors");
+app.use(cors());
 
-// create
-const createPokemon = async (req, res, next) => {
-  const newPokemon = new Pokemon(req.body);
+// create a new workout
+const createPokemon = async (req, res) => {
+  const { name, abilities, stats } = req.body;
 
+  let emptyFields = [];
+
+  if (!name) {
+    emptyFields.push("title");
+  }
+  if (!abilities) {
+    emptyFields.push("load");
+  }
+  if (!stats) {
+    emptyFields.push("reps");
+  }
+  if (emptyFields.length > 0) {
+    return res
+      .status(400)
+      .json({ error: "Please fill in all fields", emptyFields });
+  }
+
+  // add doc to db
   try {
-    const savedPokemon = await newPokemon.save();
-    res.status(200).json(savedPokemon);
-  } catch (err) {
-    next(err);
+    const user_id = req.user._id;
+    const pokemon = await Pokemon.create({ name, abilities, stats, user_id });
+    res.status(200).json(pokemon);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
   }
 };
+
+// create
+// const createPokemon = async (req, res, next) => {
+//   const newPokemon = new Pokemon(req.body);
+
+//   try {
+//     const user_id = req.user._id;
+//     newPokemon.user = user_id; // Add the user id to the new Pokemon
+//     const savedPokemon = await newPokemon.save();
+//     res.status(200).json(savedPokemon);
+//     console.log("NEW POKEMON CREATED!");
+//   } catch (err) {
+//     next(err);
+//   }
+// };
 
 // update
 const updatePokemon = async (req, res, next) => {
