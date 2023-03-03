@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import MyPokemon from "./pages/MyPokemon";
+import PokemonDetails from "./pages/PokemonDetails";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
 
@@ -28,6 +29,8 @@ function App() {
             path="/mypokemon"
             element={user ? <MyPokemon /> : <Navigate to="/mypokemon" />}
           />
+          <Route path="/poke/:id" element={<PokemonDetails />} />
+
           <Route
             path="/login"
             element={!user ? <Login /> : <Navigate to="/" />}

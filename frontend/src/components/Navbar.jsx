@@ -12,16 +12,16 @@ const Navbar = () => {
   };
 
   return (
-    <header>
+    <header className="font-bold text-sm bg-[#f7da34] text-md p-4 mt-10 flex justify-between items-center sticky max-w-5xl mx-auto">
       <Link to="/">
-        <h1>Pokehack Nav</h1>
+        <h1 className="font-bold text-xl">Pokéhack</h1>
       </Link>
       <nav>
         {user && (
-          <div>
-            <span>{user.email}</span>
-            <button onClick={handleClick}>Log Out</button>
+          <div className="flex justify-evenly items-center gap-7">
             <Link to="/mypokemon">My Pokemon</Link>
+            <span>Hello, {user.email}</span>
+            <button onClick={handleClick}>Log Out</button>
           </div>
         )}
         {!user && (
