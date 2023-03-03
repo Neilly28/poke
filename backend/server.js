@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const pokemonRoutes = require("./routes/pokemons");
+const userRoutes = require("./routes/user");
 
 // express app
 const app = express();
@@ -17,6 +18,7 @@ app.use((req, res, next) => {
 
 // routes
 app.use("/api/pokemons", pokemonRoutes);
+app.use("/api/user", userRoutes);
 
 // connect to db
 mongoose

@@ -1,12 +1,20 @@
 import React from "react";
 import { usePokemonsContext } from "../hooks/usePokemonsContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const PokemonDetails = ({ pokemon }) => {
   const { dispatch } = usePokemonsContext();
+  const { user } = useAuthContext();
 
   const handleClick = async () => {
+    if (!user) {
+      return;
+    }
     const response = await fetch("/api/pokemons/" + pokemon._id, {
       method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
     });
     const json = await response.json();
 

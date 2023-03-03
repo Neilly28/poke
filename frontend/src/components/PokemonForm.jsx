@@ -1,9 +1,12 @@
 import React from "react";
 import { useState } from "react";
 import { usePokemonsContext } from "../hooks/usePokemonsContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const PokemonForm = () => {
   const { dispatch } = usePokemonsContext();
+  const { user } = useAuthContext();
+
   const [name, setName] = useState("");
   const [abilities, setAbilities] = useState("");
   const [hp, setHp] = useState("");
@@ -15,12 +18,17 @@ const PokemonForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!user) {
+      setError("You must be logged in");
+      return;
+    }
     const pokemon = { name, abilities, hp, attack, defense, speed };
     const response = await fetch("/api/pokemons", {
       method: "POST",
       body: JSON.stringify(pokemon),
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
       },
     });
     const json = await response.json();

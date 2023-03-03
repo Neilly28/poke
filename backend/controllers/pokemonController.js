@@ -3,7 +3,9 @@ const mongoose = require("mongoose");
 
 // get all pokemons
 const getPokemons = async (req, res) => {
-  const pokemons = await Pokemon.find({}).sort({ createdAt: -1 });
+  // get only pokemon that was created by the logged in user
+  const user_id = req.user._id;
+  const pokemons = await Pokemon.find({ user_id }).sort({ createdAt: -1 });
   res.status(200).json(pokemons);
 };
 
@@ -60,6 +62,7 @@ const createPokemon = async (req, res) => {
 
   //   add doc to db
   try {
+    const user_id = req.user._id;
     const pokemon = await Pokemon.create({
       name,
       abilities,
@@ -67,6 +70,7 @@ const createPokemon = async (req, res) => {
       attack,
       defense,
       speed,
+      user_id,
     });
     res.status(200).json(pokemon);
   } catch (error) {
