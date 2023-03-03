@@ -11,6 +11,7 @@ const PokemonForm = () => {
   const [defense, setDefense] = useState("");
   const [speed, setSpeed] = useState("");
   const [error, setError] = useState(null);
+  const [emptyFields, setEmptyFields] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,6 +27,7 @@ const PokemonForm = () => {
 
     if (!response.ok) {
       setError(json.error);
+      setEmptyFields(json.emptyFields);
     }
     if (response.ok) {
       setName("");
@@ -36,6 +38,7 @@ const PokemonForm = () => {
       setDefense("");
       setSpeed("");
       setError(null);
+      setEmptyFields([]);
       console.log("New Pokemon Added", json);
       dispatch({ type: "CREATE_POKEMON", payload: json });
     }
@@ -50,32 +53,38 @@ const PokemonForm = () => {
           type="text"
           onChange={(e) => setName(e.target.value)}
           value={name}
+          // className={emptyFields.includes("name") ? "styles.error" : ""}
         />
         <label>Abilities:</label>
         <input
           type="text"
           onChange={(e) => setAbilities(e.target.value)}
           value={abilities}
+          // className={emptyFields.includes("abilities") ? "error" : ""}
         />
         <label>Hp:</label>
         <input type="text" onChange={(e) => setHp(e.target.value)} value={hp} />
+        {/* className={emptyFields.includes("hp") ? "error" : ""} */}
         <label>Attack:</label>
         <input
           type="text"
           onChange={(e) => setAttack(e.target.value)}
           value={attack}
+          // className={emptyFields.includes("attack") ? "error" : ""}
         />
         <label>Defense:</label>
         <input
           type="text"
           onChange={(e) => setDefense(e.target.value)}
           value={defense}
+          // className={emptyFields.includes("defense") ? "error" : ""}
         />
         <label>Speed:</label>
         <input
           type="text"
           onChange={(e) => setSpeed(e.target.value)}
           value={speed}
+          // className={emptyFields.includes("speed") ? "error" : ""}
         />
         <button>Add Pokemon</button>
         {error && <div> {error} </div>}

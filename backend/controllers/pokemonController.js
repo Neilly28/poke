@@ -12,7 +12,9 @@ const getPokemon = async (req, res) => {
   const { id } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ error: "No such Pokemon. Invalid Id." });
+    return res
+      .status(404)
+      .json({ error: "Error Getting. No such Pokemon. Invalid Id." });
   }
   const pokemon = await Pokemon.findById(id);
 
@@ -26,6 +28,35 @@ const getPokemon = async (req, res) => {
 // create a new pokemon
 const createPokemon = async (req, res) => {
   const { name, abilities, hp, attack, defense, speed } = req.body;
+
+  // check for empty fields
+  let emptyFields = [];
+  if (!name) {
+    emptyFields.push("name");
+  }
+  if (!abilities) {
+    emptyFields.push("abilities");
+  }
+  if (!hp) {
+    emptyFields.push("hp");
+  }
+  if (!attack) {
+    emptyFields.push("attack");
+  }
+  if (!defense) {
+    emptyFields.push("defense");
+  }
+  if (!speed) {
+    emptyFields.push("speed");
+  }
+
+  if (emptyFields.length > 0) {
+    return res
+      .status(400)
+      .json({ error: "Please fill in all fields XXX", emptyFields });
+  }
+
+  console.log(emptyFields);
 
   //   add doc to db
   try {
@@ -48,7 +79,9 @@ const deletePokemon = async (req, res) => {
   const { id } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ error: "No such Pokemon. Invalid Id." });
+    return res
+      .status(404)
+      .json({ error: "Error Deleting. No such Pokemon. Invalid Id." });
   }
 
   const pokemon = await Pokemon.findOneAndDelete({ _id: id });
@@ -65,7 +98,9 @@ const updatePokemon = async (req, res) => {
   const { id } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ error: "No such Pokemon. Invalid Id." });
+    return res
+      .status(404)
+      .json({ error: "Error Updating. No such Pokemon. Invalid Id." });
   }
 
   const pokemon = await Pokemon.findOneAndUpdate(
