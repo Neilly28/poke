@@ -7,7 +7,7 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import PokemonDetails from "../components/PokemonDetails";
 import PokemonForm from "../components/PokemonForm";
 
-const Home = () => {
+const MyPokemon = () => {
   const { pokemons, dispatch } = usePokemonsContext();
   const { user } = useAuthContext();
 
@@ -32,14 +32,14 @@ const Home = () => {
 
   return (
     <div>
-      <h1>Welcome to Pokehack Homepage</h1>
-      {/* {pokemons &&
+      <h1> My Pokemon </h1>
+      {pokemons &&
         pokemons.map((pokemon) => {
           return <PokemonDetails key={pokemon._id} pokemon={pokemon} />;
         })}
-      <PokemonForm /> */}
+      <PokemonForm />
     </div>
   );
 };
 
-export default Home;
+export default MyPokemon;

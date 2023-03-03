@@ -8,6 +8,8 @@ import { useAuthContext } from "./hooks/useAuthContext";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import MyPokemon from "./pages/MyPokemon";
+import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
 
 function App() {
@@ -21,6 +23,11 @@ function App() {
             path="/"
             element={user ? <Home /> : <Navigate to="/login" />}
           />
+          {/* revisit this !!! should navigate to login if no user */}
+          <Route
+            path="/mypokemon"
+            element={user ? <MyPokemon /> : <Navigate to="/mypokemon" />}
+          />
           <Route
             path="/login"
             element={!user ? <Login /> : <Navigate to="/" />}
@@ -29,6 +36,9 @@ function App() {
             path="/signup"
             element={!user ? <Signup /> : <Navigate to="/" />}
           />
+
+          {/* <Route path="/mypokemon" element={<MyPokemon />} /> */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </div>

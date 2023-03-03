@@ -41,11 +41,15 @@ function App() {
             path="/signup"
             element={!user ? <Signup /> : <Navigate to="/" />}
           />
+          <Route
+            path="/custom"
+            element={user ? <Custom /> : <Navigate to="/login" />}
+          />
           <Route path="/poke/:id" element={<PokeDetails />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/collection" element={<Collection />} />
           <Route path="/users" element={<Users />}></Route>
-          <Route path="/custom" element={<Custom />}></Route>
+          {/* <Route path="/custom" element={<Custom />}></Route> */}
           <Route path="/cards" element={<Cards />}></Route>
           <Route path="/random" element={<Random />}></Route>
 

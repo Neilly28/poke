@@ -21,6 +21,7 @@ const Navbar = () => {
           <div>
             <span>{user.email}</span>
             <button onClick={handleClick}>Log Out</button>
+            <Link to="/mypokemon">My Pokemon</Link>
           </div>
         )}
         {!user && (
