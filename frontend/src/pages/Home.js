@@ -16,7 +16,7 @@ const Home = () => {
     filteredCharacters,
     loading,
     setLoading,
-  } = useFetch("https://pokeapi.co/api/v2/pokemon?limit=1000");
+  } = useFetch("https://pokeapi.co/api/v2/pokemon?limit=151");
 
   return (
     <>

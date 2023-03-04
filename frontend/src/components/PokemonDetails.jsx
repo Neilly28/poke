@@ -31,9 +31,16 @@ const PokemonDetails = ({ pokemon }) => {
     <div className="flex flex-col justify-center items-center">
       <div className="grid grid-cols-3 mt-20 mx-auto justify-center max-w-5xl mb-20">
         <div className="flex flex-col justify-center items-center">
+          <div className="font-bold text-lg capitalize">#9999</div>
+          <img
+            className="w-32 p-4"
+            src="https://www.pngfind.com/pngs/m/213-2138431_pokemon-pikachu-pixel-art-pixelated-cute-adorable-pixel.png"
+            alt=""
+          />
           <div className="font-bold text-lg capitalize mb-4">
             {pokemon.name}
           </div>
+
           <div className="flex gap-4">
             {pokemon.types.map((type) => {
               return (
