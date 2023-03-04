@@ -6,6 +6,7 @@ import { useAuthContext } from "../hooks/useAuthContext";
 // components
 import PokemonDetails from "../components/PokemonDetails";
 import PokemonForm from "../components/PokemonForm";
+import Ai from "../components/useAi";
 
 const MyPokemon = () => {
   const { pokemons, dispatch } = usePokemonsContext();
@@ -38,6 +39,7 @@ const MyPokemon = () => {
           return <PokemonDetails key={pokemon._id} pokemon={pokemon} />;
         })}
       <PokemonForm />
+      <Ai />
     </div>
   );
 };
