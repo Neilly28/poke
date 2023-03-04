@@ -7,14 +7,13 @@ const useFetch = (url) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
         const res = await axios.get(url);
-
-        console.log("RES HERE!");
-        console.log(res);
 
         if (res.status !== 200) {
           throw Error("Sorry, could not fetch data for that resource.");
@@ -35,7 +34,7 @@ const useFetch = (url) => {
         setCharacters(data);
         setIsPending(false);
         setError(null);
-        console.log("DATA HERE!", data);
+        setLoading(false);
       } catch (err) {
         setIsPending(false);
         setError(err.message);
@@ -57,6 +56,8 @@ const useFetch = (url) => {
     isPending,
     error,
     filteredCharacters,
+    loading,
+    setLoading,
   };
 };
 

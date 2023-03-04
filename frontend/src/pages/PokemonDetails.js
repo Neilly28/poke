@@ -96,17 +96,19 @@ const PokemonDetails = () => {
           )}
         </div>
 
-        <TypeWriterEffect
-          startDelay={100}
-          cursorColor="black"
-          text={text}
-          typeSpeed={30}
-          textStyle={{
-            fontFamily: "Poppins",
-            fontWeight: 400,
-            fontSize: "1em",
-          }}
-        />
+        <div className="max-w-md">
+          <TypeWriterEffect
+            startDelay={100}
+            cursorColor="black"
+            text={text}
+            typeSpeed={30}
+            textStyle={{
+              fontFamily: "Poppins",
+              fontWeight: 400,
+              fontSize: "1em",
+            }}
+          />
+        </div>
       </div>
     </div>
   );
