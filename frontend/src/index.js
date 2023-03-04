@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
+import AiApp from "./AiApp";
 import reportWebVitals from "./reportWebVitals";
 import { PokemonsContextProvider } from "./context/PokemonContext";
 import { AuthContextProvider } from "./context/AuthContext";
@@ -12,6 +13,7 @@ root.render(
     <AuthContextProvider>
       <PokemonsContextProvider>
         <App />
+        {/* <AiApp /> */}
       </PokemonsContextProvider>
     </AuthContextProvider>
   </React.StrictMode>
