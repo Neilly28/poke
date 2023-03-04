@@ -8,24 +8,18 @@ const pokemonSchema = new Schema(
       type: String,
       required: true,
     },
+    types: {
+      type: [{ type: String, lowercase: true }],
+      required: true,
+    },
+    stats: {
+      hp: { type: Number, required: true },
+      attack: { type: Number, required: true },
+      defense: { type: Number, required: true },
+      speed: { type: Number, required: true },
+    },
     abilities: {
-      type: [String],
-      required: true,
-    },
-    hp: {
-      type: Number,
-      required: true,
-    },
-    attack: {
-      type: Number,
-      required: true,
-    },
-    defense: {
-      type: Number,
-      required: true,
-    },
-    speed: {
-      type: Number,
+      type: [{ type: String, lowercase: true }],
       required: true,
     },
     user_id: {

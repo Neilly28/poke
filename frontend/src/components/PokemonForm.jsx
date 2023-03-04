@@ -8,6 +8,7 @@ const PokemonForm = () => {
   const { user } = useAuthContext();
 
   const [name, setName] = useState("");
+  const [types, setTypes] = useState([]);
   const [abilities, setAbilities] = useState("");
   const [hp, setHp] = useState("");
   const [attack, setAttack] = useState("");
@@ -22,7 +23,17 @@ const PokemonForm = () => {
       setError("You must be logged in");
       return;
     }
-    const pokemon = { name, abilities, hp, attack, defense, speed };
+    const pokemon = {
+      name,
+      types,
+      stats: {
+        hp,
+        attack,
+        defense,
+        speed,
+      },
+      abilities,
+    };
     const response = await fetch("/api/pokemons", {
       method: "POST",
       body: JSON.stringify(pokemon),
@@ -63,13 +74,14 @@ const PokemonForm = () => {
           value={name}
           // className={emptyFields.includes("name") ? "styles.error" : ""}
         />
-        <label>Abilities:</label>
+
+        <label>Types:</label>
         <input
           type="text"
-          onChange={(e) => setAbilities(e.target.value)}
-          value={abilities}
-          // className={emptyFields.includes("abilities") ? "error" : ""}
+          value={types}
+          onChange={(event) => setTypes(event.target.value.split(","))}
         />
+
         <label>Hp:</label>
         <input type="text" onChange={(e) => setHp(e.target.value)} value={hp} />
         {/* className={emptyFields.includes("hp") ? "error" : ""} */}
@@ -94,6 +106,13 @@ const PokemonForm = () => {
           value={speed}
           // className={emptyFields.includes("speed") ? "error" : ""}
         />
+        <label>Abilities:</label>
+        <input
+          type="text"
+          value={abilities}
+          onChange={(event) => setAbilities(event.target.value.split(","))}
+        />
+
         <button>Add Pokemon</button>
         {error && <div> {error} </div>}
       </form>

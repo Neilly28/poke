@@ -1,10 +1,14 @@
 import React from "react";
 import { usePokemonsContext } from "../hooks/usePokemonsContext";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { useState } from "react";
 
 const PokemonDetails = ({ pokemon }) => {
   const { dispatch } = usePokemonsContext();
   const { user } = useAuthContext();
+
+  const [isPending, setIsPending] = useState(true);
+  const [error, setError] = useState(null);
 
   const handleClick = async () => {
     if (!user) {
@@ -24,14 +28,8 @@ const PokemonDetails = ({ pokemon }) => {
   };
   return (
     <div>
-      <h4> {pokemon.name} </h4>
-      <p> {pokemon.abilities} </p>
-      <p> {pokemon.hp} </p>
-      <p> {pokemon.attack} </p>
-      <p> {pokemon.defense} </p>
-      <p> {pokemon.speed} </p>
-      <p> {pokemon.createdAt} </p>
-      <span onClick={handleClick}>delete</span>
+      <h1> {pokemon.name} </h1>
+      <h2> {pokemon.user_id} </h2>
     </div>
   );
 };

@@ -27,7 +27,9 @@ const PokemonDetails = () => {
         // );
         setPokeDetails(response.data);
 
-        const rng = Math.floor(Math.random() * 20);
+        const rng = Math.floor(
+          Math.random() * text.data.flavor_text_entries.length - 1
+        );
         setText(text.data.flavor_text_entries[rng].flavor_text);
 
         setIsPending(false);

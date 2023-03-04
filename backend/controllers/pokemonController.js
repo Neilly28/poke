@@ -29,27 +29,34 @@ const getPokemon = async (req, res) => {
 
 // create a new pokemon
 const createPokemon = async (req, res) => {
-  const { name, abilities, hp, attack, defense, speed } = req.body;
+  const { name, types, stats, abilities } = req.body;
 
   // check for empty fields
   let emptyFields = [];
   if (!name) {
     emptyFields.push("name");
   }
+  if (!types) {
+    emptyFields.push("types");
+  }
+  if (!stats.hp) {
+    emptyFields.push("stats.hp");
+  }
+
+  if (!stats.attack) {
+    emptyFields.push("stats.attack");
+  }
+
+  if (!stats.defense) {
+    emptyFields.push("stats.defense");
+  }
+
+  if (!stats.speed) {
+    emptyFields.push("stats.speed");
+  }
+
   if (!abilities) {
     emptyFields.push("abilities");
-  }
-  if (!hp) {
-    emptyFields.push("hp");
-  }
-  if (!attack) {
-    emptyFields.push("attack");
-  }
-  if (!defense) {
-    emptyFields.push("defense");
-  }
-  if (!speed) {
-    emptyFields.push("speed");
   }
 
   if (emptyFields.length > 0) {
@@ -58,18 +65,21 @@ const createPokemon = async (req, res) => {
       .json({ error: "Please fill in all fields XXX", emptyFields });
   }
 
-  console.log(emptyFields);
+  // console.log(emptyFields);
 
   //   add doc to db
   try {
     const user_id = req.user._id;
     const pokemon = await Pokemon.create({
       name,
+      types,
+      stats: {
+        hp: stats.hp,
+        attack: stats.attack,
+        defense: stats.defense,
+        speed: stats.speed,
+      },
       abilities,
-      hp,
-      attack,
-      defense,
-      speed,
       user_id,
     });
     res.status(200).json(pokemon);
