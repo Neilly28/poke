@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Card, FormField } from "../components";
+import Card from "../components/Card";
 
 const RenderCards = ({ data, title }) => {
   if (data?.length > 0) {
@@ -51,9 +51,7 @@ const AiHome = () => {
           Brosw thru a collection of imaginative and visually stuninig images!
         </p>
       </div>
-      <div className="mt-16">
-        <FormField />
-      </div>
+      <div className="mt-16">{/* <FormField /> */}</div>
       <div className="mt-10">
         {loading ? (
           <div className="flex justify-center items-center">

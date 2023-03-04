@@ -1,85 +1,24 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
-// import { preview } from "../assets";
-import { getRandomPrompt } from "../utils";
-import { FormField } from "../components";
+import CreatePokemon from "../components/CreatePokemon";
 
 const CreatePost = () => {
-  const navigate = useNavigate();
-
-  const [form, setForm] = useState({
-    name: "",
-    prompt: "",
-    photo: "",
-  });
-
-  const [generatingImg, setGeneratingImg] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  const handleChange = (e) =>
-    setForm({ ...form, [e.target.name]: e.target.value });
-
-  const handleSurpriseMe = () => {
-    const randomPrompt = getRandomPrompt(form.prompt);
-    setForm({ ...form, prompt: randomPrompt });
-  };
-
-  const generateImage = async () => {
-    if (form.prompt) {
-      try {
-        setGeneratingImg(true);
-        const response = await fetch("/api/v1/dalle", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            prompt: form.prompt,
-          }),
-        });
-
-        const data = await response.json();
-        setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
-      } catch (err) {
-        alert(err);
-      } finally {
-        setGeneratingImg(false);
-      }
-    } else {
-      alert("Please provide proper prompt");
-    }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (form.prompt && form.photo) {
-      setLoading(true);
-      try {
-        const response = await fetch("/api/v1/post", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(form),
-        });
-        await response.json();
-        navigate("/");
-      } catch (error) {
-        alert(error);
-      } finally {
-        setLoading(false);
-      }
-    } else {
-      alert("Enter a prompt and generate image");
-    }
-  };
+  const {
+    handleSubmit,
+    form,
+    handleChange,
+    handleSurpriseMe,
+    generatingImg,
+    loading,
+    generateImage,
+  } = CreatePokemon();
 
   return (
     <section className="max-w-7xl mx-auto">
       <div>
-        <h1 className="font-extrabold text-[#222328] text-[32px]">Create</h1>
+        <h1 className="font-extrabold text-[#222328] text-[32px]">
+          Create your Pokemon
+        </h1>
         <p className="mt-2 text-[#666e75] text-[14px] max-w-[500px]">
           Generate an imaginative image through DALL-E AI and share it with the
           community
@@ -88,24 +27,28 @@ const CreatePost = () => {
 
       <form className="mt-16 max-w-3xl" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-5">
-          <FormField
-            labelName="Your Name"
+          <label htmlFor="">Pokemon Name</label>
+          <input
+            label="Your Name"
             type="text"
             name="name"
-            placeholder="Ex., john doe"
+            placeholder="Hackermon"
             value={form.name}
-            handleChange={handleChange}
+            onChange={handleChange}
           />
 
-          <FormField
-            labelName="Prompt"
+          <button type="button" onClick={handleSurpriseMe} className="text-xs">
+            Surprise Me
+          </button>
+
+          <label htmlFor="">Describe your Pokemon in a few words</label>
+          <input
+            label="Prompt"
             type="text"
             name="prompt"
-            placeholder="An Impressionist oil painting of sunflowers in a purple vase…"
+            placeholder="A Pokemon with the power to hack all servers and will never get an error"
             value={form.prompt}
-            handleChange={handleChange}
-            isSurpriseMe
-            handleSurpriseMe={handleSurpriseMe}
+            onChange={handleChange}
           />
 
           <div className="relative bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-64 p-3 h-64 flex justify-center items-center">
@@ -117,9 +60,9 @@ const CreatePost = () => {
               />
             ) : (
               <img
-                src="https://image.shutterstock.com/image-vector/view-vector-icon-260nw-576481969.jpg"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROJGo_BDmE1BQXej-UemTXxZG6RkDsA95ZnA&usqp=CAU"
                 alt="preview"
-                className="w-9/12 h-9/12 object-contain opacity-40"
+                // className="w-9/12 h-9/12 object-contain opacity-40"
               />
             )}
 
@@ -139,19 +82,14 @@ const CreatePost = () => {
           >
             {generatingImg ? "Generating..." : "Generate"}
           </button>
-        </div>
-
-        <div className="mt-10">
-          <p className="mt-2 text-[#666e75] text-[14px]">
-            ** Once you have created the image you want, you can share it with
-            others in the community **
-          </p>
-          <button
-            type="submit"
-            className="mt-3 text-white bg-[#6469ff] font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
-          >
-            {loading ? "Sharing..." : "Share with the Community"}
-          </button>
+          {form.photo && (
+            <button
+              type="submit"
+              className=" text-white bg-green-700 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+            >
+              {loading ? "Sharing..." : "Share"}
+            </button>
+          )}
         </div>
       </form>
     </section>
