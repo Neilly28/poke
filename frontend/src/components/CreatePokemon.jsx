@@ -62,7 +62,7 @@ const CreatePokemon = () => {
           body: JSON.stringify(form),
         });
         await response.json();
-        navigate("/");
+        navigate("/ai");
       } catch (error) {
         alert(error);
       } finally {

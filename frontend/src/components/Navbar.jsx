@@ -20,6 +20,8 @@ const Navbar = () => {
         {user && (
           <div className="flex justify-evenly items-center gap-7">
             <Link to="/mypokemon">My Pokemon</Link>
+            <Link to="/create-post">Create</Link>
+            <Link to="/ai">Community</Link>
             <span>Hello, {user.email}</span>
             <button onClick={handleClick}>Log Out</button>
           </div>
