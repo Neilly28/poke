@@ -1,10 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Card from "../components/Card";
+import PokeCard from "../components/PokeCard";
+import CardNew from "../components/CardNew";
 
 const RenderCards = ({ data, title }) => {
   if (data?.length > 0) {
-    return data.map((post) => <Card key={post._id} {...post} />);
+    return data.map((post) => <CardNew key={post._id} {...post} />);
   }
 
   return (

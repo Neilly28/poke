@@ -8,14 +8,21 @@ const CreatePokemon = () => {
   const [generatingImg, setGeneratingImg] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const [pokemonType, setPokemonType] = useState("");
+
   const [form, setForm] = useState({
     name: "",
     prompt: "",
     photo: "",
+    type: "",
   });
 
-  const handleChange = (e) =>
+  const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+    if (e.target.name === "type") {
+      setPokemonType(e.target.value);
+    }
+  };
 
   const handleSurpriseMe = () => {
     const randomPrompt = getRandomPrompt(form.prompt);
@@ -23,7 +30,7 @@ const CreatePokemon = () => {
   };
 
   const generateImage = async () => {
-    if (form.prompt) {
+    if (form.prompt && form.type) {
       try {
         setGeneratingImg(true);
         const response = await fetch("/api/v1/dalle", {
@@ -32,7 +39,9 @@ const CreatePokemon = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            prompt: form.prompt,
+            prompt:
+              "Pokemon Full Body White Background" + form.type + form.prompt,
+            type: form.type,
           }),
         });
 
@@ -51,7 +60,7 @@ const CreatePokemon = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (form.prompt && form.photo) {
+    if (form.prompt && form.photo && form.type) {
       setLoading(true);
       try {
         const response = await fetch("/api/v1/post", {

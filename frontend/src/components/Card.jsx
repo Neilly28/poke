@@ -19,9 +19,7 @@ const Card = ({ _id, name, prompt, photo, type }) => (
             {name[0]}
           </div>
           <p className="text-white text-sm">{name}</p>
-          <p className="text-white text-sm overflow-y-auto prompt">
-            TYPE PLACEHODER HERE
-          </p>
+          <p className="text-white text-xs overflow-y-auto prompt">{type}</p>
         </div>
         {/* <button
           type="button"

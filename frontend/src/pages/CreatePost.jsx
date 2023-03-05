@@ -13,6 +13,8 @@ const CreatePost = () => {
     generateImage,
   } = CreatePokemon();
 
+  const [pokemonType, setPokemonType] = useState("");
+
   return (
     <section className="max-w-7xl mx-auto">
       <div>
@@ -34,6 +36,16 @@ const CreatePost = () => {
             name="name"
             placeholder="Hackermon"
             value={form.name}
+            onChange={handleChange}
+          />
+
+          <label htmlFor="">Pokemon Type</label>
+          <input
+            label="Type"
+            type="text"
+            name="type"
+            placeholder="Electric"
+            value={form.type}
             onChange={handleChange}
           />
 

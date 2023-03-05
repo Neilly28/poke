@@ -12,7 +12,7 @@ import MyPokemon from "./pages/MyPokemon";
 import PokemonDetails from "./pages/PokemonDetails";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
-import { AiHome, CreatePost } from "./pages";
+import { AiHome, CreatePost, AiCommunity } from "./pages";
 
 function App() {
   const { user } = useAuthContext();
@@ -34,10 +34,12 @@ function App() {
             path="/poke/:id"
             element={user ? <PokemonDetails /> : <Navigate to="/login" />}
           />
+
           <Route
             path="/ai"
             element={user ? <AiHome /> : <Navigate to="/login" />}
           />
+
           <Route
             path="/create-post"
             element={user ? <CreatePost /> : <Navigate to="/login" />}
@@ -50,7 +52,6 @@ function App() {
             path="/signup"
             element={!user ? <Signup /> : <Navigate to="/" />}
           />
-          {/* <Route path="/mypokemon" element={<MyPokemon />} /> */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
