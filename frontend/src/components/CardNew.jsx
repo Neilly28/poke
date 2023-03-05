@@ -27,7 +27,7 @@ const CardNew = ({ _id, name, prompt, photo, type }) => {
       className={`rounded-lg text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out p-4 flex flex-col justify-center items-center relative bg-white`}
     >
       <img className="w-250 h-250 object-cover mb-4" src={photo} alt={prompt} />
-      <div className="w-full h-16 p-2 capitalize text-lg font-bold text-black flex items-center justify-center">
+      <div className="w-full h-16 p-2 capitalize text-2xl font-bold text-black flex items-center justify-center">
         {name}
       </div>
 

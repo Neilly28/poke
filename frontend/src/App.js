@@ -13,13 +13,15 @@ import PokemonDetails from "./pages/PokemonDetails";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
 import { AiHome, CreatePost, AiCommunity } from "./pages";
+import SignUp from "./pages/Signup";
+import SignInSide from "./pages/Login";
 
 function App() {
   const { user } = useAuthContext();
   return (
     <div className="App">
       <Router>
-        <Navbar />
+        {user && <Navbar />}
         <Routes>
           <Route
             path="/"
@@ -46,11 +48,11 @@ function App() {
           />
           <Route
             path="/login"
-            element={!user ? <Login /> : <Navigate to="/" />}
+            element={!user ? <SignInSide /> : <Navigate to="/" />}
           />
           <Route
             path="/signup"
-            element={!user ? <Signup /> : <Navigate to="/" />}
+            element={!user ? <SignUp /> : <Navigate to="/" />}
           />
           <Route path="*" element={<NotFound />} />
         </Routes>
