@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { resolvePath, useParams, Link } from "react-router-dom";
+import { resolvePath, useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 // import styles from "./PokeDetails.module.css";
 // import Typewriter from "typewriter-effect";
 import TypeWriterEffect from "react-typewriter-effect";
+import { ClipLoader, PacmanLoader, BeatLoader } from "react-spinners";
 
 const PokemonDetails = () => {
   const { id } = useParams();
@@ -12,6 +13,17 @@ const PokemonDetails = () => {
   const [error, setError] = useState(null);
   const [evo, setEvo] = useState("");
   const [text, setText] = useState("");
+  const navigate = useNavigate();
+
+  const handlePrevClick = () => {
+    const prevId = parseInt(id) - 1;
+    navigate(`/poke/${prevId}`);
+  };
+
+  const handleNextClick = () => {
+    const nextId = parseInt(id) + 1;
+    navigate(`/poke/${nextId}`);
+  };
 
   // make this a CONSTANT file
   const colours = {
@@ -58,14 +70,21 @@ const PokemonDetails = () => {
       }
     };
     fetchDetails();
-  }, [id]);
+  }, [id, text]);
 
   return (
     <div>
+      <button onClick={handlePrevClick}> Previous </button>
+      <button onClick={handleNextClick}> Next </button>
       {error && <div>{error}</div>}
-      {isPending && <div>Loading...</div>}
+      {isPending && (
+        <div className="flex items-center justify-center h-screen">
+          <h1 className="font-bold text-xl mr-3">Catching Pokemon </h1>
+          <BeatLoader color="black" loading={isPending} size={25} />
+        </div>
+      )}
       {pokeDetails && text && (
-        <div className="grid grid-cols-3 mt-20 mx-auto justify-center max-w-5xl mb-20 rounded-lg text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out p-8 flex flex-col justify-center items-center relative bg-white">
+        <div className="grid grid-cols-3 mt-20 mx-auto justify-center max-w-6xl mb-20 rounded-lg text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out p-8 flex flex-col justify-center items-center relative bg-white">
           <div
             className="flex flex-col justify-center items-center p-4"
             // key={char.id}
@@ -84,6 +103,9 @@ const PokemonDetails = () => {
                 />
               }
             </div>
+            <div className="w-full h-16 p-2 capitalize text-2xl font-bold text-black flex items-center justify-center">
+              {pokeDetails.name}
+            </div>
             <div className="flex justify-center items-center gap-4">
               {pokeDetails.types.map((poke) => {
                 return (
@@ -98,7 +120,7 @@ const PokemonDetails = () => {
               })}
             </div>
           </div>
-          <div className="flex flex-col justify-center items-center text-black">
+          <div className="flex flex-col justify-center items-center text-black ml-12">
             {pokeDetails.stats.map((poke) => {
               return (
                 <div className="grid grid-cols-2">
@@ -110,21 +132,7 @@ const PokemonDetails = () => {
               );
             })}
           </div>
-          <div className="max-w-md text-black">
-            {text && (
-              <TypeWriterEffect
-                startDelay={100}
-                cursorColor="black"
-                text={text}
-                typeSpeed={30}
-                textStyle={{
-                  fontFamily: "Poppins",
-                  fontWeight: 400,
-                  fontSize: "1em",
-                }}
-              />
-            )}
-          </div>
+          <div className="max-w-md text-black">{text}</div>
         </div>
       )}
     </div>
@@ -132,3 +140,19 @@ const PokemonDetails = () => {
 };
 
 export default PokemonDetails;
+
+// && (
+//   <>
+//     <TypeWriterEffect
+//       startDelay={100}
+//       cursorColor="black"
+//       text={text}
+//       typeSpeed={30}
+//       textStyle={{
+//         fontFamily: "Poppins",
+//         fontWeight: 400,
+//         fontSize: "1em",
+//       }}
+//     />
+//   </>
+// )

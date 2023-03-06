@@ -124,7 +124,7 @@ const CreatePost = () => {
             className="w-250 h-250 object-contain"
           />
         ) : (
-          <div className="bg-[rgba(0,0,0,0.5)] inset-0">
+          <div className="bg-[rgba(0,0,0,0.5)] inset-0 rounded-lg">
             <img
               src="https://i.pinimg.com/474x/1e/60/87/1e6087cf114c7ced058e98dc1124634d.jpg"
               alt="preview"
