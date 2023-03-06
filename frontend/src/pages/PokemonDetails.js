@@ -13,6 +13,28 @@ const PokemonDetails = () => {
   const [evo, setEvo] = useState("");
   const [text, setText] = useState("");
 
+  // make this a CONSTANT file
+  const colours = {
+    normal: "bg-[#A8A77A]",
+    fire: "bg-[#EE8130]",
+    water: "bg-[#6390F0]",
+    electric: "bg-[#F7D02C]",
+    grass: "bg-[#7AC74C]",
+    ice: "bg-[#96D9D6]",
+    fighting: "bg-[#C22E28]",
+    poison: "bg-[#A33EA1]",
+    ground: "bg-[#E2BF65]",
+    flying: "bg-[#A98FF3]",
+    psychic: "bg-[#F95587]",
+    bug: "bg-[#A6B91A]",
+    rock: "bg-[#B6A136]",
+    ghost: "bg-[#735797]",
+    dragon: "bg-[#6F35FC]",
+    dark: "bg-[#705746]",
+    steel: "bg-[#B7B7CE]",
+    fairy: "bg-[#D685AD]",
+  };
+
   useEffect(() => {
     const fetchDetails = async () => {
       try {
@@ -40,75 +62,71 @@ const PokemonDetails = () => {
 
   return (
     <div>
-      <div className="flex flex-col justify-center items-center">
-        <div className="grid grid-cols-3 mt-20 mx-auto justify-center max-w-5xl mb-20">
-          {error && <div>{error}</div>}
-          {isPending && <div>Loading...</div>}
-          {pokeDetails &&
-            text && ( // check for response and text
-              <>
-                <div className="flex flex-col justify-center items-center">
-                  <div className="font-bold text-lg capitalize">
-                    #{pokeDetails.id}
+      {error && <div>{error}</div>}
+      {isPending && <div>Loading...</div>}
+      {pokeDetails && text && (
+        <div className="grid grid-cols-3 mt-20 mx-auto justify-center max-w-5xl mb-20 rounded-lg text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out p-8 flex flex-col justify-center items-center relative bg-white">
+          <div
+            className="flex flex-col justify-center items-center p-4"
+            // key={char.id}
+          >
+            <div className="w-full h-16 p-2 capitalize text-lg text-black flex items-center justify-center">
+              #{pokeDetails.id}
+            </div>
+            <div className="h-250 w-auto object-cover mb-4">
+              {
+                <img
+                  className="h-250 w-auto object-cover mb-4 saturate-[0.8]"
+                  // src={pokeDetails.sprites.other.home.front_default}
+                  src={pokeDetails.sprites.other.dream_world.front_default}
+                  // src={pokeDetails.sprites.front_default}
+                  alt={pokeDetails.name}
+                />
+              }
+            </div>
+            <div className="flex justify-center items-center gap-4">
+              {pokeDetails.types.map((poke) => {
+                return (
+                  <div
+                    className={`flex justify-center items-center px-4 py-2 capitalize text-sm font-bold text-white rounded-3xl mb-8 ${
+                      colours[poke.type.name.toLowerCase()]
+                    }`}
+                  >
+                    {poke.type.name}
                   </div>
-                  <img src={pokeDetails.sprites.front_default} alt="" />
-                  <div className="font-bold text-lg capitalize mb-4">
-                    {pokeDetails.name}
+                );
+              })}
+            </div>
+          </div>
+          <div className="flex flex-col justify-center items-center text-black">
+            {pokeDetails.stats.map((poke) => {
+              return (
+                <div className="grid grid-cols-2">
+                  <div className="capitalize mb-3 mr-4 font-bold">
+                    {poke.stat.name}:
                   </div>
-                  <div className="flex gap-4">
-                    {pokeDetails.types.map((poke) => {
-                      return (
-                        <div className="bg-black text-yellow-400 border border-black p-2">
-                          <h2 className="capitalize"> {poke.type.name} </h2>
-                        </div>
-                      );
-                    })}
-                  </div>
+                  <div className="capitalize mb-3">{poke.base_stat}</div>
                 </div>
-                <div className="flex flex-col justify-center items-center">
-                  {pokeDetails.stats.map((poke) => {
-                    return (
-                      <div className="grid grid-cols-2">
-                        <div className="capitalize mb-3 mr-4 font-bold">
-                          {poke.stat.name}:
-                        </div>
-                        <div className="capitalize mb-3">{poke.base_stat}</div>
-                      </div>
-                    );
-                  })}
-                </div>
-                <div className="flex flex-col gap-4">
-                  <div>
-                    <h2 className="font-bold">Abilities</h2>
-                  </div>
-                  {pokeDetails.abilities.map((poke) => {
-                    return (
-                      <h2 className="capitalize bg-black text-yellow-400 border border-black p-2 w-1/2">
-                        {poke.ability.name}
-                      </h2>
-                    );
-                  })}
-                </div>
-              </>
+              );
+            })}
+          </div>
+          <div className="max-w-md text-black">
+            {text && (
+              <TypeWriterEffect
+                startDelay={100}
+                cursorColor="black"
+                text={text}
+                typeSpeed={30}
+                textStyle={{
+                  fontFamily: "Poppins",
+                  fontWeight: 400,
+                  fontSize: "1em",
+                }}
+              />
             )}
+          </div>
         </div>
-
-        <div className="max-w-md">
-          {text && (
-            <TypeWriterEffect
-              startDelay={100}
-              cursorColor="black"
-              text={text}
-              typeSpeed={30}
-              textStyle={{
-                fontFamily: "Poppins",
-                fontWeight: 400,
-                fontSize: "1em",
-              }}
-            />
-          )}
-        </div>
-      </div>
+      )}
     </div>
   );
 };
