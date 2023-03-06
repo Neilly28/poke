@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import Card from "../components/Card";
 import PokeCard from "../components/PokeCard";
 import CardNew from "../components/CardNew";
+import { usePostContext } from "../hooks/usePostContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const RenderCards = ({ data, title }) => {
   if (data?.length > 0) {
@@ -15,6 +17,8 @@ const RenderCards = ({ data, title }) => {
 };
 
 const AiHome = () => {
+  const { user } = useAuthContext();
+
   const [loading, setLoading] = useState(false);
   const [allPosts, setAllPosts] = useState(null);
   const [searchText, setSearchText] = useState("");
@@ -27,6 +31,7 @@ const AiHome = () => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
         },
       });
 

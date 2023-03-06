@@ -76,7 +76,7 @@ const PokemonDetails = ({ pokemon }) => {
           })}
         </div>
       </div>
-      <button onClick={handleClick}>Delte Pokemon</button>
+      <button onClick={handleClick}>Delete Pokemon</button>
     </div>
   );
 };

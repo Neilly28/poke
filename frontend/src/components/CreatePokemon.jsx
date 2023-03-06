@@ -2,8 +2,10 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getRandomPrompt } from "../utils";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const CreatePokemon = () => {
+  const { user } = useAuthContext();
   const navigate = useNavigate();
   const [generatingImg, setGeneratingImg] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -67,6 +69,7 @@ const CreatePokemon = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
           },
           body: JSON.stringify(form),
         });

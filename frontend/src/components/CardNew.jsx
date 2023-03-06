@@ -1,6 +1,33 @@
 import React from "react";
+import { usePostContext } from "../hooks/usePostContext";
+import { useAuthContext } from "../hooks/useAuthContext";
+import { useState } from "react";
 
 const CardNew = ({ _id, name, prompt, photo, type }) => {
+  console.log("THIS IS THE ID OF THE CREATED CARD!", _id);
+  const { dispatch } = usePostContext();
+  const { user } = useAuthContext();
+  const [isDeleted, setIsDeleted] = useState(false);
+  console.log("THIS IS THE ID OF THE LOGGED IN USER", user);
+
+  const handleClick = async () => {
+    if (!user || user.email !== "admin@mail.com") {
+      return;
+    }
+    const response = await fetch("/api/v1/post/" + _id, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
+    const json = await response.json();
+
+    if (response.ok) {
+      dispatch({ type: "DELETE_POKEMON", payload: json });
+      setIsDeleted(true);
+    }
+  };
+
   const colours = {
     normal: "bg-[#A8A77A]",
     fire: "bg-[#EE8130]",
@@ -21,6 +48,10 @@ const CardNew = ({ _id, name, prompt, photo, type }) => {
     steel: "bg-[#B7B7CE]",
     fairy: "bg-[#D685AD]",
   };
+
+  if (isDeleted) {
+    return null; // Don't render anything if card has been deleted
+  }
 
   return (
     <div
@@ -52,6 +83,11 @@ const CardNew = ({ _id, name, prompt, photo, type }) => {
       <div className="w-full h-16 p-4 capitalize text-sm font-semibold text-black flex items-center justify-center">
         {prompt}
       </div>
+      {user.email === "admin@mail.com" && (
+        <button className="text-black" onClick={handleClick}>
+          Delete Post
+        </button>
+      )}
     </div>
   );
 };

@@ -5,6 +5,7 @@ import App from "./App";
 import AiApp from "./AiApp";
 import reportWebVitals from "./reportWebVitals";
 import { PokemonsContextProvider } from "./context/PokemonContext";
+import { PostContextProvider } from "./context/PostContext";
 import { AuthContextProvider } from "./context/AuthContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -12,7 +13,9 @@ root.render(
   <React.StrictMode>
     <AuthContextProvider>
       <PokemonsContextProvider>
-        <App />
+        <PostContextProvider>
+          <App />
+        </PostContextProvider>
         {/* <AiApp /> */}
       </PokemonsContextProvider>
     </AuthContextProvider>
