@@ -31,6 +31,7 @@ const CreatePost = () => {
         <div className="flex flex-col gap-5">
           <label htmlFor="">Pokemon Name</label>
           <input
+            class="form-input px-4 py-3 rounded-full w-1/2"
             label="Your Name"
             type="text"
             name="name"
@@ -40,14 +41,33 @@ const CreatePost = () => {
           />
 
           <label htmlFor="">Pokemon Type</label>
-          <input
+          <select
             label="Type"
             type="text"
             name="type"
-            placeholder="Electric"
             value={form.type}
             onChange={handleChange}
-          />
+            className="px-4 py-3 rounded-full w-1/2"
+          >
+            <option value="">Please select</option>
+            <option value="normal">normal</option>
+            <option value="fire">fire</option>
+            <option value="water">water</option>
+            <option value="electric">electric</option>
+            <option value="grass">grass</option>
+            <option value="ice">ice</option>
+            <option value="fighting">fighting</option>
+            <option value="poison">poison</option>
+            <option value="ground">ground</option>
+            <option value="flying">flying</option>
+            <option value="bug">bug</option>
+            <option value="rock">rock</option>
+            <option value="ghost">ghost</option>
+            <option value="dragon">dragon</option>
+            <option value="dark">dark</option>
+            <option value="steel">steel</option>
+            <option value="fairy">fairy</option>
+          </select>
 
           <button type="button" onClick={handleSurpriseMe} className="text-xs">
             Surprise Me
@@ -55,6 +75,7 @@ const CreatePost = () => {
 
           <label htmlFor="">Describe your Pokemon in a few words</label>
           <input
+            className="form-input px-4 py-3 rounded-full w-full"
             label="Prompt"
             type="text"
             name="prompt"
