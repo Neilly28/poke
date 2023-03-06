@@ -29,9 +29,13 @@ router.route("/").post(async (req, res) => {
     res.status(200).json({ photo: image });
   } catch (error) {
     console.error(error);
-    res
-      .status(500)
-      .send(error?.response.data.error.message || "Something went wrong");
+    const errorMessage =
+      error?.response?.data?.error?.message || "Something went wrong :(";
+
+    // Return a generic image as base64-encoded data
+    const genericImage =
+      "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z/C/HgAGgwL/lRstAAAAABJRU5ErkJggg==";
+    res.status(200).json({ photo: genericImage });
   }
 });
 

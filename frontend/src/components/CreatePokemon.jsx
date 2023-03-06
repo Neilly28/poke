@@ -41,8 +41,7 @@ const CreatePokemon = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            prompt:
-              "Pokemon Full Body White Background" + form.type + form.prompt,
+            prompt: `Pokemon or Monster Full Body White Background ${form.type} ${form.prompt}`,
             type: form.type,
           }),
         });
