@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 // import * as React from "react";
 import CreatePokemon from "../components/CreatePokemon";
+import {
+  RingLoader,
+  ClipLoader,
+  PacmanLoader,
+  BeatLoader,
+} from "react-spinners";
 
 const CreatePost = () => {
   const {
@@ -115,19 +121,21 @@ const CreatePost = () => {
           <img
             src={form.photo}
             alt={form.prompt}
-            className="w-500 h-500 object-contain"
+            className="w-250 h-250 object-contain"
           />
         ) : (
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROJGo_BDmE1BQXej-UemTXxZG6RkDsA95ZnA&usqp=CAU"
-            alt="preview"
-            className="w-500 h-500 object-contain opacity-40"
-          />
+          <div className="bg-[rgba(0,0,0,0.5)] inset-0">
+            <img
+              src="https://i.pinimg.com/474x/1e/60/87/1e6087cf114c7ced058e98dc1124634d.jpg"
+              alt="preview"
+              className="w-250 h-250 object-contain opacity-90"
+            />
+          </div>
         )}
 
         {generatingImg && (
           <div className="absolute inset-0 z-0 flex justify-center items-center bg-[rgba(0,0,0,0.5)] rounded-lg">
-            'hello loader'
+            <RingLoader color="#f7da34" loading={generatingImg} size={100} />
           </div>
         )}
       </div>

@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getRandomPrompt } from "../utils";
@@ -9,9 +8,7 @@ const CreatePokemon = () => {
   const navigate = useNavigate();
   const [generatingImg, setGeneratingImg] = useState(false);
   const [loading, setLoading] = useState(false);
-
   const [pokemonType, setPokemonType] = useState("");
-
   const [form, setForm] = useState({
     name: "",
     prompt: "",
@@ -20,7 +17,10 @@ const CreatePokemon = () => {
   });
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setForm((prevForm) => {
+      return { ...prevForm, [e.target.name]: e.target.value };
+    });
+
     if (e.target.name === "type") {
       setPokemonType(e.target.value);
     }
@@ -28,7 +28,9 @@ const CreatePokemon = () => {
 
   const handleSurpriseMe = () => {
     const randomPrompt = getRandomPrompt(form.prompt);
-    setForm({ ...form, prompt: randomPrompt });
+    setForm((prevForm) => {
+      return { ...prevForm, prompt: randomPrompt };
+    });
   };
 
   const generateImage = async () => {
@@ -46,8 +48,17 @@ const CreatePokemon = () => {
           }),
         });
 
-        const data = await response.json();
-        setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
+        if (response.ok) {
+          const data = await response.json();
+          setForm((prevForm) => {
+            return {
+              ...prevForm,
+              photo: `data:image/jpeg;base64,${data.photo}`,
+            };
+          });
+        } else {
+          throw new Error("Unable to generate image");
+        }
       } catch (err) {
         alert(err);
       } finally {
@@ -72,8 +83,13 @@ const CreatePokemon = () => {
           },
           body: JSON.stringify(form),
         });
-        await response.json();
-        navigate("/ai");
+
+        if (response.ok) {
+          await response.json();
+          navigate("/ai");
+        } else {
+          throw new Error("Unable to submit form");
+        }
       } catch (error) {
         alert(error);
       } finally {

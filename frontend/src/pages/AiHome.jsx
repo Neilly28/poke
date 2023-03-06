@@ -5,6 +5,12 @@ import PokeCard from "../components/PokeCard";
 import CardNew from "../components/CardNew";
 import { usePostContext } from "../hooks/usePostContext";
 import { useAuthContext } from "../hooks/useAuthContext";
+import {
+  RingLoader,
+  ClipLoader,
+  PacmanLoader,
+  BeatLoader,
+} from "react-spinners";
 
 const RenderCards = ({ data, title }) => {
   if (data?.length > 0) {
@@ -61,8 +67,9 @@ const AiHome = () => {
       <div className="mt-16">{/* <FormField /> */}</div>
       <div className="mt-10">
         {loading ? (
-          <div className="flex justify-center items-center">
-            Loading Component goes here
+          <div className="flex items-center justify-center h-screen">
+            <h1 className="font-bold text-xl mr-3">Catching Pokemon </h1>
+            <BeatLoader color="black" loading={loading} size={25} />
           </div>
         ) : (
           <>
