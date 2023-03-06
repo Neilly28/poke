@@ -5,6 +5,8 @@ import axios from "axios";
 // import Typewriter from "typewriter-effect";
 import TypeWriterEffect from "react-typewriter-effect";
 import { ClipLoader, PacmanLoader, BeatLoader } from "react-spinners";
+import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
+import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 
 const PokemonDetails = () => {
   const { id } = useParams();
@@ -18,6 +20,7 @@ const PokemonDetails = () => {
   const handlePrevClick = () => {
     const prevId = parseInt(id) - 1;
     navigate(`/poke/${prevId}`);
+    console.log("previous clicked!");
   };
 
   const handleNextClick = () => {
@@ -73,10 +76,12 @@ const PokemonDetails = () => {
   }, [id, text]);
 
   return (
-    <div>
-      <button onClick={handlePrevClick}> Previous </button>
-      <button onClick={handleNextClick}> Next </button>
-      {error && <div>{error}</div>}
+    <div className="flex items-center mx-auto max-w-full p-16">
+      <button onClick={handlePrevClick} class="w-24 h-24">
+        <SlArrowLeft class="w-full h-full text-gray-200 hover:text-yellow-500" />
+      </button>
+
+      {/* {error && <div>{error}</div>} */}
       {isPending && (
         <div className="flex items-center justify-center h-screen">
           <h1 className="font-bold text-xl mr-3">Catching Pokemon </h1>
@@ -96,8 +101,8 @@ const PokemonDetails = () => {
               {
                 <img
                   className="h-250 w-auto object-cover mb-4 saturate-[0.8]"
-                  // src={pokeDetails.sprites.other.home.front_default}
-                  src={pokeDetails.sprites.other.dream_world.front_default}
+                  src={pokeDetails.sprites.other.home.front_default}
+                  // src={pokeDetails.sprites.other.dream_world.front_default}
                   // src={pokeDetails.sprites.front_default}
                   alt={pokeDetails.name}
                 />
@@ -135,6 +140,9 @@ const PokemonDetails = () => {
           <div className="max-w-md text-black">{text}</div>
         </div>
       )}
+      <button onClick={handleNextClick} class="w-24 h-24">
+        <SlArrowRight class="w-full h-full text-gray-200 hover:text-[#f7da34]" />
+      </button>
     </div>
   );
 };
