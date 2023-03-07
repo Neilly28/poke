@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 import { useLogin } from "../hooks/useLogin";
 import Avatar from "@mui/material/Avatar";
@@ -93,6 +92,7 @@ export default function SignInSide() {
                 fullWidth
                 id="email"
                 label="Email Address"
+                type="text"
                 name="email"
                 autoComplete="email"
                 autoFocus

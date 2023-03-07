@@ -5,6 +5,7 @@ import useFetch from "../components/useFetch";
 import Masonry from "react-responsive-masonry";
 import { Fade } from "react-awesome-reveal";
 import { ClipLoader, PacmanLoader, BeatLoader } from "react-spinners";
+import Hero from "./Hero";
 
 const Home = () => {
   const colours = {
@@ -42,6 +43,7 @@ const Home = () => {
 
   return (
     <>
+      {/* <Hero /> */}
       <div className="max-w-7xl mx-auto">
         {loading ? (
           <div className="flex items-center justify-center h-screen">

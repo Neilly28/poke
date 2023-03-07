@@ -13,6 +13,7 @@ import NotFound from "./pages/NotFoundPage";
 import Navbar from "./components/Navbar";
 import CreatePost from "./pages/AiPage";
 import Community from "./pages/CommunityPage";
+import Hero from "./pages/Hero";
 
 function App() {
   const { user } = useAuthContext();
@@ -21,21 +22,13 @@ function App() {
       <Router>
         {user && <Navbar />}
         <Routes>
-          <Route
-            path="/"
-            element={user ? <Home /> : <Navigate to="/login" />}
-          />
-          {/* revisit this !!! should navigate to login if no user */}
+          <Route path="/" element={user ? <Home /> : <Hero />} />
+          <Route path="/home" element={<Home />} />
           <Route
             path="/poke/:id"
             element={user ? <PokemonDetails /> : <Navigate to="/login" />}
           />
-
-          <Route
-            path="/ai"
-            element={user ? <Community /> : <Navigate to="/login" />}
-          />
-
+          <Route path="/ai" element={user ? <Community /> : <SignInSide />} />
           <Route
             path="/create-post"
             element={user ? <CreatePost /> : <Navigate to="/login" />}

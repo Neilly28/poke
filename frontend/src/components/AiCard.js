@@ -2,6 +2,7 @@ import React from "react";
 import { usePostContext } from "../hooks/usePostContext";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useState } from "react";
+import { BsFillTrashFill, BsFillXCircleFill } from "react-icons/bs";
 
 const AiCard = ({ _id, name, prompt, photo, type }) => {
   const { dispatch } = usePostContext();
@@ -78,12 +79,12 @@ const AiCard = ({ _id, name, prompt, photo, type }) => {
         </div>
       )}
 
-      <div className="w-full h-16 p-4 capitalize text-sm font-semibold text-black flex items-center justify-center">
+      <div className="p-4 capitalize text-sm text-black tracking-wide flex items-center justify-center">
         {prompt}
       </div>
       {user.email === "admin@mail.com" && (
-        <button className="text-black" onClick={handleClick}>
-          Delete Post
+        <button onClick={handleClick} class="absolute top-5 right-5 w-8 h-8 ">
+          <BsFillXCircleFill class="w-full h-full text-gray-200 hover:text-red-500 transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300" />
         </button>
       )}
     </div>
