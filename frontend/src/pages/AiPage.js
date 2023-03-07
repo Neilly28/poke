@@ -24,7 +24,7 @@ const CreatePost = () => {
   return (
     <section className="flex justify-evenly items-center mt-20 mx-auto max-w-5xl mb-20 rounded-lg text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out p-8 relative bg-white">
       <form onSubmit={handleSubmit} className="w-1/2">
-        <div class="relative z-0 w-full mb-6 group">
+        <div class="relative z-0 w-full mb-12 group">
           <input
             type="text"
             name="name"
@@ -56,28 +56,31 @@ const CreatePost = () => {
             for="floating_password"
             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
           >
-            Describe your Pokemon in a few words
+            Pokemon Description
           </label>
+          <button
+            type="button"
+            onClick={handleSurpriseMe}
+            class="px-4 py-2 capitalize text-sm font-bold text-black rounded-3xl mb-8 bg-[#F7D02C] hover:bg-yellow-500 cursor-pointer mt-6"
+          >
+            Surprise Me
+          </button>
         </div>
 
-        <button
-          type="button"
-          onClick={handleSurpriseMe}
-          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        >
-          Surprise Me
-        </button>
-        <div className="flex flex-col justify-center items-start gap-4 text-black mt-10">
-          {/* <label htmlFor="">Type</label> */}
+        <div className="flex flex-col justify-center items-start gap-4 text-black w-1/2 mb-12">
+          <label htmlFor="" className="text-sm text-gray-500">
+            Pokemon Type
+          </label>
+
           <select
             label="Type"
             type="text"
             name="type"
             value={form.type}
             onChange={handleChange}
-            className="flex justify-center items-center px-4 py-3 pr-9 w-full rounded-lg"
+            className={`py-2 w-full rounded-lg text-sm dark:text-gray-400`}
           >
-            <option value="">Select Type</option>
+            <option value="">Please select</option>
             <option value="normal">normal</option>
             <option value="fire">fire</option>
             <option value="water">water</option>
@@ -97,6 +100,7 @@ const CreatePost = () => {
             <option value="fairy">fairy</option>
           </select>
         </div>
+
         {/* <button
           type="submit"
           class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
