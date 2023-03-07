@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getRandomPrompt } from "../utils";
+import { getRandomPrompt } from "./getRandomPrompt";
 import { useAuthContext } from "../hooks/useAuthContext";
 
 const AiGenerate = () => {
