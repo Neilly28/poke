@@ -64,8 +64,8 @@ const AiGenerate = () => {
       } finally {
         setGeneratingImg(false);
       }
-    } else {
-      alert("Please provide proper prompt");
+      // } else {
+      //   alert("Please provide proper prompt");
     }
   };
 
@@ -95,8 +95,8 @@ const AiGenerate = () => {
       } finally {
         setLoading(false);
       }
-    } else {
-      alert("Enter a prompt and generate image");
+      // } else {
+      //   alert("Enter a prompt and generate image");
     }
   };
 
