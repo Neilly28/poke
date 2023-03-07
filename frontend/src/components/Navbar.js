@@ -22,7 +22,7 @@ const Navbar = () => {
             <Link to="/mypokemon">My Pokemon</Link>
             <Link to="/create-post">Create</Link>
             <Link to="/ai">Community</Link>
-            <span>Hello, {user.email}</span>
+            <span>Hello, {user.email.slice(0, user.email.indexOf("@"))}</span>
             <button onClick={handleClick}>Log Out</button>
           </div>
         )}

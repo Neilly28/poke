@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-// import * as React from "react";
-import CreatePokemon from "../components/CreatePokemon";
+import AiGenerate from "../components/AiGenerate";
 import {
   RingLoader,
   ClipLoader,
@@ -17,7 +16,7 @@ const CreatePost = () => {
     generatingImg,
     loading,
     generateImage,
-  } = CreatePokemon();
+  } = AiGenerate();
 
   const [pokemonType, setPokemonType] = useState("");
 

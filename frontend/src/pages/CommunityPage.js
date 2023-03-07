@@ -1,8 +1,5 @@
-import React from "react";
 import { useState, useEffect } from "react";
-import Card from "../components/Card";
-import PokeCard from "../components/PokeCard";
-import CardNew from "../components/CardNew";
+import AiCard from "../components/AiCard";
 import { usePostContext } from "../hooks/usePostContext";
 import { useAuthContext } from "../hooks/useAuthContext";
 import {
@@ -14,7 +11,7 @@ import {
 
 const RenderCards = ({ data, title }) => {
   if (data?.length > 0) {
-    return data.map((post) => <CardNew key={post._id} {...post} />);
+    return data.map((post) => <AiCard key={post._id} {...post} />);
   }
 
   return (
@@ -22,7 +19,7 @@ const RenderCards = ({ data, title }) => {
   );
 };
 
-const AiHome = () => {
+const Community = () => {
   const { user } = useAuthContext();
 
   const [loading, setLoading] = useState(false);
@@ -80,7 +77,7 @@ const AiHome = () => {
             )}
             <div className="grid lg:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 grid-cols-1 gap-8">
               {searchText ? (
-                <RenderCards data={[]} title="no search resutls found" />
+                <RenderCards data={[]} title="no search results found" />
               ) : (
                 <RenderCards data={allPosts} title="no posts fgound" />
               )}
@@ -92,4 +89,4 @@ const AiHome = () => {
   );
 };
 
-export default AiHome;
+export default Community;

@@ -5,16 +5,14 @@ import {
   Navigate,
 } from "react-router-dom";
 import { useAuthContext } from "./hooks/useAuthContext";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
-import MyPokemon from "./pages/MyPokemon";
-import PokemonDetails from "./pages/PokemonDetails";
-import NotFound from "./pages/NotFound";
+import Home from "./pages/HomePage";
+import SignInSide from "./pages/LoginPage";
+import SignUp from "./pages/SignupPage";
+import PokemonDetails from "./pages/PokemonDetailsPage";
+import NotFound from "./pages/NotFoundPage";
 import Navbar from "./components/Navbar";
-import { AiHome, CreatePost, AiCommunity } from "./pages";
-import SignUp from "./pages/Signup";
-import SignInSide from "./pages/Login";
+import CreatePost from "./pages/AiPage";
+import Community from "./pages/CommunityPage";
 
 function App() {
   const { user } = useAuthContext();
@@ -29,17 +27,13 @@ function App() {
           />
           {/* revisit this !!! should navigate to login if no user */}
           <Route
-            path="/mypokemon"
-            element={user ? <MyPokemon /> : <Navigate to="/login" />}
-          />
-          <Route
             path="/poke/:id"
             element={user ? <PokemonDetails /> : <Navigate to="/login" />}
           />
 
           <Route
             path="/ai"
-            element={user ? <AiHome /> : <Navigate to="/login" />}
+            element={user ? <Community /> : <Navigate to="/login" />}
           />
 
           <Route

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { getRandomPrompt } from "../utils";
 import { useAuthContext } from "../hooks/useAuthContext";
 
-const CreatePokemon = () => {
+const AiGenerate = () => {
   const { user } = useAuthContext();
   const navigate = useNavigate();
   const [generatingImg, setGeneratingImg] = useState(false);
@@ -111,4 +111,4 @@ const CreatePokemon = () => {
   };
 };
 
-export default CreatePokemon;
+export default AiGenerate;

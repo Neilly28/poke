@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { resolvePath, useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-// import styles from "./PokeDetails.module.css";
-// import Typewriter from "typewriter-effect";
 import TypeWriterEffect from "react-typewriter-effect";
 import { ClipLoader, PacmanLoader, BeatLoader } from "react-spinners";
 import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";

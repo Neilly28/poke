@@ -3,12 +3,10 @@ import { usePostContext } from "../hooks/usePostContext";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useState } from "react";
 
-const CardNew = ({ _id, name, prompt, photo, type }) => {
-  console.log("THIS IS THE ID OF THE CREATED CARD!", _id);
+const AiCard = ({ _id, name, prompt, photo, type }) => {
   const { dispatch } = usePostContext();
   const { user } = useAuthContext();
   const [isDeleted, setIsDeleted] = useState(false);
-  console.log("THIS IS THE ID OF THE LOGGED IN USER", user);
 
   const handleClick = async () => {
     if (!user || user.email !== "admin@mail.com") {
@@ -91,4 +89,4 @@ const CardNew = ({ _id, name, prompt, photo, type }) => {
     </div>
   );
 };
-export default CardNew;
+export default AiCard;
