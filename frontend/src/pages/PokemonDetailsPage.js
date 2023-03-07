@@ -17,13 +17,22 @@ const PokemonDetails = () => {
 
   const handlePrevClick = () => {
     const prevId = parseInt(id) - 1;
-    navigate(`/poke/${prevId}`);
+    if (id == 1) {
+      navigate(`/poke/151`);
+    } else {
+      navigate(`/poke/${prevId}`);
+    }
+
     console.log("previous clicked!");
   };
 
   const handleNextClick = () => {
     const nextId = parseInt(id) + 1;
-    navigate(`/poke/${nextId}`);
+    if (id == 151) {
+      navigate(`/poke/1`);
+    } else {
+      navigate(`/poke/${nextId}`);
+    }
   };
 
   // make this a CONSTANT file

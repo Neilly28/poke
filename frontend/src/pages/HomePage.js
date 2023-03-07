@@ -5,6 +5,7 @@ import useFetch from "../components/useFetch";
 import Masonry from "react-responsive-masonry";
 import { Fade } from "react-awesome-reveal";
 import { ClipLoader, PacmanLoader, BeatLoader } from "react-spinners";
+import { BsSearchHeartFill } from "react-icons/bs";
 import Hero from "./Hero";
 
 const Home = () => {
@@ -52,14 +53,15 @@ const Home = () => {
           </div>
         ) : (
           <div className="flex flex-col justify-center items-center">
-            <div className="mb-20">
+            <div className="mb-20 relative">
               <input
                 type=""
-                placeholder="Find your favorite Poké..."
-                className="p-2 mt-8 bg-transparent border-b-2 border-black focus:border-black outline-none placeholder-black"
+                placeholder="PokeSearch"
+                className="mt-8 font-medium bg-slate-100 px-4 py-2 text-lg rounded-3xl mb-8 text-black w-96"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
+              <BsSearchHeartFill className="absolute right-4 top-11 text-slate-400" />
             </div>
 
             <div>

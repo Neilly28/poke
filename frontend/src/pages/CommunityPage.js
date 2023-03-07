@@ -55,13 +55,11 @@ const Community = () => {
 
   return (
     <section className="max-w-7xl mx-auto">
-      <div>
-        <h1 className="font-extrabold text-2xl">the community showcase!</h1>
-        <p className="mt-2 text-[#666e75] text-md">
-          Brosw thru a collection of imaginative and visually stuninig images!
-        </p>
+      <div className="mt-24 mb-24">
+        <h1 className="text-center text-2xl font-bold mb-12 px-4 py-2 rounded-3xl mb-12 bg-[#f7da34] cursor-pointer mt-6 text-black w-1/2 mx-auto cursor-default w-1/3">
+          The Pokemon Community
+        </h1>
       </div>
-      <div className="mt-16">{/* <FormField /> */}</div>
       <div className="mt-10">
         {loading ? (
           <div className="flex items-center justify-center h-screen">
