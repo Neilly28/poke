@@ -39,9 +39,34 @@ export default function SignInSide() {
   const [password, setPassword] = useState("");
   const { login, error, isLoading } = useLogin();
 
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     await login(email, password);
+  };
+
+  const handleEmailChange = (e) => {
+    const value = e.target.value;
+    setEmail(value);
+    if (!value) {
+      setEmailError("Email is required");
+    } else if (!/\S+@\S+\.\S+/.test(value)) {
+      setEmailError("Email is invalid");
+    } else {
+      setEmailError("");
+    }
+  };
+
+  const handlePasswordChange = (e) => {
+    const value = e.target.value;
+    setPassword(value);
+    if (!value) {
+      setPasswordError("Password is required");
+    } else {
+      setPasswordError("");
+    }
   };
 
   return (
@@ -96,8 +121,10 @@ export default function SignInSide() {
                 name="email"
                 autoComplete="email"
                 autoFocus
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={handleEmailChange}
                 value={email}
+                error={!!emailError}
+                helperText={emailError}
               />
               <TextField
                 margin="normal"
@@ -108,8 +135,10 @@ export default function SignInSide() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={handlePasswordChange}
                 value={password}
+                error={!!passwordError}
+                helperText={passwordError}
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
@@ -123,6 +152,7 @@ export default function SignInSide() {
               >
                 Sign In
               </Button>
+              {error && <div> {error} </div>}
               <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">

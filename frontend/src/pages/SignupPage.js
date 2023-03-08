@@ -37,12 +37,48 @@ const theme = createTheme();
 export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
   const { signup, error, isLoading } = useSignup();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(email, password);
     await signup(email, password);
+  };
+
+  const handleEmailChange = (e) => {
+    const value = e.target.value;
+    setEmail(value);
+    if (!value) {
+      setEmailError("Email is required");
+    } else if (!/\S+@\S+\.\S+/.test(value)) {
+      setEmailError("Email is invalid");
+    } else {
+      setEmailError("");
+    }
+  };
+
+  const handlePasswordChange = (e) => {
+    const value = e.target.value;
+    setPassword(value);
+    if (!value) {
+      setPasswordError("Password is required");
+    } else if (value.length < 8) {
+      setPasswordError("Password must be at least 8 characters long");
+    } else if (
+      !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/.test(
+        value
+      )
+    ) {
+      setPasswordError(
+        "Password must contain at least one uppercase letter, one number, and one symbol"
+      );
+    } else {
+      setPasswordError("");
+    }
   };
 
   return (
@@ -97,8 +133,10 @@ export default function SignUp() {
                 name="email"
                 autoComplete="email"
                 autoFocus
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={handleEmailChange}
                 value={email}
+                error={!!emailError}
+                helperText={emailError}
               />
               <TextField
                 margin="normal"
@@ -109,8 +147,10 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={handlePasswordChange}
                 value={password}
+                error={!!passwordError}
+                helperText={passwordError}
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
@@ -124,6 +164,7 @@ export default function SignUp() {
               >
                 Sign Up
               </Button>
+              {error && <div>{error}</div>}
               <Grid container>
                 <Grid item xs></Grid>
                 <Grid item>
