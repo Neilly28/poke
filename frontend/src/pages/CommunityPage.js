@@ -29,13 +29,16 @@ const Community = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("/api/v1/post", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
+      const response = await fetch(
+        "https://pokehack.onrender.com/api/v1/post",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
 
       if (response.ok) {
         const result = await response.json();

@@ -13,12 +13,15 @@ const AiCard = ({ _id, name, prompt, photo, type }) => {
     if (!user || user.email !== "admin@mail.com") {
       return;
     }
-    const response = await fetch("/api/v1/post/" + _id, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-      },
-    });
+    const response = await fetch(
+      "https://pokehack.onrender.com/api/v1/post/" + _id,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      }
+    );
     const json = await response.json();
 
     if (response.ok) {

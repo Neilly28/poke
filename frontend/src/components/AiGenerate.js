@@ -37,16 +37,19 @@ const AiGenerate = () => {
     if (form.prompt && form.type) {
       try {
         setGeneratingImg(true);
-        const response = await fetch("/api/v1/dalle", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            prompt: `Pokemon or Monster Full Body White Background ${form.type} ${form.prompt}`,
-            type: form.type,
-          }),
-        });
+        const response = await fetch(
+          "https://pokehack.onrender.com/api/v1/dalle",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              prompt: `Pokemon or Monster Full Body White Background ${form.type} ${form.prompt}`,
+              type: form.type,
+            }),
+          }
+        );
 
         if (response.ok) {
           const data = await response.json();
@@ -75,14 +78,17 @@ const AiGenerate = () => {
     if (form.prompt && form.photo && form.type) {
       setLoading(true);
       try {
-        const response = await fetch("/api/v1/post", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
-          },
-          body: JSON.stringify(form),
-        });
+        const response = await fetch(
+          "https://pokehack.onrender.com/api/v1/post",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${user.token}`,
+            },
+            body: JSON.stringify(form),
+          }
+        );
 
         if (response.ok) {
           await response.json();
