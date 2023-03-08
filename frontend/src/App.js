@@ -22,25 +22,13 @@ function App() {
       <Router>
         {user && <Navbar />}
         <Routes>
-          <Route path="/" element={user ? <Home /> : <Hero />} />
+          <Route path="/" element={<Hero />} />
           <Route path="/home" element={<Home />} />
-          <Route
-            path="/poke/:id"
-            element={user ? <PokemonDetails /> : <Navigate to="/login" />}
-          />
-          <Route path="/ai" element={user ? <Community /> : <SignInSide />} />
-          <Route
-            path="/create-post"
-            element={user ? <CreatePost /> : <Navigate to="/login" />}
-          />
-          <Route
-            path="/login"
-            element={!user ? <SignInSide /> : <Navigate to="/" />}
-          />
-          <Route
-            path="/signup"
-            element={!user ? <SignUp /> : <Navigate to="/" />}
-          />
+          <Route path="/poke/:id" element={<PokemonDetails />} />
+          <Route path="/ai" element={<Community />} />
+          <Route path="/create-post" element={<CreatePost />} />
+          <Route path="/login" element={<SignInSide />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
