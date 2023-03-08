@@ -16,6 +16,10 @@ import Community from "./pages/CommunityPage";
 import Hero from "./pages/Hero";
 
 function App() {
+  // fetch("http://localhost:4000/mcdo")
+  //   .then((res) => res.json())
+  //   .then((res) => console.log(res));
+
   const { user } = useAuthContext();
   return (
     <div className="App">

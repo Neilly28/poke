@@ -14,6 +14,7 @@ export const useLogin = () => {
       "https://pokehack.onrender.com/api/user/login",
       {
         method: "POST",
+        mode: "cors",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       }

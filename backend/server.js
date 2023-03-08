@@ -18,15 +18,24 @@ const app = express();
 
 app.use(cors());
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  next();
-});
+// app.get("/mcdo", (req, res) => {
+//   res.json("Hello");
+// });
 
 app.use(express.json({ limit: "50mb" }));
 
 app.use((req, res, next) => {
   console.log(req.path, req.method);
+  next();
+});
+
+// Add Access Control Allow Origin headers
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
   next();
 });
 
