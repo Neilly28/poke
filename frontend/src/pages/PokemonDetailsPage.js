@@ -96,7 +96,7 @@ const PokemonDetails = () => {
         </div>
       )}
       {pokeDetails && text && (
-        <div className="grid grid-cols-3 mt-20 mx-auto justify-center max-w-6xl mb-20 rounded-lg text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out p-8 flex flex-col justify-center items-center relative bg-white">
+        <div className="grid grid-cols-3 mt-20 mx-auto max-w-6xl mb-20 rounded-lg text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out p-8 justify-center items-center relative bg-white">
           <div
             className="flex flex-col justify-center items-center p-4"
             // key={char.id}
