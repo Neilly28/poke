@@ -23,6 +23,7 @@ export const useSignup = () => {
     if (!response.ok) {
       setIsLoading(false);
       setError(json.error);
+      console.log("SOMETHING WENT WRONG WITH THE LOGIN / SIGNUP");
     }
     if (response.ok) {
       // save the user to local storage
