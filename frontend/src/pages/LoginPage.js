@@ -39,35 +39,35 @@ export default function SignInSide() {
   const [password, setPassword] = useState("");
   const { login, error, isLoading } = useLogin();
 
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
+  // const [emailError, setEmailError] = useState("");
+  // const [passwordError, setPasswordError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     await login(email, password);
   };
 
-  const handleEmailChange = (e) => {
-    const value = e.target.value;
-    setEmail(value);
-    if (!value) {
-      setEmailError("Email is required");
-    } else if (!/\S+@\S+\.\S+/.test(value)) {
-      setEmailError("Email is invalid");
-    } else {
-      setEmailError("");
-    }
-  };
+  // const handleEmailChange = (e) => {
+  //   const value = e.target.value;
+  //   setEmail(value);
+  //   if (!value) {
+  //     setEmailError("Email is required");
+  //   } else if (!/\S+@\S+\.\S+/.test(value)) {
+  //     setEmailError("Email is invalid");
+  //   } else {
+  //     setEmailError("");
+  //   }
+  // };
 
-  const handlePasswordChange = (e) => {
-    const value = e.target.value;
-    setPassword(value);
-    if (!value) {
-      setPasswordError("Password is required");
-    } else {
-      setPasswordError("");
-    }
-  };
+  // const handlePasswordChange = (e) => {
+  //   const value = e.target.value;
+  //   setPassword(value);
+  //   if (!value) {
+  //     setPasswordError("Password is required");
+  //   } else {
+  //     setPasswordError("");
+  //   }
+  // };
 
   return (
     <ThemeProvider theme={theme}>
@@ -121,10 +121,8 @@ export default function SignInSide() {
                 name="email"
                 autoComplete="email"
                 autoFocus
-                onChange={handleEmailChange}
+                onChange={(e) => setEmail(e.target.value)}
                 value={email}
-                error={!!emailError}
-                helperText={emailError}
               />
               <TextField
                 margin="normal"
@@ -135,10 +133,8 @@ export default function SignInSide() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-                onChange={handlePasswordChange}
+                onChange={(e) => setPassword(e.target.value)}
                 value={password}
-                error={!!passwordError}
-                helperText={passwordError}
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
@@ -152,7 +148,7 @@ export default function SignInSide() {
               >
                 Sign In
               </Button>
-              {error && <div> {error} </div>}
+              {error && <div className="text-red-500"> {error} </div>}
               <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">

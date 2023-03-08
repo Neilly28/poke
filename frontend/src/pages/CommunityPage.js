@@ -24,6 +24,7 @@ const Community = () => {
 
   const [loading, setLoading] = useState(false);
   const [allPosts, setAllPosts] = useState(null);
+  const [error, setError] = useState("");
 
   const fetchPosts = async () => {
     setLoading(true);
@@ -45,7 +46,7 @@ const Community = () => {
         setAllPosts(result.data.reverse());
       }
     } catch (err) {
-      alert(err);
+      console.log(err);
     } finally {
       setLoading(false);
     }
@@ -63,14 +64,20 @@ const Community = () => {
         </h1>
       </div>
       <div className="mt-10">
-        {loading ? (
+        {loading && (
           <div className="flex items-center justify-center h-screen">
             <h1 className="font-bold text-xl mr-3">Catching Pokemon </h1>
             <BeatLoader color="black" loading={loading} size={25} />
           </div>
-        ) : (
+        )}
+        {!error && (
           <div className="grid lg:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 grid-cols-1 gap-8">
             <RenderCards data={allPosts} />
+          </div>
+        )}
+        {error && (
+          <div className="grid lg:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 grid-cols-1 gap-8">
+            "Oops, something went wrong 😭 "
           </div>
         )}
       </div>
