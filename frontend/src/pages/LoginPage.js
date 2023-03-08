@@ -79,12 +79,11 @@ export default function SignInSide() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: "url(https://source.unsplash.com/random?pokemon)",
+            // backgroundImage:
+            //   "url(https://source.unsplash.com/random/1200x800?pokemon)",
+
+            backgroundImage: `url(${process.env.PUBLIC_URL}/pikachu.jpg)`,
             backgroundRepeat: "no-repeat",
-            backgroundColor: (t) =>
-              t.palette.mode === "light"
-                ? t.palette.grey[50]
-                : t.palette.grey[900],
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}

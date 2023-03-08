@@ -7,6 +7,7 @@ const AiGenerate = () => {
   const { user } = useAuthContext();
   const navigate = useNavigate();
   const [generatingImg, setGeneratingImg] = useState(false);
+  const [imageGenerated, setImageGenerated] = useState(false);
   const [loading, setLoading] = useState(false);
   const [pokemonType, setPokemonType] = useState("");
   const [form, setForm] = useState({
@@ -59,6 +60,7 @@ const AiGenerate = () => {
               photo: `data:image/jpeg;base64,${data.photo}`,
             };
           });
+          setImageGenerated(true);
         } else {
           throw new Error("Unable to generate image");
         }
@@ -114,6 +116,7 @@ const AiGenerate = () => {
     generatingImg,
     loading,
     generateImage,
+    imageGenerated,
   };
 };
 

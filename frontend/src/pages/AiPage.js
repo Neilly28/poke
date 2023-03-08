@@ -22,6 +22,7 @@ const CreatePost = () => {
   } = AiGenerate();
 
   const [pokemonType, setPokemonType] = useState("");
+  const [allow, setAllow] = useState("");
 
   return (
     <>
@@ -30,7 +31,10 @@ const CreatePost = () => {
           <h1 className="text-center text-2xl font-bold mb-4 px-4 py-2 rounded-3xl bg-[#f7da34] mt-6 text-black mx-auto cursor-default w-1/3">
             Create a Pokemon
           </h1>
-          <Icon />
+          <div className="flex justify-center items-center gap-2">
+            <h2 className="text-xs text-slate-500">Powered by</h2>
+            <Icon />
+          </div>
         </div>
 
         <div className="flex justify-evenly items-center">
@@ -46,7 +50,10 @@ const CreatePost = () => {
                 name="type"
                 value={form.type}
                 onChange={handleChange}
-                className={`w-full rounded-lg text-sm p-2 dark:text-gray-400 border border-gray-400 cursor-pointer`}
+                className={`w-full rounded-lg text-sm p-2 text-gray-400 border border-gray-400 cursor-pointer ${
+                  form.photo && "bg-gray-300"
+                }`}
+                disabled={form.photo ? true : false}
               >
                 <option value="">Please select</option>
                 <option value="normal">normal</option>
@@ -74,15 +81,20 @@ const CreatePost = () => {
                 type="text"
                 name="name"
                 id="name"
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                class={`block py-2.5 px-0 w-full text-sm text-gray-400 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer ${
+                  form.photo && "bg-gray-300"
+                }`}
                 placeholder=" "
                 required
                 value={form.name}
                 onChange={handleChange}
+                disabled={form.photo ? true : false}
               />
               <label
                 for="floating_email"
-                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                class={`peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 ${
+                  form.photo && "hidden"
+                }`}
               >
                 Pokemon Name
               </label>
@@ -92,7 +104,9 @@ const CreatePost = () => {
               <textarea
                 name="prompt"
                 id="prompt"
-                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer resize-y min-h-24"
+                class={`block py-2.5 px-0 w-full text-sm text-gray-400 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer resize-y min-h-24 ${
+                  form.photo && "bg-gray-300"
+                }`}
                 placeholder=" "
                 required
                 value={form.prompt}
@@ -100,52 +114,58 @@ const CreatePost = () => {
               ></textarea>
               <label
                 for="floating_password"
-                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                class={`peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 ${
+                  form.photo && "hidden"
+                }`}
               >
                 Pokemon Description
               </label>
-              <button
-                type="button"
-                onClick={handleSurpriseMe}
-                class="px-4 py-2 text-xs rounded-3xl mb-8 bg-[#F7D02C] hover:bg-yellow-500 cursor-pointer mt-6"
-              >
-                <div className="flex justify-center items-center gap-2">
-                  <BsDice5Fill />
-                  Surprise Me
-                </div>
-              </button>
-            </div>
-
-            <div className="mt-10 flex gap-5">
-              {form.type && form.name && form.prompt ? (
+              {!form.photo && (
                 <button
-                  type="submit"
-                  onClick={generateImage}
-                  className="px-4 py-2 capitalize text-lg font-bold text-white rounded-3xl mb-8 bg-blue-500 hover:bg-blue-800 cursor-pointer mt-6"
-                >
-                  {generatingImg ? "Generating..." : "Generate"}
-                </button>
-              ) : (
-                <button
-                  type="submit"
-                  onClick={generateImage}
-                  className="px-4 py-2 capitalize text-lg font-bold text-white rounded-3xl mb-8 bg-gray-400 mt-6"
-                >
-                  {generatingImg ? "Generating..." : "Generate"}
-                </button>
-              )}
-
-              {form.photo && (
-                <button
-                  type="submit"
-                  className="px-4 py-2 capitalize text-lg font-bold text-white rounded-3xl mb-8 bg-blue-500 hover:bg-blue-800 cursor-pointer mt-6"
+                  type="button"
+                  onClick={handleSurpriseMe}
+                  disabled={form.photo}
+                  class={`px-4 py-2 text-xs rounded-3xl mb-8 bg-[#F7D02C] cursor-pointer mt-6 ${
+                    form.photo
+                      ? "bg-gray-500"
+                      : "bg-yellow-400 hover:bg-yellow-500"
+                  }`}
                 >
                   <div className="flex justify-center items-center gap-2">
-                    <BsFillShareFill />
-                    {loading ? "Sharing..." : "Share"}
+                    <BsDice5Fill />
+                    Surprise Me
                   </div>
                 </button>
               )}
+            </div>
+
+            <div className="mt-10 flex gap-5">
+              <button
+                type="submit"
+                onClick={generateImage}
+                disabled={
+                  !form.name || !form.prompt || !form.type || form.photo
+                }
+                className={`px-4 py-2 capitalize text-lg font-bold text-white rounded-3xl mb-8 cursor-pointer mt-6 ${
+                  !form.name || !form.prompt || !form.type || form.photo
+                    ? "bg-gray-500"
+                    : "bg-blue-500 hover:bg-blue-800"
+                }`}
+              >
+                {generatingImg ? "Generating..." : "Generate"}
+              </button>
+              <button
+                type="submit"
+                disabled={!form.photo}
+                className={`px-4 py-2 capitalize text-lg font-bold text-white rounded-3xl mb-8 bg-blue-500 cursor-pointer mt-6 ${
+                  !form.photo ? "bg-gray-500" : "bg-blue-500 hover:bg-blue-800"
+                }`}
+              >
+                <div className="flex justify-center items-center gap-2">
+                  <BsFillShareFill />
+                  {loading ? "Sharing..." : "Share"}
+                </div>
+              </button>
             </div>
           </form>
 

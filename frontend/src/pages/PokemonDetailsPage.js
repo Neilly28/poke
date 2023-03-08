@@ -90,7 +90,7 @@ const PokemonDetails = () => {
 
       {/* {error && <div>{error}</div>} */}
       {isPending && (
-        <div className="flex items-center justify-center h-screen">
+        <div className="flex items-center justify-center h-screen mx-auto">
           <h1 className="font-bold text-xl mr-3">Catching Pokemon </h1>
           <BeatLoader color="black" loading={isPending} size={25} />
         </div>
