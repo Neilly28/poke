@@ -58,8 +58,8 @@ const Community = () => {
 
   return (
     <section className="max-w-7xl mx-auto">
-      <div className="mt-24 mb-24">
-        <h1 className="text-center text-2xl font-bold mb-12 px-4 py-2 rounded-3xl bg-[#f7da34] mt-6 text-black mx-auto cursor-default w-1/3">
+      <div className="mt-72 sm:mt-24 mb-24">
+        <h1 className="text-center text-2xl font-bold mb-4 md:mb-12 px-4 py-2 rounded-3xl bg-[#f7da34] mt-6 text-black mx-auto cursor-default w-full md:w-1/2 max-w-sm">
           The Pokemon Community
         </h1>
       </div>

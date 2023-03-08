@@ -45,7 +45,7 @@ const Home = () => {
   return (
     <>
       {/* <Hero /> */}
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto mt-56 sm:mt-24">
         {loading ? (
           <div className="flex items-center justify-center h-screen">
             <h1 className="font-bold text-xl mr-3">Catching Pokemon </h1>
@@ -57,11 +57,11 @@ const Home = () => {
               <input
                 type=""
                 placeholder="PokeSearch"
-                className="mt-8 font-medium bg-slate-100 px-4 py-2 text-lg rounded-3xl mb-8 text-black w-96"
+                className="mt-8 font-medium bg-slate-100 px-4 py-2 text-2xl rounded-3xl mb-8 text-black w-96"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
-              <BsSearchHeartFill className="absolute right-4 top-11 text-slate-400" />
+              <BsSearchHeartFill className="absolute right-4 top-12 text-slate-400" />
             </div>
 
             <div>

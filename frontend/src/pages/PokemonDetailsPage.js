@@ -83,7 +83,7 @@ const PokemonDetails = () => {
   }, [id, text]);
 
   return (
-    <div className="flex items-center mx-auto max-w-full p-16">
+    <div className="mt-44 sm:mt-24 flex items-center mx-auto max-w-full p-4 sm:p-16">
       <button onClick={handlePrevClick} class="w-24 h-24">
         <SlArrowLeft class="w-full h-full text-gray-200 hover:text-yellow-500" />
       </button>
@@ -96,7 +96,7 @@ const PokemonDetails = () => {
         </div>
       )}
       {pokeDetails && text && (
-        <div className="grid grid-cols-3 mt-20 mx-auto max-w-6xl mb-20 rounded-lg text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out p-8 justify-center items-center relative bg-white">
+        <div className="flex-col sm:grid sm:grid-cols-3 mt-20 mx-auto max-w-6xl mb-20 rounded-lg text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out p-8 justify-center items-center relative bg-white">
           <div
             className="flex flex-col justify-center items-center p-4"
             // key={char.id}
@@ -132,7 +132,7 @@ const PokemonDetails = () => {
               })}
             </div>
           </div>
-          <div className="flex flex-col justify-center items-center text-black ml-12">
+          <div className="flex flex-col justify-center items-center text-black sm:ml-12">
             {pokeDetails.stats.map((poke) => {
               return (
                 <div className="grid grid-cols-2">
@@ -144,7 +144,7 @@ const PokemonDetails = () => {
               );
             })}
           </div>
-          <div className="max-w-md text-black">{text}</div>
+          <div className="mt-16 sm:mt-0 max-w-md text-black">{text}</div>
         </div>
       )}
       <button onClick={handleNextClick} class="w-24 h-24">

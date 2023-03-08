@@ -26,19 +26,20 @@ const CreatePost = () => {
 
   return (
     <>
-      <section className="mt-20 mx-auto max-w-5xl mb-20 rounded-lg text-black shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out p-8 relative bg-white">
+      <section className="mt-56 sm:mt-24 mx-auto max-w-5xl mb-20 rounded-lg text-black shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out p-8 relative bg-white">
         <div className="flex flex-col justify-center items-center mb-12">
-          <h1 className="text-center text-2xl font-bold mb-4 px-4 py-2 rounded-3xl bg-[#f7da34] mt-6 text-black mx-auto cursor-default w-1/3">
+          <h1 className="text-center text-2xl font-bold mb-4 px-4 py-2 rounded-3xl bg-[#f7da34] mt-6 text-black mx-auto cursor-default w-full md:w-1/2 max-w-sm">
             Create a Pokemon
           </h1>
+
           <div className="flex justify-center items-center gap-2">
             <h2 className="text-xs text-slate-500">Powered by</h2>
             <Icon />
           </div>
         </div>
 
-        <div className="flex justify-evenly items-center">
-          <form onSubmit={handleSubmit} className="w-1/2">
+        <div className="flex justify-evenly items-center flex-col sm:flex-row">
+          <form onSubmit={handleSubmit} className="w-full sm:w-1/2">
             <div className="flex flex-col justify-center items-start gap-4 text-black w-1/2 mb-12">
               <label htmlFor="" className="text-sm text-gray-500 w-full block">
                 Pokemon Type
@@ -111,6 +112,7 @@ const CreatePost = () => {
                 required
                 value={form.prompt}
                 onChange={handleChange}
+                disabled={form.photo ? true : false}
               ></textarea>
               <label
                 for="floating_password"
