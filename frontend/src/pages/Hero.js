@@ -15,7 +15,7 @@ const Hero = () => {
         <div className="absolute inset-0 bg-black opacity-70"></div>
       </div>
       <div className="flex flex-col justify-center items-center absolute inset-0">
-        <h1 className="text-white font-bold text-9xl text-shadow-md mb-4">
+        <h1 className="text-white font-bold text-5xl text-shadow-md mb-4">
           {"<Pokéhack />"}
         </h1>
         <a href="/home">

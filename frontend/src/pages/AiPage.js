@@ -85,7 +85,7 @@ const CreatePost = () => {
                 type="text"
                 name="name"
                 id="name"
-                class={`block py-2.5 px-0 w-full text-sm text-gray-400 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer ${
+                class={`block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer ${
                   form.photo && "bg-gray-300"
                 }`}
                 placeholder=" "
@@ -109,7 +109,7 @@ const CreatePost = () => {
                 name="prompt"
                 id="prompt"
                 rows="3"
-                class={`block py-2.5 px-0 w-full text-sm text-gray-400 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer resize-y min-h-48 ${
+                class={`block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer resize-y min-h-48 ${
                   form.photo && "bg-gray-300"
                 }`}
                 placeholder=" "
