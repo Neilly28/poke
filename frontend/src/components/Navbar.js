@@ -62,7 +62,7 @@ const Navbar = () => {
         </div>
         {/* mobile menu goes here */}
       </header>
-      <div className={showMenu ? "hidden" : ""}>
+      <div className={showMenu ? "" : "hidden"}>
         <Link
           to="/"
           className="block p-4 text-2xl bg-red-500 text-white hover:bg-red-600"
