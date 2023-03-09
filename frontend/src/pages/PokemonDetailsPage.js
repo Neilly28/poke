@@ -110,15 +110,15 @@ const PokemonDetails = () => {
         )}
 
         {pokeDetails && text && (
-          <div className="flex-col sm:grid sm:grid-cols-3 mt-20 mx-auto max-w-6xl mb-20 rounded-lg text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out p-8 justify-center items-center relative bg-white">
+          <div className="flex-col sm:grid sm:grid-cols-3 mt-12 mx-auto max-w-6xl mb-20 rounded-lg text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out p-8 justify-center items-center relative bg-white">
             <div
               className="flex flex-col justify-center items-center p-4"
               // key={char.id}
             >
-              <div className="w-full h-16 p-2 capitalize text-lg text-black flex items-center justify-center">
+              <div className="w-full capitalize text-lg text-black flex items-center justify-center">
                 #{pokeDetails.id}
               </div>
-              <div className="h-250 w-auto object-cover mb-4">
+              <div className="h-250 w-auto object-cover sm:mb-4">
                 {
                   <img
                     className="h-250 w-auto object-cover mb-4 saturate-[0.8]"
@@ -129,7 +129,7 @@ const PokemonDetails = () => {
                   />
                 }
               </div>
-              <div className="w-full h-16 p-2 capitalize text-2xl font-bold text-black flex items-center justify-center">
+              <div className="w-full mb-4 capitalize text-2xl font-bold text-black flex items-center justify-center">
                 {pokeDetails.name}
               </div>
               <div className="flex justify-center items-center gap-4">
@@ -160,7 +160,7 @@ const PokemonDetails = () => {
                 );
               })}
             </div>
-            <div className="mt-16 sm:mt-0 max-w-md text-black">{text}</div>
+            <div className="mt-6 sm:mt-0 max-w-md text-black">{text}</div>
           </div>
         )}
         <button onClick={handleNextClick} class="w-24 h-24">
