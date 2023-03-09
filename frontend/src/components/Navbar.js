@@ -19,14 +19,19 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="font-bold text-sm bg-[#f7da34] text-md p-4 flex justify-between sm:justify-around items-center sticky w-full mx-auto">
+      <header className="font-bold text-sm bg-[#f7da34] text-md p-8 flex justify-between sm:justify-between items-center sticky w-full mx-auto">
         <Link to="/home">
-          <h1 className="font-bold text-3xl">Pokéhack</h1>
+          <h1 className="text-2xl font-bold">{"<Pokéhack />"}</h1>
         </Link>
         <div className="hidden sm:flex">
           {user && (
-            <div className="flex items-center font-semibod gap-4">
-              <Link to="/create-post">Create</Link>
+            <div className="flex items-center font-semibold gap-4">
+              <Link
+                to="/create-post"
+                className="flex justify-center items-center px-4 py-2 capitalize text-sm font-bold text-white rounded-3xl bg-red-500 hover:bg-red-600"
+              >
+                Create
+              </Link>
               <Link to="/ai">Community</Link>
               <span className="hidden sm:block">
                 Hello, {user.email.slice(0, user.email.indexOf("@"))}

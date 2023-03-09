@@ -23,16 +23,13 @@ const CreatePost = () => {
 
   const [pokemonType, setPokemonType] = useState("");
   const [allow, setAllow] = useState("");
-  const gradient = {
-    background: "linear-gradient(45deg, #f7da34, #ff6b6b)",
-  };
 
   return (
     <>
       <section className="mt-24 mx-auto max-w-5xl mb-20 rounded-lg text-black shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out p-8 relative bg-white">
         <div className="flex flex-col justify-center items-center mb-12">
           <h1 class="text-center text-2xl font-bold mb-4 px-4 py-2 rounded-3xl bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 mt-6 text-white mx-auto cursor-default w-full md:w-1/2 max-w-sm">
-            Create a Pokemon
+            Create a Pokémon
           </h1>
 
           <div className="flex justify-center items-center gap-2">
@@ -45,7 +42,7 @@ const CreatePost = () => {
           <form onSubmit={handleSubmit} className="w-full sm:w-1/2">
             <div className="flex flex-col justify-center items-start gap-4 text-black w-1/2 mb-12">
               <label htmlFor="" className="text-sm text-gray-500 w-full block">
-                Pokemon Type
+                Pokémon Type
               </label>
 
               <select
@@ -100,7 +97,7 @@ const CreatePost = () => {
                   form.photo && "hidden"
                 }`}
               >
-                Pokemon Name
+                Pokémon Name
               </label>
             </div>
 
@@ -124,7 +121,7 @@ const CreatePost = () => {
                   form.photo && "hidden"
                 }`}
               >
-                Pokemon Description
+                Pokémon Description
               </label>
               {!form.photo && (
                 <button

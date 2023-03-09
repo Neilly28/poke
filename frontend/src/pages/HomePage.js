@@ -56,7 +56,7 @@ const Home = () => {
             <div className="mb-20 relative">
               <input
                 type=""
-                placeholder="PokeSearch"
+                placeholder="PokéSearch"
                 className="mt-8 font-medium bg-slate-100 px-4 py-2 text-2xl rounded-3xl mb-8 text-black w-96"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
