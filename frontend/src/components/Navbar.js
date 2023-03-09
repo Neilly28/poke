@@ -13,58 +13,83 @@ const Navbar = () => {
     logout();
   };
 
-  return (
-    <header className="font-bold text-sm bg-[#f7da34] text-md p-4 flex justify-between sm:justify-around items-center sticky w-full mx-auto">
-      <Link to="/home">
-        <h1 className="font-bold text-3xl">Pokéhack</h1>
-      </Link>
-      <div>
-        <button
-          className="block md:hidden"
-          onClick={() => setShowMenu(!showMenu)}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            width="24"
-            height="24"
-          >
-            <path d="M2.01 21L23 21 23 19 2.01 19zM2.01 14L23 14 23 12 2.01 12zM23 5L2.01 5 2.01 3 23 3z" />
-          </svg>
-        </button>
+  const handleMenu = () => {
+    setShowMenu(!showMenu);
+  };
 
-        <nav
-          className={`absolute md:static md:flex md:justify-evenly md:items-center w-full text-black transition-transform transform-gpu duration-300 ease-in-out`}
-          style={{ top: "100px", left: "0" }}
-        >
+  return (
+    <>
+      <header className="font-bold text-sm bg-[#f7da34] text-md p-4 flex justify-between sm:justify-around items-center sticky w-full mx-auto">
+        <Link to="/home">
+          <h1 className="font-bold text-3xl">Pokéhack</h1>
+        </Link>
+        <div className="hidden sm:flex">
           {user && (
-            <div className="flex flex-col md:flex-row md:gap-7 items-center font-semibold sm:text-md gap-8 sm:gap-4 p-4 bg-red-500 text-white text-2xl sm:text-sm sm:text-black sm:bg-[#f7da34]">
-              <Link to="/create-post" className="hover:scale-105">
-                Create
-              </Link>
-              <Link to="/ai" className="hover:scale-105">
-                Community
-              </Link>
+            <div className="flex items-center font-semibod gap-4">
+              <Link to="/create-post">Create</Link>
+              <Link to="/ai">Community</Link>
               <span className="hidden sm:block">
                 Hello, {user.email.slice(0, user.email.indexOf("@"))}
               </span>
-              <button onClick={handleClick} className="hover:scale-105">
-                Log Out
-              </button>
+              <button onClick={handleClick}>Log Out</button>
             </div>
           )}
           {!user && (
             <div className="flex flex-col gap-4 md:flex-row md:gap-7 items-center font-light text-md">
-              <Link to="/login" className="hover:scale-105">
-                Login
-              </Link>
-              {/* <Link to="/signup" className="hover:scale-105">Signup</Link> */}
+              <Link to="/login">Login</Link>
+              {/* <Link to="/signup">Signup</Link> */}
             </div>
           )}
-        </nav>
+        </div>
+        {/* mobile button goes here */}
+        <div className="flex sm:hidden items-center">
+          <button className="mobile-menu-button" onClick={handleMenu}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-12 h-12"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+              />
+            </svg>
+          </button>
+        </div>
+        {/* mobile menu goes here */}
+      </header>
+      <div className={showMenu ? "hidden" : ""}>
+        <Link
+          to="/"
+          className="block p-4 text-2xl bg-red-500 text-white hover:bg-red-600"
+        >
+          Home
+        </Link>
+        <Link
+          to="create-post"
+          className="block p-4 text-2xl bg-red-500 text-white hover:bg-red-600"
+        >
+          Create
+        </Link>
+        <Link
+          to="/ai"
+          className="block p-4 text-2xl bg-red-500 text-white hover:bg-red-600"
+        >
+          Community
+        </Link>
+
+        <button
+          onClick={handleClick}
+          className="block w-full text-left p-4 text-2xl bg-red-500 text-white hover:bg-red-600"
+        >
+          Log Out
+        </button>
       </div>
-    </header>
+    </>
   );
 };
 

@@ -23,12 +23,15 @@ const CreatePost = () => {
 
   const [pokemonType, setPokemonType] = useState("");
   const [allow, setAllow] = useState("");
+  const gradient = {
+    background: "linear-gradient(45deg, #f7da34, #ff6b6b)",
+  };
 
   return (
     <>
-      <section className="mt-56 sm:mt-24 mx-auto max-w-5xl mb-20 rounded-lg text-black shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out p-8 relative bg-white">
+      <section className="mt-24 mx-auto max-w-5xl mb-20 rounded-lg text-black shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out p-8 relative bg-white">
         <div className="flex flex-col justify-center items-center mb-12">
-          <h1 className="text-center text-2xl font-bold mb-4 px-4 py-2 rounded-3xl bg-[#f7da34] mt-6 text-black mx-auto cursor-default w-full md:w-1/2 max-w-sm">
+          <h1 class="text-center text-2xl font-bold mb-4 px-4 py-2 rounded-3xl bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 mt-6 text-white mx-auto cursor-default w-full md:w-1/2 max-w-sm">
             Create a Pokemon
           </h1>
 
@@ -77,7 +80,7 @@ const CreatePost = () => {
               </select>
             </div>
 
-            <div class="relative z-0 w-full mb-12 group">
+            <div class="relative z-0 w-full group">
               <input
                 type="text"
                 name="name"
@@ -101,11 +104,12 @@ const CreatePost = () => {
               </label>
             </div>
 
-            <div class="relative z-0 w-full mb-6 group">
+            <div class="relative z-0 w-full mb-6 mt-12 group">
               <textarea
                 name="prompt"
                 id="prompt"
-                class={`block py-2.5 px-0 w-full text-sm text-gray-400 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer resize-y min-h-24 ${
+                rows="3"
+                class={`block py-2.5 px-0 w-full text-sm text-gray-400 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer resize-y min-h-48 ${
                   form.photo && "bg-gray-300"
                 }`}
                 placeholder=" "
@@ -141,7 +145,7 @@ const CreatePost = () => {
               )}
             </div>
 
-            <div className="mt-10 flex gap-5">
+            <div className="flex gap-5">
               <button
                 type="submit"
                 onClick={generateImage}

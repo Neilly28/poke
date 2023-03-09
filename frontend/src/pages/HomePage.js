@@ -45,7 +45,7 @@ const Home = () => {
   return (
     <>
       {/* <Hero /> */}
-      <div className="max-w-7xl mx-auto mt-56 sm:mt-24">
+      <div className="max-w-7xl mx-auto mt-24">
         {loading ? (
           <div className="flex items-center justify-center h-screen">
             <h1 className="font-bold text-xl mr-3">Catching Pokemon </h1>
