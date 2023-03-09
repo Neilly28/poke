@@ -146,10 +146,10 @@ const PokemonDetails = () => {
                 })}
               </div>
             </div>
-            <div className="flex sm:flex-col justify-center items-center text-black sm:ml-12 gap-16">
+            <div className="flex sm:flex-col justify-around items-center text-black">
               {pokeDetails.stats.slice(0, 3).map((poke) => {
                 return (
-                  <div className="flex flex-col items-center text-center mb-3 mr-4">
+                  <div className="flex flex-col items-center text-center mb-3">
                     <div className="capitalize mb-3 font-medium order-last">
                       {poke.stat.name}
                     </div>
