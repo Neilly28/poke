@@ -14,6 +14,7 @@ import Navbar from "./components/Navbar";
 import CreatePost from "./pages/AiPage";
 import Community from "./pages/CommunityPage";
 import Hero from "./pages/Hero";
+import Footer from "./components/Footer";
 
 function App() {
   // fetch("http://localhost:4000/mcdo")
@@ -47,6 +48,7 @@ function App() {
           />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <Footer />
       </Router>
     </div>
   );
