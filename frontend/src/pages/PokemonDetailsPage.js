@@ -132,14 +132,16 @@ const PokemonDetails = () => {
               })}
             </div>
           </div>
-          <div className="flex flex-col justify-center items-center text-black sm:ml-12">
-            {pokeDetails.stats.map((poke) => {
+          <div className="flex sm:flex-col justify-center items-center text-black sm:ml-12 gap-16">
+            {pokeDetails.stats.slice(0, 3).map((poke) => {
               return (
-                <div className="grid grid-cols-2">
-                  <div className="capitalize mb-3 mr-4 font-bold">
-                    {poke.stat.name}:
+                <div className="flex flex-col items-center text-center mb-3 mr-4">
+                  <div className="capitalize mb-3 font-medium order-last">
+                    {poke.stat.name}
                   </div>
-                  <div className="capitalize mb-3">{poke.base_stat}</div>
+                  <div className="capitalize font-bold text-xl">
+                    {poke.base_stat}
+                  </div>
                 </div>
               );
             })}

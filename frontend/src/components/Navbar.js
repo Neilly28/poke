@@ -40,18 +40,26 @@ const Navbar = () => {
         >
           {user && (
             <div className="flex flex-col md:flex-row md:gap-7 items-center font-semibold sm:text-md gap-8 sm:gap-4 p-4 bg-red-500 text-white text-2xl sm:text-sm sm:text-black sm:bg-[#f7da34]">
-              <Link to="/create-post">Create</Link>
-              <Link to="/ai">Community</Link>
+              <Link to="/create-post" className="hover:scale-105">
+                Create
+              </Link>
+              <Link to="/ai" className="hover:scale-105">
+                Community
+              </Link>
               <span className="hidden sm:block">
                 Hello, {user.email.slice(0, user.email.indexOf("@"))}
               </span>
-              <button onClick={handleClick}>Log Out</button>
+              <button onClick={handleClick} className="hover:scale-105">
+                Log Out
+              </button>
             </div>
           )}
           {!user && (
             <div className="flex flex-col gap-4 md:flex-row md:gap-7 items-center font-light text-md">
-              <Link to="/login">Login</Link>
-              {/* <Link to="/signup">Signup</Link> */}
+              <Link to="/login" className="hover:scale-105">
+                Login
+              </Link>
+              {/* <Link to="/signup" className="hover:scale-105">Signup</Link> */}
             </div>
           )}
         </nav>
