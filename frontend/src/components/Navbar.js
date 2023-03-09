@@ -66,18 +66,27 @@ const Navbar = () => {
         <Link
           to="/"
           className="block p-4 text-2xl bg-red-500 text-white hover:bg-red-600"
+          onClick={() => {
+            setShowMenu(false);
+          }}
         >
           Home
         </Link>
         <Link
           to="create-post"
           className="block p-4 text-2xl bg-red-500 text-white hover:bg-red-600"
+          onClick={() => {
+            setShowMenu(false);
+          }}
         >
           Create
         </Link>
         <Link
           to="/ai"
           className="block p-4 text-2xl bg-red-500 text-white hover:bg-red-600"
+          onClick={() => {
+            setShowMenu(false);
+          }}
         >
           Community
         </Link>
