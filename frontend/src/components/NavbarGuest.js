@@ -4,14 +4,13 @@ import { useLogout } from "../hooks/useLogout";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useState } from "react";
 
-const Navbar = () => {
+const NavbarGuest = () => {
   const { logout } = useLogout();
   const { user } = useAuthContext();
   const [showMenu, setShowMenu] = useState(false);
 
   const handleClick = () => {
     logout();
-    setShowMenu(false);
   };
 
   const handleMenu = () => {
@@ -32,25 +31,6 @@ const Navbar = () => {
             <h1 className="text-2xl font-bold">{"<Pokéhack />"}</h1>
           </Link>
           <div className="hidden sm:flex">
-            {user && (
-              <div className="flex items-center font-semibold gap-4">
-                <Link
-                  to="/create-post"
-                  className="flex justify-center items-center px-4 py-2 capitalize text-sm font-bold text-white rounded-3xl bg-red-500 hover:bg-red-600"
-                >
-                  Create
-                </Link>
-                {user && (
-                  <>
-                    <Link to="/ai">Community</Link>
-                    <span className="hidden sm:block">
-                      Hello, {user.email.slice(0, user.email.indexOf("@"))}
-                    </span>
-                    <button onClick={handleClick}>Log Out</button>
-                  </>
-                )}
-              </div>
-            )}
             {!user && (
               <div className="flex flex-col gap-4 md:flex-row md:gap-7 items-center font-light text-md">
                 <Link
@@ -60,12 +40,8 @@ const Navbar = () => {
                   Create
                 </Link>
                 {/* <Link to="/ai">Community</Link> */}
-                <span className="hidden sm:block text-sm font-bold">
-                  Hello, Guest
-                </span>
-                <Link className="text-sm font-bold" to="/login">
-                  Login
-                </Link>
+                <span className="hidden sm:block">Hello, Guest</span>
+                <Link to="/login">Login</Link>
               </div>
             )}
           </div>
@@ -92,7 +68,7 @@ const Navbar = () => {
         </header>
         <div className={showMenu ? "" : "hidden"}>
           <Link
-            to="/home"
+            to="/"
             className="block p-4 text-2xl bg-red-500 text-white hover:bg-red-600"
             onClick={() => {
               setShowMenu(false);
@@ -109,17 +85,15 @@ const Navbar = () => {
           >
             Create
           </Link>
-          {user && (
-            <Link
-              to="/ai"
-              className="block p-4 text-2xl bg-red-500 text-white hover:bg-red-600"
-              onClick={() => {
-                setShowMenu(false);
-              }}
-            >
-              Community
-            </Link>
-          )}
+          <Link
+            to="/ai"
+            className="block p-4 text-2xl bg-red-500 text-white hover:bg-red-600"
+            onClick={() => {
+              setShowMenu(false);
+            }}
+          >
+            Community
+          </Link>
 
           <button
             onClick={handleClick}
@@ -133,4 +107,4 @@ const Navbar = () => {
   }
 };
 
-export default Navbar;
+export default NavbarGuest;

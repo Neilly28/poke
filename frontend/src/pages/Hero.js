@@ -1,15 +1,29 @@
-import React from "react";
-// import hero from ".../public/hero.jpg";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.keyCode === 13) {
+        navigate("/home");
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [navigate]);
+
   return (
     <div className="relative h-screen">
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage: `url(${process.env.PUBLIC_URL}/hero3.jpg)`,
-          //   backgroundImage: "url(https://source.unsplash.com/random?pokemon)",
         }}
       >
         <div className="absolute inset-0 bg-black opacity-70"></div>
@@ -18,11 +32,9 @@ const Hero = () => {
         <h1 className="text-white font-bold text-4xl sm:text-7xl text-shadow-md mb-4">
           {"<Pokéhack />"}
         </h1>
-        <a href="/home">
-          <h2 className="text-white font-bold text-md sm:text-lg text-shadow-md tracking-widest">
-            <Link to="/login">Sign in to Enter</Link>
-          </h2>
-        </a>
+        <h2 className="text-white font-bold text-md sm:text-lg text-shadow-md tracking-widest">
+          <Link to="/home">Press Enter</Link>
+        </h2>
       </div>
     </div>
   );

@@ -9,8 +9,12 @@ import {
 import { BsDice5Fill, BsFillShareFill } from "react-icons/bs";
 // import { ReactComponent as YourSvg } from "../assets/logo.svg";
 import Icon from "../assets/Logo";
+import { useAuthContext } from "../hooks/useAuthContext";
+import { Link } from "react-router-dom";
 
 const CreatePost = () => {
+  const { user } = useAuthContext();
+
   const {
     handleSubmit,
     form,
@@ -26,7 +30,7 @@ const CreatePost = () => {
 
   return (
     <>
-      <section className="mt-24 mx-auto max-w-5xl mb-20 rounded-lg text-black shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out p-8 relative bg-white">
+      <section className="mt-24 mx-auto max-w-5xl mb-20 rounded-lg text-black shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out p-8 relative bg-white mb-96">
         <div className="flex flex-col justify-center items-center mb-12">
           <h1 class="text-center text-2xl font-bold mb-4 px-4 py-2 rounded-3xl bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 mt-6 text-white mx-auto cursor-default w-full md:w-1/2 max-w-sm">
             Create a Pokémon
@@ -157,18 +161,40 @@ const CreatePost = () => {
               >
                 {generatingImg ? "Generating..." : "Generate"}
               </button>
-              <button
-                type="submit"
-                disabled={!form.photo}
-                className={`px-4 py-2 capitalize text-lg font-bold text-white rounded-3xl mb-8 bg-blue-500 cursor-pointer mt-6 ${
-                  !form.photo ? "bg-gray-500" : "bg-blue-500 hover:bg-blue-800"
-                }`}
-              >
-                <div className="flex justify-center items-center gap-2">
-                  <BsFillShareFill />
-                  {loading ? "Sharing..." : "Share"}
-                </div>
-              </button>
+              {user && (
+                <button
+                  type="submit"
+                  disabled={!form.photo}
+                  className={`px-4 py-2 capitalize text-lg font-bold text-white rounded-3xl mb-8 bg-blue-500 cursor-pointer mt-6 ${
+                    !form.photo
+                      ? "bg-gray-500"
+                      : "bg-blue-500 hover:bg-blue-800"
+                  }`}
+                >
+                  <div className="flex justify-center items-center gap-2">
+                    <BsFillShareFill />
+                    {loading ? "Sharing..." : "Share"}
+                  </div>
+                </button>
+              )}
+              {!user && (
+                <button
+                  type="submit"
+                  disabled={!form.photo}
+                  className={`px-4 py-2 capitalize text-lg font-bold text-white rounded-3xl mb-8 bg-blue-500 cursor-pointer mt-6 ${
+                    !form.photo
+                      ? "bg-gray-500"
+                      : "bg-blue-500 hover:bg-blue-800"
+                  }`}
+                >
+                  <div className="flex justify-center items-center gap-2">
+                    <Link to="/login">
+                      {/* <BsFillShareFill /> */}
+                      Login to Share
+                    </Link>
+                  </div>
+                </button>
+              )}
             </div>
           </form>
 

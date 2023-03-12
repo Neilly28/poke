@@ -13,6 +13,7 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+// import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -38,6 +39,7 @@ export default function SignInSide() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, error, isLoading } = useLogin();
+  // const navigate = useNavigate();
 
   // const [emailError, setEmailError] = useState("");
   // const [passwordError, setPasswordError] = useState("");
@@ -45,6 +47,7 @@ export default function SignInSide() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await login(email, password);
+    // navigate("/home");
   };
 
   // const handleEmailChange = (e) => {

@@ -15,6 +15,8 @@ import CreatePost from "./pages/AiPage";
 import Community from "./pages/CommunityPage";
 import Hero from "./pages/Hero";
 import Footer from "./components/Footer";
+// import NavbarGuest from "./components/NavbarGuest";
+import NotAuthorized from "./pages/NotAuthorized";
 
 function App() {
   // fetch("http://localhost:4000/mcdo")
@@ -25,18 +27,15 @@ function App() {
   return (
     <div className="App">
       <Router>
-        {user && <Navbar />}
+        <Navbar />
         <Routes>
-          <Route path="/" element={user ? <Home /> : <Hero />} />
+          <Route path="/" element={<Hero />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/poke/:id" element={<PokemonDetails />} />
+          <Route path="/create-post" element={<CreatePost />} />
           <Route
-            path="/poke/:id"
-            element={user ? <PokemonDetails /> : <Navigate to="/login" />}
-          />
-          <Route path="/ai" element={user ? <Community /> : <SignInSide />} />
-          <Route
-            path="/create-post"
-            element={user ? <CreatePost /> : <Navigate to="/login" />}
+            path="/ai"
+            element={user ? <Community /> : <NotAuthorized />}
           />
           <Route
             path="/login"
@@ -48,7 +47,7 @@ function App() {
           />
           <Route path="*" element={<NotFound />} />
         </Routes>
-        {user && <Footer />}
+        <Footer />
       </Router>
     </div>
   );
