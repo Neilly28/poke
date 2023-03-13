@@ -28,7 +28,7 @@ const Navbar = () => {
     return (
       <>
         <header className="font-bold text-sm bg-[#f7da34] text-md p-8 flex justify-between sm:justify-between items-center sticky w-full mx-auto">
-          <Link to="/">
+          <Link to="/home">
             <h1 className="text-2xl font-bold">{"<Pokéhack />"}</h1>
           </Link>
           <div className="hidden sm:flex">
