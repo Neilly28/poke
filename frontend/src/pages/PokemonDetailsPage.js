@@ -86,7 +86,10 @@ const PokemonDetails = () => {
   return (
     <>
       {pokeDetails && text && (
-        <Link to="/" className="flex justify-center items-center mt-24 mx-auto">
+        <Link
+          to="/home"
+          className="flex justify-center items-center mt-24 mx-auto"
+        >
           <div className="text-slate-600 w-6 h-6">
             <RiArrowGoBackFill className="w-full h-full" />
           </div>
