@@ -32,42 +32,38 @@ const Navbar = () => {
             <h1 className="text-2xl font-bold">{"<Pokéhack />"}</h1>
           </Link>
           <div className="hidden sm:flex">
-            {user && (
-              <div className="flex items-center font-semibold gap-4">
-                <Link
-                  to="/create-post"
-                  className="flex justify-center items-center px-4 py-2 capitalize text-sm font-bold text-white rounded-3xl bg-red-500 hover:bg-red-600"
-                >
-                  Create
-                </Link>
-                {user && (
-                  <>
-                    <Link to="/ai">Community</Link>
-                    <span className="hidden sm:block">
-                      Hello, {user.email.slice(0, user.email.indexOf("@"))}
-                    </span>
-                    <button onClick={handleClick}>Log Out</button>
-                  </>
-                )}
-              </div>
-            )}
-            {!user && (
-              <div className="flex flex-col gap-4 md:flex-row md:gap-7 items-center font-light text-md">
-                <Link
-                  to="/create-post"
-                  className="flex justify-center items-center px-4 py-2 capitalize text-sm font-bold text-white rounded-3xl bg-red-500 hover:bg-red-600"
-                >
-                  Create
-                </Link>
-                {/* <Link to="/ai">Community</Link> */}
-                <span className="hidden sm:block text-sm font-bold">
-                  Hello, Guest
-                </span>
-                <Link className="text-sm font-bold" to="/login">
-                  Login
-                </Link>
-              </div>
-            )}
+            <div className="flex items-center font-semibold gap-4">
+              <Link
+                to="/create-post"
+                className="flex justify-center items-center px-4 py-2 capitalize text-sm font-bold text-white rounded-3xl bg-red-500 hover:bg-red-600"
+              >
+                Create
+              </Link>
+              <Link className="text-sm font-bold" to="/ai">
+                Community
+              </Link>
+              {!user && (
+                <>
+                  <span className="hidden sm:block text-sm font-bold">
+                    Hello, Guest
+                  </span>
+                  <Link className="text-sm font-bold" to="/login">
+                    Login
+                  </Link>
+                </>
+              )}
+
+              {user && (
+                <>
+                  <span className="hidden sm:block text-sm font-bold">
+                    Hello, {user.email.slice(0, user.email.indexOf("@"))}
+                  </span>
+                  <button className="text-sm font-bold" onClick={handleClick}>
+                    Log Out
+                  </button>
+                </>
+              )}
+            </div>
           </div>
           {/* mobile button goes here */}
           <div className="flex sm:hidden items-center">
@@ -109,23 +105,22 @@ const Navbar = () => {
           >
             Create
           </Link>
-          {user && (
-            <Link
-              to="/ai"
-              className="block p-4 text-2xl bg-red-500 text-white hover:bg-red-600"
-              onClick={() => {
-                setShowMenu(false);
-              }}
-            >
-              Community
-            </Link>
-          )}
+
+          <Link
+            to="/ai"
+            className="block p-4 text-2xl bg-red-500 text-white hover:bg-red-600"
+            onClick={() => {
+              setShowMenu(false);
+            }}
+          >
+            Community
+          </Link>
 
           <button
             onClick={handleClick}
             className="block w-full text-left p-4 text-2xl bg-red-500 text-white hover:bg-red-600"
           >
-            Log Out
+            {user ? "Logout" : "Login"}
           </button>
         </div>
       </>
