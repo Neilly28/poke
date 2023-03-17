@@ -33,7 +33,10 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/poke/:id" element={<PokemonDetails />} />
           <Route path="/create-post" element={<CreatePost />} />
-          <Route path="/ai" element={<Community />} />
+          <Route
+            path="/ai"
+            element={user ? <Community /> : <NotAuthorized />}
+          />
           <Route
             path="/login"
             element={!user ? <SignInSide /> : <Navigate to="/" />}

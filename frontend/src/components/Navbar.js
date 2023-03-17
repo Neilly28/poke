@@ -39,9 +39,7 @@ const Navbar = () => {
               >
                 Create
               </Link>
-              <Link className="text-sm font-bold" to="/ai">
-                Community
-              </Link>
+
               {!user && (
                 <>
                   <span className="hidden sm:block text-sm font-bold">
@@ -55,6 +53,9 @@ const Navbar = () => {
 
               {user && (
                 <>
+                  <Link className="text-sm font-bold" to="/ai">
+                    Community
+                  </Link>
                   <span className="hidden sm:block text-sm font-bold">
                     Hello, {user.email.slice(0, user.email.indexOf("@"))}
                   </span>
@@ -106,15 +107,17 @@ const Navbar = () => {
             Create
           </Link>
 
-          <Link
-            to="/ai"
-            className="block p-4 text-2xl bg-red-500 text-white hover:bg-red-600"
-            onClick={() => {
-              setShowMenu(false);
-            }}
-          >
-            Community
-          </Link>
+          {user && (
+            <Link
+              to="/ai"
+              className="block p-4 text-2xl bg-red-500 text-white hover:bg-red-600"
+              onClick={() => {
+                setShowMenu(false);
+              }}
+            >
+              Community
+            </Link>
+          )}
 
           <button
             onClick={handleClick}

@@ -20,7 +20,7 @@ const RenderCards = ({ data, title }) => {
 };
 
 const Community = () => {
-  // const { user } = useAuthContext();
+  const { user } = useAuthContext();
 
   const [loading, setLoading] = useState(false);
   const [allPosts, setAllPosts] = useState(null);
@@ -36,7 +36,7 @@ const Community = () => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            // Authorization: `Bearer ${user.token}`,
+            Authorization: `Bearer ${user.token}`,
           },
         }
       );
