@@ -5,14 +5,14 @@ const {
   deletePost,
 } = require("../controllers/postController");
 
+// get all posts
+router.get("/", getPosts);
+
 // require auth for all post routes
 const router = express.Router();
 
 const requireAuth = require("../middleware/requireAuth");
 router.use(requireAuth);
-
-// get all posts
-router.get("/", getPosts);
 
 // create a post
 router.post("/", createPost);
