@@ -107,17 +107,15 @@ const Navbar = () => {
             Create
           </Link>
 
-          {user && (
-            <Link
-              to="/ai"
-              className="block p-4 text-2xl bg-red-500 text-white hover:bg-red-600"
-              onClick={() => {
-                setShowMenu(false);
-              }}
-            >
-              Community
-            </Link>
-          )}
+          <Link
+            to="/ai"
+            className="block p-4 text-2xl bg-red-500 text-white hover:bg-red-600"
+            onClick={() => {
+              setShowMenu(false);
+            }}
+          >
+            Community
+          </Link>
 
           <button
             onClick={handleClick}
