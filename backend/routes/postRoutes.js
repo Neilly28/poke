@@ -7,12 +7,12 @@ const {
 
 const router = express.Router();
 
+// get all posts
+router.get("/", getPosts);
+
 // require auth for all post routes
 const requireAuth = require("../middleware/requireAuth");
 router.use(requireAuth);
-
-// get all posts
-router.get("/", getPosts);
 
 // create a post
 router.post("/", createPost);
