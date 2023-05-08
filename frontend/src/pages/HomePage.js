@@ -40,8 +40,6 @@ const Home = () => {
     setLoading,
   } = useFetch("https://pokeapi.co/api/v2/pokemon?limit=151");
 
-  console.log(filteredCharacters);
-
   return (
     <>
       {/* <Hero /> */}
@@ -68,12 +66,8 @@ const Home = () => {
               <div className="grid lg:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 grid-cols-1 gap-8">
                 {filteredCharacters.map((char) => {
                   return (
-                    // <Fade>
-                    <Link to={`/poke/${char.id}`}>
-                      <div
-                        className="rounded-lg text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out p-4 flex flex-col justify-center items-center relative bg-white"
-                        key={char.id}
-                      >
+                    <Link key={char.id} to={`/poke/${char.id}`}>
+                      <div className="rounded-lg text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out p-4 flex flex-col justify-center items-center relative bg-white">
                         <h2 className="w-full h-16 p-2 capitalize text-lg text-black flex items-center justify-center">
                           #{char.id}
                         </h2>
@@ -105,7 +99,6 @@ const Home = () => {
                         </div>
                       </div>
                     </Link>
-                    // </Fade>
                   );
                 })}
               </div>

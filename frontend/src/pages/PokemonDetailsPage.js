@@ -23,8 +23,6 @@ const PokemonDetails = () => {
     } else {
       navigate(`/poke/${prevId}`);
     }
-
-    console.log("previous clicked!");
   };
 
   const handleNextClick = () => {
@@ -87,6 +85,7 @@ const PokemonDetails = () => {
     <>
       {pokeDetails && text && (
         <Link
+          key={id}
           to="/home"
           className="flex justify-center items-center mt-24 mx-auto"
         >
@@ -100,8 +99,8 @@ const PokemonDetails = () => {
       )}
 
       <div className="flex items-center mx-auto max-w-full p-4 sm:p-16">
-        <button onClick={handlePrevClick} class="w-24 h-24">
-          <SlArrowLeft class="w-full h-full text-gray-200 hover:text-yellow-500" />
+        <button onClick={handlePrevClick} className="w-24 h-24">
+          <SlArrowLeft className="w-full h-full text-gray-200 hover:text-yellow-500" />
         </button>
 
         {/* {error && <div>{error}</div>} */}
@@ -166,8 +165,8 @@ const PokemonDetails = () => {
             <div className="mt-6 sm:mt-0 max-w-md text-black">{text}</div>
           </div>
         )}
-        <button onClick={handleNextClick} class="w-24 h-24">
-          <SlArrowRight class="w-full h-full text-gray-200 hover:text-[#f7da34]" />
+        <button onClick={handleNextClick} className="w-24 h-24">
+          <SlArrowRight className="w-full h-full text-gray-200 hover:text-[#f7da34]" />
         </button>
       </div>
     </>
@@ -175,19 +174,3 @@ const PokemonDetails = () => {
 };
 
 export default PokemonDetails;
-
-// && (
-//   <>
-//     <TypeWriterEffect
-//       startDelay={100}
-//       cursorColor="black"
-//       text={text}
-//       typeSpeed={30}
-//       textStyle={{
-//         fontFamily: "Poppins",
-//         fontWeight: 400,
-//         fontSize: "1em",
-//       }}
-//     />
-//   </>
-// )

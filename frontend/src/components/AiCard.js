@@ -86,8 +86,11 @@ const AiCard = ({ _id, name, prompt, photo, type }) => {
         {prompt}
       </div>
       {user?.email === "admin@mail.com" && (
-        <button onClick={handleClick} class="absolute top-5 right-5 w-8 h-8 ">
-          <BsFillXCircleFill class="w-full h-full text-gray-200 hover:text-red-500 transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300" />
+        <button
+          onClick={handleClick}
+          className="absolute top-5 right-5 w-8 h-8 "
+        >
+          <BsFillXCircleFill className="w-full h-full text-gray-200 hover:text-red-500 transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300" />
         </button>
       )}
     </div>

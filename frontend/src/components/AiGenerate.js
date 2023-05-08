@@ -39,7 +39,7 @@ const AiGenerate = () => {
       try {
         setGeneratingImg(true);
         const response = await fetch(
-          "https://pokehack.onrender.com/api/v1/dalle",
+          "http://pokehack.onrender.com/api/v1/dalle",
           {
             method: "POST",
             headers: {
@@ -62,15 +62,15 @@ const AiGenerate = () => {
           });
           setImageGenerated(true);
         } else {
-          throw new Error("Unable to generate image");
+          throw new Error(
+            "Oops! OpenAI usage limits have been reached. Please try again later."
+          );
         }
       } catch (err) {
         alert(err);
       } finally {
         setGeneratingImg(false);
       }
-      // } else {
-      //   alert("Please provide proper prompt");
     }
   };
 
@@ -103,8 +103,6 @@ const AiGenerate = () => {
       } finally {
         setLoading(false);
       }
-      // } else {
-      //   alert("Enter a prompt and generate image");
     }
   };
 

@@ -15,14 +15,9 @@ import CreatePost from "./pages/AiPage";
 import Community from "./pages/CommunityPage";
 import Hero from "./pages/Hero";
 import Footer from "./components/Footer";
-// import NavbarGuest from "./components/NavbarGuest";
 import NotAuthorized from "./pages/NotAuthorized";
 
 function App() {
-  // fetch("http://localhost:4000/mcdo")
-  //   .then((res) => res.json())
-  //   .then((res) => console.log(res));
-
   const { user } = useAuthContext();
   return (
     <div className="App">

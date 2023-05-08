@@ -59,7 +59,7 @@ const Community = () => {
   return (
     <section className="max-w-7xl mx-auto mt-24 mb-96">
       <div className="mb-24">
-        <h1 class="text-center text-2xl font-bold mb-4 md:mb-12 px-4 py-2 rounded-3xl bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 mt-6 text-white mx-auto cursor-default w-full md:w-1/2 max-w-sm">
+        <h1 className="text-center text-2xl font-bold mb-4 md:mb-12 px-4 py-2 rounded-3xl bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 mt-6 text-white mx-auto cursor-default w-full md:w-1/2 max-w-sm">
           The PokéAI Community
         </h1>
       </div>

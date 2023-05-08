@@ -30,9 +30,9 @@ const CreatePost = () => {
 
   return (
     <>
-      <section className="mt-24 mx-auto max-w-5xl mb-20 rounded-lg text-black shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out p-8 relative bg-white mb-96">
+      <section className="mt-24 mx-auto max-w-5xl rounded-lg text-black shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out p-8 relative bg-white mb-96">
         <div className="flex flex-col justify-center items-center mb-12">
-          <h1 class="text-center text-2xl font-bold mb-4 px-4 py-2 rounded-3xl bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 mt-6 text-white mx-auto cursor-default w-full md:w-1/2 max-w-sm">
+          <h1 className="text-center text-2xl font-bold mb-4 px-4 py-2 rounded-3xl bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 mt-6 text-white mx-auto cursor-default w-full md:w-1/2 max-w-sm">
             Create a Pokémon
           </h1>
 
@@ -81,12 +81,12 @@ const CreatePost = () => {
               </select>
             </div>
 
-            <div class="relative z-0 w-full group">
+            <div className="relative z-0 w-full group">
               <input
                 type="text"
                 name="name"
                 id="name"
-                class={`block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer ${
+                className={`block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer ${
                   form.photo && "bg-gray-300"
                 }`}
                 placeholder=" "
@@ -96,8 +96,8 @@ const CreatePost = () => {
                 disabled={form.photo ? true : false}
               />
               <label
-                for="floating_email"
-                class={`peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 ${
+                htmlFor="floating_email"
+                className={`peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 ${
                   form.photo && "hidden"
                 }`}
               >
@@ -105,12 +105,12 @@ const CreatePost = () => {
               </label>
             </div>
 
-            <div class="relative z-0 w-full mb-6 mt-12 group">
+            <div className="relative z-0 w-full mb-6 mt-12 group">
               <textarea
                 name="prompt"
                 id="prompt"
                 rows="3"
-                class={`block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer resize-y min-h-48 ${
+                className={`block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer resize-y min-h-48 ${
                   form.photo && "bg-gray-300"
                 }`}
                 placeholder=" "
@@ -120,8 +120,8 @@ const CreatePost = () => {
                 disabled={form.photo ? true : false}
               ></textarea>
               <label
-                for="floating_password"
-                class={`peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 ${
+                htmlFor="floating_password"
+                className={`peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 ${
                   form.photo && "hidden"
                 }`}
               >
@@ -132,7 +132,7 @@ const CreatePost = () => {
                   type="button"
                   onClick={handleSurpriseMe}
                   disabled={form.photo}
-                  class={`px-4 py-2 text-xs rounded-3xl mb-8 bg-[#F7D02C] cursor-pointer mt-6 ${
+                  className={`px-4 py-2 text-xs rounded-3xl mb-8 bg-[#F7D02C] cursor-pointer mt-6 ${
                     form.photo
                       ? "bg-gray-500"
                       : "bg-yellow-400 hover:bg-yellow-500"
