@@ -66,7 +66,9 @@ const Community = () => {
       <div className="mt-10">
         {loading && (
           <div className="flex items-center justify-center h-screen">
-            <h1 className="font-bold text-xl mr-3">Catching Pokemon </h1>
+            <h1 className="font-bold text-xl mr-3">
+              Hang tight! Spinning up servers
+            </h1>
             <BeatLoader color="black" loading={loading} size={25} />
           </div>
         )}
