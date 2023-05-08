@@ -13,7 +13,7 @@ export const useSignup = () => {
     setError(null);
 
     const response = await fetch(
-      "https://pokehack.onrender.com/api/user/signup",
+      "https://cute-erin-codfish-sari.cyclic.app/api/user/signup",
       {
         method: "POST",
         mode: "cors",

@@ -39,7 +39,7 @@ const AiGenerate = () => {
       try {
         setGeneratingImg(true);
         const response = await fetch(
-          "https://pokehack.onrender.com/api/v1/dalle",
+          "https://cute-erin-codfish-sari.cyclic.app/api/v1/dalle",
           {
             method: "POST",
             headers: {
@@ -81,7 +81,7 @@ const AiGenerate = () => {
       setLoading(true);
       try {
         const response = await fetch(
-          "https://pokehack.onrender.com/api/v1/post",
+          "https://cute-erin-codfish-sari.cyclic.app/api/v1/post",
           {
             method: "POST",
             headers: {

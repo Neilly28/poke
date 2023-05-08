@@ -14,7 +14,7 @@ const AiCard = ({ _id, name, prompt, photo, type }) => {
       return;
     }
     const response = await fetch(
-      "https://pokehack.onrender.com/api/v1/post/" + _id,
+      "https://cute-erin-codfish-sari.cyclic.app/api/v1/post/" + _id,
       {
         method: "DELETE",
         headers: {

@@ -31,7 +31,7 @@ const Community = () => {
 
     try {
       const response = await fetch(
-        "https://pokehack.onrender.com/api/v1/post",
+        "https://cute-erin-codfish-sari.cyclic.app/api/v1/post",
         {
           method: "GET",
           headers: {
