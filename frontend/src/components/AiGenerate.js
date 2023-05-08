@@ -39,7 +39,7 @@ const AiGenerate = () => {
       try {
         setGeneratingImg(true);
         const response = await fetch(
-          "http://pokehack.onrender.com/api/v1/dalle",
+          "https://pokehack.onrender.com/api/v1/dalle",
           {
             method: "POST",
             headers: {
