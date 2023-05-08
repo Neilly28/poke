@@ -59,8 +59,8 @@ mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => {
     // listen for requests
-    app.listen(4000, () => {
-      console.log("connected to db & listening from port 4000");
+    app.listen(process.env.PORT || 5000, () => {
+      console.log("pokehack server is listening at port 5000");
     });
   })
   .catch((error) => {
