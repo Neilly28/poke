@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 import { colours } from "../constants/colours";
+import ditto from "../assets/ditto.gif";
 
 const Create = () => {
   const { user } = useContext(AuthContext);
@@ -187,21 +188,17 @@ const Create = () => {
                 className="w-250 h-250 object-contain border border-black rounded-lg"
               />
             ) : (
-              <div className="bg-[rgba(0,0,0,0.5)] inset-0 rounded-lg">
+              <div>
                 <img
-                  src="https://i.pinimg.com/474x/1e/60/87/1e6087cf114c7ced058e98dc1124634d.jpg"
+                  src={ditto}
                   alt="preview"
                   className="w-250 h-250 object-contain opacity-90"
                 />
               </div>
             )}
             {generatingImg && (
-              <div className="absolute inset-0 z-0 flex justify-center items-center bg-[rgba(0,0,0,0.5)] rounded-lg">
-                <RingLoader
-                  color="#f7da34"
-                  loading={generatingImg}
-                  size={100}
-                />
+              <div className="absolute">
+                <RingLoader loading={generatingImg} size={100} />
               </div>
             )}
           </div>
