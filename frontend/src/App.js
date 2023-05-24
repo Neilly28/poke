@@ -3,6 +3,7 @@ import {
   Routes,
   Route,
   Navigate,
+  useLocation,
 } from "react-router-dom";
 import Home from "./pages/HomePage";
 import SignInSide from "./pages/LoginPage";
@@ -19,6 +20,7 @@ import { AuthContext } from "./context/AuthContext";
 
 function App() {
   const { user } = useContext(AuthContext);
+
   return (
     <div className="App">
       <Router>
@@ -31,11 +33,11 @@ function App() {
           <Route path="/ai" element={<Community />} />
           <Route
             path="/login"
-            element={!user ? <SignInSide /> : <Navigate to="/" />}
+            element={!user ? <SignInSide /> : <Navigate to="/home" />}
           />
           <Route
             path="/signup"
-            element={!user ? <SignUp /> : <Navigate to="/" />}
+            element={!user ? <SignUp /> : <Navigate to="/home" />}
           />
           <Route path="*" element={<NotFound />} />
         </Routes>

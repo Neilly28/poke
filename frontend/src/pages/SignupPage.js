@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { useSignup } from "../hooks/useSignup";
+import { useContext, useState } from "react";
+import { AuthContext } from "../context/AuthContext";
+
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -13,7 +14,7 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -38,48 +39,16 @@ const theme = createTheme();
 export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  // const [emailError, setEmailError] = useState("");
-  // const [passwordError, setPasswordError] = useState("");
-
-  const { signup, error, isLoading } = useSignup();
+  const { handleSignup, signupError, isLoading } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await signup(email, password);
+    const response = await handleSignup(email, password);
+    if (response) {
+      navigate("/home");
+    }
   };
-
-  // const handleEmailChange = (e) => {
-  //   const value = e.target.value;
-  //   setEmail(value);
-  //   if (!value) {
-  //     setEmailError("Email is required");
-  //   } else if (!/\S+@\S+\.\S+/.test(value)) {
-  //     setEmailError("Email is invalid");
-  //   } else {
-  //     setEmailError("");
-  //   }
-  // };
-
-  // const handlePasswordChange = (e) => {
-  //   const value = e.target.value;
-  //   setPassword(value);
-  //   if (!value) {
-  //     setPasswordError("Password is required");
-  //   } else if (value.length < 8) {
-  //     setPasswordError("Password must be at least 8 characters long");
-  //   } else if (
-  //     !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/.test(
-  //       value
-  //     )
-  //   ) {
-  //     setPasswordError(
-  //       "Password must contain at least one uppercase letter, one number, and one symbol"
-  //     );
-  //   } else {
-  //     setPasswordError("");
-  //   }
-  // };
 
   return (
     <ThemeProvider theme={theme}>
@@ -143,10 +112,6 @@ export default function SignUp() {
                 autoComplete="current-password"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
-                // onChange={handlePasswordChange}
-                // value={password}
-                // error={!!passwordError}
-                // helperText={passwordError}
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
@@ -161,7 +126,7 @@ export default function SignUp() {
               >
                 Sign Up
               </Button>
-              {error && <div className="text-red-500">{error}</div>}
+              {signupError && <div className="text-red-500">{signupError}</div>}
               <Grid container>
                 <Grid item xs></Grid>
                 <Grid item>

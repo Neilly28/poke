@@ -66,8 +66,11 @@ const Home = () => {
               <div className="grid lg:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 grid-cols-1 gap-8">
                 {filteredCharacters.map((char) => {
                   return (
-                    <Link key={char.id} to={`/poke/${char.id}`}>
-                      <div className="rounded-lg text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out p-4 flex flex-col justify-center items-center relative bg-white">
+                    <div
+                      key={char.id}
+                      className="rounded-lg text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out p-4 flex flex-col justify-center items-center relative bg-white"
+                    >
+                      <Link to={`/poke/${char.id}`}>
                         <h2 className="w-full h-16 p-2 capitalize text-lg text-black flex items-center justify-center">
                           #{char.id}
                         </h2>
@@ -85,9 +88,10 @@ const Home = () => {
                           {char.name}
                         </div>
                         <div className="flex justify-center items-center gap-4">
-                          {char.types.map((poke) => {
+                          {char.types.map((poke, idx) => {
                             return (
                               <div
+                                key={idx}
                                 className={`flex justify-center items-center px-4 py-2 capitalize text-sm font-bold text-white rounded-3xl mb-8 ${
                                   colours[poke.type.name.toLowerCase()]
                                 }`}
@@ -97,8 +101,8 @@ const Home = () => {
                             );
                           })}
                         </div>
-                      </div>
-                    </Link>
+                      </Link>
+                    </div>
                   );
                 })}
               </div>

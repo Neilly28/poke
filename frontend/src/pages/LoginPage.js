@@ -38,13 +38,16 @@ const theme = createTheme();
 export default function SignInSide() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { handleLogin, error, isLoading } = useContext(AuthContext);
+  const { handleLogin, loginError, isLoading } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await handleLogin(email, password);
-    navigate("/home");
+    const response = await handleLogin(email, password);
+    console.log({ response });
+    if (response) {
+      navigate("/home");
+    }
   };
 
   return (
@@ -100,6 +103,7 @@ export default function SignInSide() {
                 autoFocus
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
+                disabled={isLoading}
               />
               <TextField
                 margin="normal"
@@ -112,6 +116,7 @@ export default function SignInSide() {
                 autoComplete="current-password"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
+                disabled={isLoading}
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
@@ -126,7 +131,7 @@ export default function SignInSide() {
               >
                 Sign In
               </Button>
-              {error && <div className="text-red-500"> {error} </div>}
+              {loginError && <div className="text-red-500"> {loginError} </div>}
               <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">
