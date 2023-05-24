@@ -6,7 +6,7 @@ import { ClipLoader, PacmanLoader, BeatLoader } from "react-spinners";
 import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import { RiArrowGoBackFill } from "react-icons/ri";
-import colours from "../constants/colours.json";
+import { colours } from "../constants/colours";
 
 const PokemonDetails = () => {
   const { id } = useParams();

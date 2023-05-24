@@ -3,7 +3,7 @@ import { useState } from "react";
 import { BsFillTrashFill, BsFillXCircleFill } from "react-icons/bs";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-import colours from "../constants/colours.json";
+import { colours } from "../constants/colours";
 
 const AiCard = ({ _id, name, prompt, photo, type }) => {
   const { dispatch } = usePostContext();

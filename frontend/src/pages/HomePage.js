@@ -7,7 +7,7 @@ import { Fade } from "react-awesome-reveal";
 import { ClipLoader, PacmanLoader, BeatLoader } from "react-spinners";
 import { BsSearchHeartFill } from "react-icons/bs";
 import Hero from "./Hero";
-import colours from "../constants/colours.json";
+import { colours } from "../constants/colours";
 
 const Home = () => {
   const {
@@ -20,6 +20,9 @@ const Home = () => {
     loading,
     setLoading,
   } = useFetch("https://pokeapi.co/api/v2/pokemon?limit=151");
+  console.log({ filteredCharacters });
+
+  console.log({ colours });
 
   return (
     <>
@@ -69,10 +72,10 @@ const Home = () => {
                           {char.name}
                         </div>
                         <div className="flex justify-center items-center gap-4">
-                          {char.types.map((poke, idx) => {
+                          {char.types.map((poke) => {
                             return (
                               <div
-                                key={idx}
+                                key={poke.type.slot}
                                 className={`flex justify-center items-center px-4 py-2 capitalize text-sm font-bold text-white rounded-3xl mb-8 ${
                                   colours[poke.type.name.toLowerCase()]
                                 }`}
