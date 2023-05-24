@@ -4,7 +4,6 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import { useAuthContext } from "./hooks/useAuthContext";
 import Home from "./pages/HomePage";
 import SignInSide from "./pages/LoginPage";
 import SignUp from "./pages/SignupPage";
@@ -15,10 +14,11 @@ import CreatePost from "./pages/AiPage";
 import Community from "./pages/CommunityPage";
 import Hero from "./pages/Hero";
 import Footer from "./components/Footer";
-import NotAuthorized from "./pages/NotAuthorized";
+import { useContext } from "react";
+import { AuthContext } from "./context/AuthContext";
 
 function App() {
-  const { user } = useAuthContext();
+  const { user } = useContext(AuthContext);
   return (
     <div className="App">
       <Router>

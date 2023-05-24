@@ -1,12 +1,12 @@
-import React from "react";
 import { usePostContext } from "../hooks/usePostContext";
-import { useAuthContext } from "../hooks/useAuthContext";
 import { useState } from "react";
 import { BsFillTrashFill, BsFillXCircleFill } from "react-icons/bs";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 const AiCard = ({ _id, name, prompt, photo, type }) => {
   const { dispatch } = usePostContext();
-  const { user } = useAuthContext();
+  const { user } = useContext(AuthContext);
   const [isDeleted, setIsDeleted] = useState(false);
 
   const handleClick = async () => {

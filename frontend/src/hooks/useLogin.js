@@ -1,42 +1,49 @@
 import { useState } from "react";
-import { useAuthContext } from "./useAuthContext";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 export const useLogin = () => {
+  const { login } = useContext(AuthContext);
+
   const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(null);
-  const { dispatch } = useAuthContext();
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const login = async (email, password) => {
+  const handleLogin = async (email, password) => {
     setIsLoading(true);
     setError(null);
 
-    const response = await fetch(
-      "https://cute-erin-codfish-sari.cyclic.app/api/user/login",
-      {
-        method: "POST",
-        mode: "cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+    try {
+      const response = await fetch(
+        "https://cute-erin-codfish-sari.cyclic.app/api/user/login",
+        {
+          method: "POST",
+          mode: "cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        }
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error);
       }
-    );
-    const json = await response.json();
 
-    if (!response.ok) {
-      setIsLoading(false);
-      setError(json.error);
-    }
-    if (response.ok) {
-      // save the user to local storage
-      localStorage.setItem("user", JSON.stringify(json));
+      const user = await response.json();
 
-      //   update the auth context
-      dispatch({ type: "LOGIN", payload: json });
+      // Save the user to local storage
+      localStorage.setItem("user", JSON.stringify(user));
 
-      setIsLoading(false);
+      // Update the auth context
+      login(user);
       navigate("/home");
+    } catch (error) {
+      setError(error.message);
     }
+
+    setIsLoading(false);
   };
-  return { login, isLoading, error };
+
+  return { handleLogin, isLoading, error };
 };

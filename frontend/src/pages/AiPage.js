@@ -9,11 +9,12 @@ import {
 import { BsDice5Fill, BsFillShareFill } from "react-icons/bs";
 // import { ReactComponent as YourSvg } from "../assets/logo.svg";
 import Icon from "../assets/Logo";
-import { useAuthContext } from "../hooks/useAuthContext";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 
 const CreatePost = () => {
-  const { user } = useAuthContext();
+  const { user } = useContext(AuthContext);
 
   const {
     handleSubmit,

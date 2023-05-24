@@ -1,16 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useLogout } from "../hooks/useLogout";
-import { useAuthContext } from "../hooks/useAuthContext";
 import { useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 const Navbar = () => {
-  const { logout } = useLogout();
-  const { user } = useAuthContext();
+  const { handleLogout } = useLogout();
+  const { user } = useContext(AuthContext);
   const [showMenu, setShowMenu] = useState(false);
 
   const handleClick = () => {
-    logout();
+    handleLogout();
     setShowMenu(false);
   };
 

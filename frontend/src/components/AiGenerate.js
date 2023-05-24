@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getRandomPrompt } from "./getRandomPrompt";
-import { useAuthContext } from "../hooks/useAuthContext";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 const AiGenerate = () => {
-  const { user } = useAuthContext();
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const [generatingImg, setGeneratingImg] = useState(false);
   const [imageGenerated, setImageGenerated] = useState(false);

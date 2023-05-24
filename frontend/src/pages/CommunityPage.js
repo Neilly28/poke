@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import AiCard from "../components/AiCard";
 import { usePostContext } from "../hooks/usePostContext";
-import { useAuthContext } from "../hooks/useAuthContext";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 import {
   RingLoader,
   ClipLoader,
@@ -20,7 +21,7 @@ const RenderCards = ({ data, title }) => {
 };
 
 const Community = () => {
-  const { user } = useAuthContext();
+  const { user } = useContext(AuthContext);
 
   const [loading, setLoading] = useState(false);
   const [allPosts, setAllPosts] = useState(null);
