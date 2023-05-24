@@ -120,12 +120,24 @@ const Navbar = () => {
           Community
         </Link>
 
-        <button
-          onClick={handleClick}
-          className="block w-full text-left p-4 text-2xl bg-red-500 text-white hover:bg-red-600"
-        >
-          {user ? "Logout" : "Login"}
-        </button>
+        {user && (
+          <button
+            onClick={handleClick}
+            className="block w-full text-left p-4 text-2xl bg-red-500 text-white hover:bg-red-600"
+          >
+            Logout
+          </button>
+        )}
+        {!user && (
+          <Link to="/login">
+            <button
+              onClick={handleClick}
+              className="block w-full text-left p-4 text-2xl bg-red-500 text-white hover:bg-red-600"
+            >
+              Login
+            </button>
+          </Link>
+        )}
       </div>
     </div>
   );
