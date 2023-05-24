@@ -3,6 +3,7 @@ import { useState } from "react";
 import { BsFillTrashFill, BsFillXCircleFill } from "react-icons/bs";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import colours from "../constants/colours.json";
 
 const AiCard = ({ _id, name, prompt, photo, type }) => {
   const { dispatch } = usePostContext();
@@ -30,27 +31,6 @@ const AiCard = ({ _id, name, prompt, photo, type }) => {
     }
   };
 
-  const colours = {
-    normal: "bg-[#A8A77A]",
-    fire: "bg-[#EE8130]",
-    water: "bg-[#6390F0]",
-    electric: "bg-[#F7D02C]",
-    grass: "bg-[#7AC74C]",
-    ice: "bg-[#96D9D6]",
-    fighting: "bg-[#C22E28]",
-    poison: "bg-[#A33EA1]",
-    ground: "bg-[#E2BF65]",
-    flying: "bg-[#A98FF3]",
-    psychic: "bg-[#F95587]",
-    bug: "bg-[#A6B91A]",
-    rock: "bg-[#B6A136]",
-    ghost: "bg-[#735797]",
-    dragon: "bg-[#6F35FC]",
-    dark: "bg-[#705746]",
-    steel: "bg-[#B7B7CE]",
-    fairy: "bg-[#D685AD]",
-  };
-
   if (isDeleted) {
     return null; // Don't render anything if card has been deleted
   }
@@ -58,32 +38,41 @@ const AiCard = ({ _id, name, prompt, photo, type }) => {
   return (
     <div
       className={
-        "rounded-lg text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out p-4 flex flex-col justify-center items-center relative bg-white"
+        "rounded-lg text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out p-4 flex flex-col justify-center items-center relative bg-white h-[600px]"
       }
     >
-      <img className="w-250 h-250 object-cover mb-4" src={photo} alt={prompt} />
-      <div className="w-full h-16 p-2 capitalize text-2xl font-bold text-black flex items-center justify-center">
-        {name}
-      </div>
+      <img
+        className="object-cover max-h-[300px] mb-4"
+        src={photo}
+        alt={prompt}
+      />
 
-      {type ? (
-        <div
-          className={`px-4 py-2 capitalize text-sm font-bold text-white rounded-3xl mb-8 ${
-            colours[type.toLowerCase()]
-          }`}
-        >
-          {type}
+      <div className="flex flex-col items-center justify-evenly">
+        <div className="w-full h-16 p-2 capitalize text-2xl font-bold text-black text-center">
+          {name}
         </div>
-      ) : (
-        <div
-          className={"p-2 capitalize text-sm font-bold text-white rounded-3xl"}
-        >
-          <p>Normal</p>
-        </div>
-      )}
 
-      <div className="p-4 capitalize text-sm text-black tracking-wide flex items-center justify-center">
-        {prompt}
+        {type ? (
+          <div
+            className={`px-4 py-2 capitalize text-sm font-bold text-white rounded-3xl mb-8 ${
+              colours[type.toLowerCase()]
+            }`}
+          >
+            {type}
+          </div>
+        ) : (
+          <div
+            className={
+              "p-2 capitalize text-sm font-bold text-white rounded-3xl"
+            }
+          >
+            <p>Normal</p>
+          </div>
+        )}
+
+        <div className="p-4 capitalize text-sm text-black tracking-wide flex items-center justify-center">
+          {prompt}
+        </div>
       </div>
       {user?.email === "admin@mail.com" && (
         <button
