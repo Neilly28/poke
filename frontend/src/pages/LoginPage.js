@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useLogin } from "../hooks/useLogin";
+import { useState, useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -13,7 +13,7 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -38,39 +38,14 @@ const theme = createTheme();
 export default function SignInSide() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { handleLogin, error, isLoading } = useLogin();
-  // const navigate = useNavigate();
-
-  // const [emailError, setEmailError] = useState("");
-  // const [passwordError, setPasswordError] = useState("");
+  const { handleLogin, error, isLoading } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     await handleLogin(email, password);
-    // navigate("/home");
+    navigate("/home");
   };
-
-  // const handleEmailChange = (e) => {
-  //   const value = e.target.value;
-  //   setEmail(value);
-  //   if (!value) {
-  //     setEmailError("Email is required");
-  //   } else if (!/\S+@\S+\.\S+/.test(value)) {
-  //     setEmailError("Email is invalid");
-  //   } else {
-  //     setEmailError("");
-  //   }
-  // };
-
-  // const handlePasswordChange = (e) => {
-  //   const value = e.target.value;
-  //   setPassword(value);
-  //   if (!value) {
-  //     setPasswordError("Password is required");
-  //   } else {
-  //     setPasswordError("");
-  //   }
-  // };
 
   return (
     <ThemeProvider theme={theme}>
