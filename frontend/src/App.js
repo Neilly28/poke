@@ -3,20 +3,20 @@ import {
   Routes,
   Route,
   Navigate,
-  useLocation,
 } from "react-router-dom";
-import Home from "./pages/HomePage";
-import SignInSide from "./pages/LoginPage";
-import SignUp from "./pages/SignupPage";
-import PokemonDetails from "./pages/PokemonDetailsPage";
-import NotFound from "./pages/NotFoundPage";
-import Navbar from "./components/Navbar";
-import CreatePost from "./pages/AiPage";
-import Community from "./pages/CommunityPage";
-import Hero from "./pages/Hero";
-import Footer from "./components/Footer";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
+
+import Navbar from "./components/Navbar";
+import Hero from "./pages/Hero";
+import Footer from "./components/Footer";
+import Create from "./pages/Create";
+import Community from "./pages/Community";
+import Home from "./pages/Home";
+import SignInSide from "./pages/Login";
+import Error from "./pages/Error";
+import Details from "./pages/Details";
+import SignUp from "./pages/Signup";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -28,9 +28,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Hero />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/poke/:id" element={<PokemonDetails />} />
-          <Route path="/create-post" element={<CreatePost />} />
-          <Route path="/ai" element={<Community />} />
+          <Route path="/pokemon/:id" element={<Details />} />
+          <Route path="/create" element={<Create />} />
+          <Route path="/community" element={<Community />} />
           <Route
             path="/login"
             element={!user ? <SignInSide /> : <Navigate to="/home" />}
@@ -39,7 +39,7 @@ function App() {
             path="/signup"
             element={!user ? <SignUp /> : <Navigate to="/home" />}
           />
-          <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<Error />} />
         </Routes>
         <Footer />
       </Router>

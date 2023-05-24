@@ -129,7 +129,7 @@ export default function SignInSide() {
                 sx={{ mt: 3, mb: 2 }}
                 disabled={isLoading}
               >
-                Sign In
+                {isLoading ? "Signing in..." : "Sign in"}
               </Button>
               {loginError && <div className="text-red-500"> {loginError} </div>}
               <Grid container>

@@ -37,12 +37,12 @@ const Navbar = () => {
         <div className="hidden sm:flex">
           <div className="flex items-center font-semibold gap-4">
             <Link
-              to="/create-post"
+              to="/create"
               className="flex justify-center items-center px-4 py-2 capitalize text-sm font-bold text-white rounded-3xl bg-red-500 hover:bg-red-600"
             >
               Create
             </Link>
-            <Link className="text-sm font-bold" to="/ai">
+            <Link className="text-sm font-bold" to="/community">
               Community
             </Link>
 
@@ -111,7 +111,7 @@ const Navbar = () => {
         </Link>
 
         <Link
-          to="/ai"
+          to="/community"
           className="block p-4 text-2xl bg-red-500 text-white hover:bg-red-600"
           onClick={() => {
             setShowMenu(false);

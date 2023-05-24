@@ -95,7 +95,7 @@ const AiGenerate = () => {
 
         if (response.ok) {
           await response.json();
-          navigate("/ai");
+          navigate("/community");
         } else {
           throw new Error("Unable to submit form");
         }

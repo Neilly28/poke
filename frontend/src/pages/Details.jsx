@@ -1,37 +1,34 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import TypeWriterEffect from "react-typewriter-effect";
-import { ClipLoader, PacmanLoader, BeatLoader } from "react-spinners";
-import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
+import { BeatLoader } from "react-spinners";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import { RiArrowGoBackFill } from "react-icons/ri";
 import { colours } from "../constants/colours";
 
-const PokemonDetails = () => {
+const Details = () => {
   const { id } = useParams();
   const [pokeDetails, setPokeDetails] = useState(null);
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
-  const [evo, setEvo] = useState("");
   const [text, setText] = useState("");
   const navigate = useNavigate();
 
   const handlePrevClick = () => {
     const prevId = parseInt(id) - 1;
     if (id == 1) {
-      navigate(`/poke/151`);
+      navigate(`/pokemon/151`);
     } else {
-      navigate(`/poke/${prevId}`);
+      navigate(`/pokemon/${prevId}`);
     }
   };
 
   const handleNextClick = () => {
     const nextId = parseInt(id) + 1;
     if (id == 151) {
-      navigate(`/poke/1`);
+      navigate(`/pokemon/1`);
     } else {
-      navigate(`/poke/${nextId}`);
+      navigate(`/pokemon/${nextId}`);
     }
   };
 
@@ -85,7 +82,7 @@ const PokemonDetails = () => {
         {/* {error && <div>{error}</div>} */}
         {isPending && (
           <div className="flex items-center justify-center h-screen mx-auto">
-            <h1 className="font-bold text-xl mr-3">Catching Pokemon </h1>
+            <h1 className="font-bold text-xl mr-3">Catching Pokémon </h1>
             <BeatLoader color="black" loading={isPending} size={25} />
           </div>
         )}
@@ -152,4 +149,4 @@ const PokemonDetails = () => {
   );
 };
 
-export default PokemonDetails;
+export default Details;

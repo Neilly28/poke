@@ -1,12 +1,12 @@
-import { usePostContext } from "../hooks/usePostContext";
 import { useState } from "react";
 import { BsFillTrashFill, BsFillXCircleFill } from "react-icons/bs";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { PostContext } from "../context/PostContext";
 import { colours } from "../constants/colours";
 
 const AiCard = ({ _id, name, prompt, photo, type }) => {
-  const { dispatch } = usePostContext();
+  const { deletePost } = useContext(PostContext);
   const { user } = useContext(AuthContext);
   const [isDeleted, setIsDeleted] = useState(false);
 
@@ -26,7 +26,7 @@ const AiCard = ({ _id, name, prompt, photo, type }) => {
     const json = await response.json();
 
     if (response.ok) {
-      dispatch({ type: "DELETE_POKEMON", payload: json });
+      deletePost(_id);
       setIsDeleted(true);
     }
   };

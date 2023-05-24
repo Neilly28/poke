@@ -1,20 +1,16 @@
-import React, { useState } from "react";
 import AiGenerate from "../components/AiGenerate";
-import {
-  RingLoader,
-  ClipLoader,
-  PacmanLoader,
-  BeatLoader,
-} from "react-spinners";
+import { RingLoader } from "react-spinners";
 import { BsDice5Fill, BsFillShareFill } from "react-icons/bs";
-// import { ReactComponent as YourSvg } from "../assets/logo.svg";
 import Icon from "../assets/Logo";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Link } from "react-router-dom";
+import { colours } from "../constants/colours";
 
-const CreatePost = () => {
+const Create = () => {
   const { user } = useContext(AuthContext);
+  const keys = Object.keys(colours);
+  console.log({ keys });
 
   const {
     handleSubmit,
@@ -26,12 +22,9 @@ const CreatePost = () => {
     generateImage,
   } = AiGenerate();
 
-  const [pokemonType, setPokemonType] = useState("");
-  const [allow, setAllow] = useState("");
-
   return (
     <>
-      <section className="mt-24 mx-auto max-w-5xl rounded-lg text-black shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out p-8 relative bg-white mb-96">
+      <section className="mt-24 mx-auto max-w-5xl rounded-lg text-black shadow-lg hover:shadow-xl transition duration-300 ease-in-out p-8 relative bg-white mb-96">
         <div className="flex flex-col justify-center items-center mb-12">
           <h1 className="text-center text-2xl font-bold mb-4 px-4 py-2 rounded-3xl bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 mt-6 text-white mx-auto cursor-default w-full md:w-1/2 max-w-sm">
             Create a Pokémon
@@ -61,24 +54,10 @@ const CreatePost = () => {
                 }`}
                 disabled={form.photo ? true : false}
               >
-                <option value="">Please select</option>
-                <option value="normal">normal</option>
-                <option value="fire">fire</option>
-                <option value="water">water</option>
-                <option value="electric">electric</option>
-                <option value="grass">grass</option>
-                <option value="ice">ice</option>
-                <option value="fighting">fighting</option>
-                <option value="poison">poison</option>
-                <option value="ground">ground</option>
-                <option value="flying">flying</option>
-                <option value="bug">bug</option>
-                <option value="rock">rock</option>
-                <option value="ghost">ghost</option>
-                <option value="dragon">dragon</option>
-                <option value="dark">dark</option>
-                <option value="steel">steel</option>
-                <option value="fairy">fairy</option>
+                <option value="">Choose a type</option>
+                {keys.map((type) => {
+                  return <option value={type}>{type}</option>;
+                })}
               </select>
             </div>
 
@@ -87,7 +66,7 @@ const CreatePost = () => {
                 type="text"
                 name="name"
                 id="name"
-                className={`block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer ${
+                className={`block py-2.5 px-0 w-full/2 text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer ${
                   form.photo && "bg-gray-300"
                 }`}
                 placeholder=" "
@@ -95,6 +74,7 @@ const CreatePost = () => {
                 value={form.name}
                 onChange={handleChange}
                 disabled={form.photo ? true : false}
+                maxLength={12}
               />
               <label
                 htmlFor="floating_email"
@@ -110,15 +90,15 @@ const CreatePost = () => {
               <textarea
                 name="prompt"
                 id="prompt"
-                rows="3"
+                rows="2"
                 className={`block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer resize-y min-h-48 ${
                   form.photo && "bg-gray-300"
                 }`}
-                placeholder=" "
                 required
                 value={form.prompt}
                 onChange={handleChange}
                 disabled={form.photo ? true : false}
+                maxLength={180}
               ></textarea>
               <label
                 htmlFor="floating_password"
@@ -231,4 +211,4 @@ const CreatePost = () => {
   );
 };
 
-export default CreatePost;
+export default Create;

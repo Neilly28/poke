@@ -1,14 +1,8 @@
 import { useState, useEffect } from "react";
 import AiCard from "../components/AiCard";
-import { usePostContext } from "../hooks/usePostContext";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-import {
-  RingLoader,
-  ClipLoader,
-  PacmanLoader,
-  BeatLoader,
-} from "react-spinners";
+import { BeatLoader } from "react-spinners";
 
 const RenderCards = ({ data, title }) => {
   if (data?.length > 0) {

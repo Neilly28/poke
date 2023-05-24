@@ -7,14 +7,8 @@ const Footer = () => {
     return null;
   } else {
     return (
-      <div className="mt-48 justify-center items-center bg-black p-8">
-        <div
-          className="h-96 bg-cover bg-center w-1/2 mx-auto"
-          style={{
-            backgroundImage: `url(${process.env.PUBLIC_URL}/footer.jpg)`,
-          }}
-        ></div>
-        <p className="text-white text-center">
+      <div className="bg-white py-8 flex flex-col items-center justify-center bottom-0 left-0 w-full">
+        <p className="text-black text-center mt-4">
           ©Pokémon. ©Nintendo/Creatures Inc./GAME FREAK inc.
           ポケットモンスター・ポケモン・Pokémonは任天堂・クリーチャーズ・ゲームフリークの登録商標です。
         </p>

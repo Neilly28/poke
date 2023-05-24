@@ -1,33 +1,24 @@
-import { createContext, useReducer } from "react";
+import React, { createContext, useState } from "react";
 
 export const PostContext = createContext();
 
-export const postReducer = (state, action) => {
-  switch (action.type) {
-    case "SET_POST":
-      return {
-        posts: action.payload,
-      };
-    case "CREATE_POST":
-      return {
-        posts: [action.payload, ...state.posts],
-      };
-    case "DELETE_POST":
-      return {
-        posts: state.posts.filter((post) => post._id !== action.payload._id),
-      };
-    default:
-      return state;
-  }
-};
-
 export const PostContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(postReducer, {
-    posts: null,
-  });
+  const [posts, setPosts] = useState(null);
+
+  const setPost = (newPosts) => {
+    setPosts(newPosts);
+  };
+
+  const createPost = (newPost) => {
+    setPosts((prevPosts) => [newPost, ...prevPosts]);
+  };
+
+  const deletePost = (postId) => {
+    setPosts((prevPosts) => prevPosts.filter((post) => post._id !== postId));
+  };
 
   return (
-    <PostContext.Provider value={{ ...state, dispatch }}>
+    <PostContext.Provider value={{ posts, setPost, createPost, deletePost }}>
       {children}
     </PostContext.Provider>
   );

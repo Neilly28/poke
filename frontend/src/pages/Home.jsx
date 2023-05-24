@@ -1,36 +1,23 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import useFetch from "../components/useFetch";
-import Masonry from "react-responsive-masonry";
-import { Fade } from "react-awesome-reveal";
-import { ClipLoader, PacmanLoader, BeatLoader } from "react-spinners";
+import { BeatLoader } from "react-spinners";
 import { BsSearchHeartFill } from "react-icons/bs";
-import Hero from "./Hero";
 import { colours } from "../constants/colours";
 
 const Home = () => {
-  const {
-    characters,
-    searchTerm,
-    setSearchTerm,
-    isPending,
-    error,
-    filteredCharacters,
-    loading,
-    setLoading,
-  } = useFetch("https://pokeapi.co/api/v2/pokemon?limit=151");
+  const { searchTerm, setSearchTerm, filteredCharacters, loading, setLoading } =
+    useFetch("https://pokeapi.co/api/v2/pokemon?limit=151");
+
   console.log({ filteredCharacters });
 
   console.log({ colours });
 
   return (
     <>
-      {/* <Hero /> */}
-      <div className="max-w-7xl mx-auto mt-24 mb-96">
+      <div className="max-w-7xl mx-auto mt-24 mb-24">
         {loading ? (
           <div className="flex items-center justify-center h-screen">
-            <h1 className="font-bold text-xl mr-3">Catching Pokemon </h1>
+            <h1 className="font-bold text-xl mr-3">Catching Pokémon </h1>
             <BeatLoader color="black" loading={loading} size={25} />
           </div>
         ) : (
@@ -54,7 +41,7 @@ const Home = () => {
                       key={char.id}
                       className="rounded-lg text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out p-4 flex flex-col justify-center items-center relative bg-white"
                     >
-                      <Link to={`/poke/${char.id}`}>
+                      <Link to={`/pokemon/${char.id}`}>
                         <h2 className="w-full h-16 p-2 capitalize text-lg text-black flex items-center justify-center">
                           #{char.id}
                         </h2>
