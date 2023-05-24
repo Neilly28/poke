@@ -1,16 +1,13 @@
 import { Link } from "react-router-dom";
-import useFetch from "../components/useFetch";
 import { BeatLoader } from "react-spinners";
 import { BsSearchHeartFill } from "react-icons/bs";
 import { colours } from "../constants/colours";
+import { useContext } from "react";
+import { PokemonContext } from "../context/PokemonContext";
 
 const Home = () => {
-  const { searchTerm, setSearchTerm, filteredCharacters, loading, setLoading } =
-    useFetch("https://pokeapi.co/api/v2/pokemon?limit=151");
-
-  console.log({ filteredCharacters });
-
-  console.log({ colours });
+  const { searchTerm, setSearchTerm, filteredPokemon, loading } =
+    useContext(PokemonContext);
 
   return (
     <>
@@ -35,39 +32,38 @@ const Home = () => {
 
             <div>
               <div className="grid lg:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 grid-cols-1 gap-8">
-                {filteredCharacters.map((char) => {
+                {filteredPokemon.map((poke) => {
+                  const { id, name, image, types } = poke;
                   return (
                     <div
-                      key={char.id}
+                      key={id}
                       className="rounded-lg text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out p-4 flex flex-col justify-center items-center relative bg-white"
                     >
-                      <Link to={`/pokemon/${char.id}`}>
+                      <Link to={`/pokemon/${id}`}>
                         <h2 className="w-full h-16 p-2 capitalize text-lg text-black flex items-center justify-center">
-                          #{char.id}
+                          #{id}
                         </h2>
                         <div className="h-250 w-auto object-cover mb-4">
                           <img
                             className="h-250 w-auto object-cover mb-4 saturate-[0.8]"
-                            src={char.sprites.other.home.front_default}
-                            // src={char.sprites.other.dream_world.front_default}
-                            // src={char.sprites.front_default}
-                            alt={char.name}
+                            src={image}
+                            alt={name}
                           />
                         </div>
 
                         <div className="w-full h-16 p-2 capitalize text-2xl font-bold text-black flex items-center justify-center">
-                          {char.name}
+                          {name}
                         </div>
                         <div className="flex justify-center items-center gap-4">
-                          {char.types.map((poke) => {
+                          {types.map((poke, idx) => {
                             return (
                               <div
-                                key={poke.type.slot}
+                                key={idx}
                                 className={`flex justify-center items-center px-4 py-2 capitalize text-sm font-bold text-white rounded-3xl mb-8 ${
-                                  colours[poke.type.name.toLowerCase()]
+                                  colours[poke.toLowerCase()]
                                 }`}
                               >
-                                {poke.type.name}
+                                {poke}
                               </div>
                             );
                           })}

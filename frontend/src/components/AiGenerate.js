@@ -46,6 +46,7 @@ const AiGenerate = () => {
             headers: {
               "Content-Type": "application/json",
             },
+            mode: "cors",
             body: JSON.stringify({
               prompt: `Pokemon or Monster Full Body White Background ${form.type} ${form.prompt}`,
               type: form.type,

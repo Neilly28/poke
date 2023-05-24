@@ -101,7 +101,7 @@ const Navbar = () => {
           Home
         </Link>
         <Link
-          to="create-post"
+          to="/create"
           className="block p-4 text-2xl bg-red-500 text-white hover:bg-red-600"
           onClick={() => {
             setShowMenu(false);
