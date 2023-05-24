@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
 import { BsSearchHeartFill } from "react-icons/bs";
-import { colours } from "../constants/colours";
+import { colours, shadows } from "../constants/colours";
 import { useContext } from "react";
 import { PokemonContext } from "../context/PokemonContext";
 
@@ -37,7 +37,7 @@ const Home = () => {
                   return (
                     <div
                       key={id}
-                      className="rounded-lg text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out p-4 flex flex-col justify-center items-center relative bg-white"
+                      className={`rounded-lg text-white shadow-lg hover:shadow-md hover:shadow-[#F7D02C] transform hover:scale-105 transition duration-300 ease-in-out p-4 flex flex-col justify-center items-center relative`}
                     >
                       <Link to={`/pokemon/${id}`}>
                         <h2 className="w-full h-16 p-2 capitalize text-lg text-black flex items-center justify-center">

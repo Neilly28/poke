@@ -11,7 +11,6 @@ import ditto from "../assets/ditto.gif";
 const Create = () => {
   const { user } = useContext(AuthContext);
   const keys = Object.keys(colours);
-  console.log({ keys });
 
   const {
     handleSubmit,

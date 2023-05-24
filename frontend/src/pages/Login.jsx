@@ -44,7 +44,6 @@ export default function SignInSide() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await handleLogin(email, password);
-    console.log({ response });
     if (response) {
       navigate("/home");
     }

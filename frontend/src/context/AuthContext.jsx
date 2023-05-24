@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
@@ -63,7 +62,6 @@ export const AuthContextProvider = ({ children }) => {
         }
       );
       const json = await response.json();
-      console.log({ response });
 
       if (!response.ok) {
         setIsLoading(false);
