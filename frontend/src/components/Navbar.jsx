@@ -71,7 +71,9 @@ const Navbar = () => {
 
             {!user && (
               <>
-                <span className="text-sm font-bold">Hello, Guest</span>
+                <span className="text-sm hidden lg:flex font-bold">
+                  Hello, Guest
+                </span>
                 <Link className="text-sm font-bold" to="/login">
                   Login
                 </Link>
