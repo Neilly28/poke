@@ -3,7 +3,7 @@ import React, { createContext, useState } from "react";
 export const PostContext = createContext();
 
 export const PostContextProvider = ({ children }) => {
-  const [posts, setPosts] = useState(null);
+  const [posts, setPosts] = useState([]);
 
   const setPost = (newPosts) => {
     setPosts(newPosts);

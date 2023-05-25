@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import AiCard from "../components/AiCard";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { BeatLoader } from "react-spinners";
+import Card from "../components/Card";
 
 const RenderCards = ({ data, title }) => {
   if (data?.length > 0) {
-    return data.map((post) => <AiCard key={post._id} {...post} />);
+    return data.map((post) => <Card key={post._id} {...post} />);
   }
 
   return (

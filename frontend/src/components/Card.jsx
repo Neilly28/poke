@@ -5,7 +5,7 @@ import { AuthContext } from "../context/AuthContext";
 import { PostContext } from "../context/PostContext";
 import { colours } from "../constants/colours";
 
-const AiCard = ({ _id, name, prompt, photo, type }) => {
+const Card = ({ _id, name, prompt, photo, type }) => {
   const { deletePost } = useContext(PostContext);
   const { user } = useContext(AuthContext);
   const [isDeleted, setIsDeleted] = useState(false);
@@ -85,4 +85,4 @@ const AiCard = ({ _id, name, prompt, photo, type }) => {
     </div>
   );
 };
-export default AiCard;
+export default Card;

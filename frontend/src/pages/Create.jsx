@@ -1,16 +1,17 @@
-import AiGenerate from "../components/AiGenerate";
 import { RingLoader } from "react-spinners";
 import { BsDice5Fill, BsFillShareFill } from "react-icons/bs";
 import Icon from "../assets/Logo";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { Link } from "react-router-dom";
+import { AiContext } from "../context/AiContext";
+import { Link, useNavigate } from "react-router-dom";
 import { colours } from "../constants/colours";
 import ditto from "../assets/ditto.gif";
 
 const Create = () => {
   const { user } = useContext(AuthContext);
   const keys = Object.keys(colours);
+  const navigate = useNavigate();
 
   const {
     handleSubmit,
@@ -20,7 +21,16 @@ const Create = () => {
     generatingImg,
     loading,
     generateImage,
-  } = AiGenerate();
+    imageGenerated,
+  } = useContext(AiContext);
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    await handleSubmit();
+    if (imageGenerated) {
+      navigate("/community");
+    }
+  };
 
   return (
     <>
@@ -37,7 +47,7 @@ const Create = () => {
         </div>
 
         <div className="flex justify-evenly items-center flex-col sm:flex-row">
-          <form onSubmit={handleSubmit} className="w-full sm:w-1/2">
+          <form onSubmit={handleFormSubmit} className="w-full sm:w-1/2">
             <div className="flex flex-col justify-center items-start gap-4 text-black w-1/2 mb-12">
               <label htmlFor="" className="text-sm text-gray-500 w-full block">
                 Pokémon Type

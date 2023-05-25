@@ -1,12 +1,12 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { getRandomPrompt } from "./getRandomPrompt";
+import { createContext, useState } from "react";
+import { getRandomPrompt } from "../components/getRandomPrompt";
 import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "./AuthContext";
 
-const AiGenerate = () => {
+export const AiContext = createContext();
+
+export const AiContextProvider = ({ children }) => {
   const { user } = useContext(AuthContext);
-  const navigate = useNavigate();
   const [generatingImg, setGeneratingImg] = useState(false);
   const [imageGenerated, setImageGenerated] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -17,6 +17,15 @@ const AiGenerate = () => {
     photo: "",
     type: "",
   });
+
+  const resetForm = () => {
+    setForm({
+      name: "",
+      prompt: "",
+      photo: "",
+      type: "",
+    });
+  };
 
   const handleChange = (e) => {
     setForm((prevForm) => {
@@ -77,8 +86,6 @@ const AiGenerate = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-
     if (form.prompt && form.photo && form.type) {
       setLoading(true);
       try {
@@ -96,7 +103,7 @@ const AiGenerate = () => {
 
         if (response.ok) {
           await response.json();
-          navigate("/community");
+          resetForm();
         } else {
           throw new Error("Unable to submit form");
         }
@@ -108,16 +115,20 @@ const AiGenerate = () => {
     }
   };
 
-  return {
-    handleSubmit,
-    form,
-    handleChange,
-    handleSurpriseMe,
-    generatingImg,
-    loading,
-    generateImage,
-    imageGenerated,
-  };
+  return (
+    <AiContext.Provider
+      value={{
+        handleSubmit,
+        form,
+        handleChange,
+        handleSurpriseMe,
+        generatingImg,
+        loading,
+        generateImage,
+        imageGenerated,
+      }}
+    >
+      {children}
+    </AiContext.Provider>
+  );
 };
-
-export default AiGenerate;
