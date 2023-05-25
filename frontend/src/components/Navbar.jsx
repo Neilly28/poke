@@ -65,6 +65,9 @@ const Navbar = () => {
             >
               Create
             </Link>
+            <Link className="text-sm font-bold" to="/home">
+              Home
+            </Link>
             <Link className="text-sm font-bold" to="/community">
               Community
             </Link>
