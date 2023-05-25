@@ -11,7 +11,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="max-w-7xl mx-auto mt-24 mb-24">
+      <div className="max-w-7xl mx-auto mt-48 mb-24">
         {loading ? (
           <div className="flex items-center justify-center h-screen">
             <h1 className="font-bold text-xl mr-3">Catching Pokémon </h1>

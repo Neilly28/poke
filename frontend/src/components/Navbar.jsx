@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 
 const Navbar = () => {
   const { user, handleLogout } = useContext(AuthContext);
   const [showMenu, setShowMenu] = useState(false);
+
+  // header state
+  const [isActive, setIsActive] = useState(false);
+
+  // event listener
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      window.scrollY > 60 ? setIsActive(true) : setIsActive(false);
+    });
+  });
 
   const handleClick = () => {
     handleLogout();
@@ -30,7 +39,13 @@ const Navbar = () => {
 
   return (
     <div>
-      <header className="font-bold text-sm bg-[#f7da34] text-md p-8 flex justify-between sm:justify-between items-center sticky w-full mx-auto">
+      <header
+        className={`flex items-center justify-around p-12 fixed top-0 w-full z-10 transition-all ${
+          isActive
+            ? "bg-black py-4 shadow-md text-white"
+            : "bg-[#F7D02C] py-6 text-black"
+        }`}
+      >
         <Link to="/home">
           <h1 className="text-2xl font-bold">{"<Pokéhack />"}</h1>
         </Link>
@@ -90,7 +105,7 @@ const Navbar = () => {
         </div>
         {/* mobile menu goes here */}
       </header>
-      <div className={showMenu ? "" : "hidden"}>
+      <div className={`${showMenu ? "" : "hidden"}`}>
         <Link
           to="/home"
           className="block p-4 text-2xl bg-red-500 text-white hover:bg-red-600"
