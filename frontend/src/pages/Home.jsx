@@ -2,12 +2,22 @@ import { Link } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
 import { BsSearchHeartFill } from "react-icons/bs";
 import { colours, shadows } from "../constants/colours";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { PokemonContext } from "../context/PokemonContext";
 
 const Home = () => {
-  const { searchTerm, setSearchTerm, filteredPokemon, loading } =
+  const { searchTerm, setSearchTerm, filteredPokemon, loading, handleLimit } =
     useContext(PokemonContext);
+
+  console.log({ filteredPokemon });
+
+  // end state
+  const [end, setEnd] = useState(151);
+
+  // handeClick
+  const handleClick = () => {
+    setEnd(end + 151);
+  };
 
   return (
     <>
@@ -32,7 +42,7 @@ const Home = () => {
 
             <div>
               <div className="grid lg:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 grid-cols-1 gap-8">
-                {filteredPokemon.map((poke) => {
+                {filteredPokemon.slice(0, end).map((poke) => {
                   const { id, name, image, types } = poke;
                   return (
                     <div
@@ -73,6 +83,16 @@ const Home = () => {
                   );
                 })}
               </div>
+            </div>
+            <div className="mb-20 relative">
+              {end < 905 && (
+                <button
+                  onClick={handleClick}
+                  className="mt-24 transition-all ease-in font-medium bg-red-400 hover:bg-red-500 px-4 py-2 text-2xl rounded-3xl mb-8 text-white w-96"
+                >
+                  Load More
+                </button>
+              )}
             </div>
           </div>
         )}

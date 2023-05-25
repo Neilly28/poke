@@ -7,29 +7,31 @@ import { colours } from "../constants/colours";
 import { PokemonContext } from "../context/PokemonContext";
 
 const Details = () => {
-  const { filteredPokemon, isPending } = useContext(PokemonContext);
+  const { pokemon, isPending } = useContext(PokemonContext);
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const selectedPokemon = filteredPokemon.filter((poke) => poke.id == id);
+  const selectedPokemon = pokemon.filter((poke) => poke.id == id);
+  console.log({ pokemon });
 
   const handlePrevClick = () => {
     const prevId = parseInt(id) - 1;
-    if (id == 1) {
-      navigate(`/pokemon/151`);
-    } else {
-      navigate(`/pokemon/${prevId}`);
-    }
+    navigate(`/pokemon/${prevId}`);
   };
 
   const handleNextClick = () => {
     const nextId = parseInt(id) + 1;
-    if (id == 151) {
-      navigate(`/pokemon/1`);
-    } else {
-      navigate(`/pokemon/${nextId}`);
-    }
+    navigate(`/pokemon/${nextId}`);
   };
+
+  if (isPending) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <h1 className="font-bold text-xl mr-3">Catching Pokémon </h1>
+        <BeatLoader color="black" loading={isPending} size={25} />
+      </div>
+    );
+  }
 
   return (
     <>
@@ -46,15 +48,10 @@ const Details = () => {
       </Link>
       )
       <div className="flex items-center mx-auto max-w-full p-4 sm:p-16">
-        <button onClick={handlePrevClick} className="w-24 h-24">
-          <SlArrowLeft className="w-full h-full text-gray-200 hover:text-yellow-500" />
-        </button>
-
-        {isPending && (
-          <div className="flex items-center justify-center h-screen mx-auto">
-            <h1 className="font-bold text-xl mr-3">Catching Pokémon </h1>
-            <BeatLoader color="black" loading={isPending} size={25} />
-          </div>
+        {id > 1 && (
+          <button onClick={handlePrevClick} className="w-24 h-24">
+            <SlArrowLeft className="w-full h-full text-gray-200 hover:text-yellow-500" />
+          </button>
         )}
 
         {selectedPokemon.map((poke) => {
@@ -80,9 +77,10 @@ const Details = () => {
                   {name}
                 </div>
                 <div className="flex justify-center items-center gap-4">
-                  {types.map((type) => {
+                  {types.map((type, idx) => {
                     return (
                       <div
+                        key={idx}
                         className={`flex justify-center items-center px-4 py-2 capitalize text-sm font-bold text-white rounded-3xl mb-8 ${
                           colours[type.toLowerCase()]
                         }`}
@@ -114,9 +112,11 @@ const Details = () => {
           );
         })}
 
-        <button onClick={handleNextClick} className="w-24 h-24">
-          <SlArrowRight className="w-full h-full text-gray-200 hover:text-[#f7da34]" />
-        </button>
+        {id < 905 && (
+          <button onClick={handleNextClick} className="w-24 h-24">
+            <SlArrowRight className="w-full h-full text-gray-200 hover:text-[#f7da34]" />
+          </button>
+        )}
       </div>
     </>
   );
