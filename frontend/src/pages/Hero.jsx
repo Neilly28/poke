@@ -23,7 +23,7 @@ const Hero = () => {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: `url(${process.env.PUBLIC_URL}/hero3.jpg)`,
+          backgroundImage: `url(${process.env.PUBLIC_URL}/hero3.webp)`,
         }}
       >
         <div className="absolute inset-0 bg-black opacity-70"></div>

@@ -62,7 +62,7 @@ export default function SignInSide() {
             // backgroundImage:
             //   "url(https://source.unsplash.com/random/1200x800?pokemon)",
 
-            backgroundImage: `url(${process.env.PUBLIC_URL}/pikachu.jpg)`,
+            backgroundImage: `url(${process.env.PUBLIC_URL}/pikachu.webp)`,
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             backgroundPosition: "center",
@@ -138,7 +138,7 @@ export default function SignInSide() {
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="/signup " variant="body2">
+                  <Link href="/signup" variant="body2" rel="preload">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>

@@ -59,7 +59,7 @@ export default function SignUp() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: `url(${process.env.PUBLIC_URL}/charmander.jpg)`,
+            backgroundImage: `url(${process.env.PUBLIC_URL}/charmander.webp)`,
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             backgroundPosition: "center",
