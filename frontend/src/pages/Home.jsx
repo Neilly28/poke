@@ -9,8 +9,6 @@ const Home = () => {
   const { searchTerm, setSearchTerm, filteredPokemon, loading, handleLimit } =
     useContext(PokemonContext);
 
-  console.log({ filteredPokemon });
-
   // end state
   const [end, setEnd] = useState(151);
 

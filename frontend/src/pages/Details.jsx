@@ -12,7 +12,6 @@ const Details = () => {
   const navigate = useNavigate();
 
   const selectedPokemon = pokemon.filter((poke) => poke.id == id);
-  console.log({ pokemon });
 
   const handlePrevClick = () => {
     const prevId = parseInt(id) - 1;
