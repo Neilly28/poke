@@ -8,8 +8,7 @@ export const PokemonContextProvider = ({ children }) => {
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [flavorText, setFlavorText] = useState("");
-  const [limit, setLimit] = useState(151);
+  const [limit, setLimit] = useState(493);
 
   // cleanse flavortext
   const cleanUpFlavorText = (flavorText) => {
@@ -26,7 +25,7 @@ export const PokemonContextProvider = ({ children }) => {
 
       try {
         const response = await fetch(
-          `https://pokeapi.co/api/v2/pokemon?limit=905`
+          `https://pokeapi.co/api/v2/pokemon?limit=${limit}`
         );
         const data = await response.json();
 
@@ -100,6 +99,7 @@ export const PokemonContextProvider = ({ children }) => {
         loading,
         setLoading,
         pokemon,
+        limit,
       }}
     >
       {children}

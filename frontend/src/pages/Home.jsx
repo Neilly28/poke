@@ -6,7 +6,7 @@ import { useContext, useState } from "react";
 import { PokemonContext } from "../context/PokemonContext";
 
 const Home = () => {
-  const { searchTerm, setSearchTerm, filteredPokemon, loading, handleLimit } =
+  const { searchTerm, setSearchTerm, filteredPokemon, loading, limit } =
     useContext(PokemonContext);
 
   // end state
@@ -83,7 +83,7 @@ const Home = () => {
               </div>
             </div>
             <div className="mb-20 relative">
-              {end < 905 && (
+              {end < limit && (
                 <button
                   onClick={handleClick}
                   className="mt-24 transition-all ease-in font-medium bg-red-400 hover:bg-red-500 px-4 py-2 text-2xl rounded-3xl mb-8 text-white w-96"

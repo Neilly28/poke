@@ -7,7 +7,7 @@ import { colours } from "../constants/colours";
 import { PokemonContext } from "../context/PokemonContext";
 
 const Details = () => {
-  const { pokemon, isPending } = useContext(PokemonContext);
+  const { pokemon, isPending, limit } = useContext(PokemonContext);
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -111,7 +111,7 @@ const Details = () => {
           );
         })}
 
-        {id < 905 && (
+        {id < limit && (
           <button onClick={handleNextClick} className="w-24 h-24">
             <SlArrowRight className="w-full h-full text-gray-200 hover:text-[#f7da34]" />
           </button>
